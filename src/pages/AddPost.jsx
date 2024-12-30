@@ -16,7 +16,7 @@ const AddPost = ({ posts, setPosts }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        let response = await axios.get('http://localhost:3001/user')
+        let response = await axios.get('http://localhost:3001/:id')
         const userData = response.data
         setUser(userData)
         setPostState((prevState) => ({
@@ -38,7 +38,10 @@ const AddPost = ({ posts, setPosts }) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault()
-      let response = await axios.post('http://localhost:3001/posts', postState)
+      let response = await axios.post(
+        'http://localhost:3001/addpost',
+        postState
+      )
       setPosts([...posts, response.data])
       setPostState(initialState)
       navigate('/')
@@ -53,25 +56,43 @@ const AddPost = ({ posts, setPosts }) => {
       <input
         type="text"
         id="title"
+        name="title"
         onChange={handleChange}
         value={postState.title}
+        required
       />
       <label htmlFor="description">Post Description:</label>
       <textarea
         id="description"
+        name="description"
         cols="30"
         rows="10"
         onChange={handleChange}
         value={postState.description}
+        required
       ></textarea>
       <label htmlFor="category">Select Category</label>
-      <select id="category" onChange={handleChange} value={postState.category}>
-        {/* //need to edit this */}
+      <select
+        id="category"
+        name="category"
+        onChange={handleChange}
+        value={postState.category}
+        required
+      >
         <option value="study">Study</option>
         <option value="fitness">Fitness</option>
         <option value="motivation">Motivation</option>
         <option value="general">General</option>
       </select>
+
+      <label htmlFor="image">Upload Image:</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        accept="image/*"
+        onChange={handleChange}
+      />
 
       <button type="submit">Post</button>
     </form>
