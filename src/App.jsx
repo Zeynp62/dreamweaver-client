@@ -5,19 +5,30 @@ import { Route, Routes } from 'react-router-dom'
 
 import Nav from './components/Nav'
 import StartingPage from './pages/StartingPage'
+
+
 import SignIn from './pages/SignIn'
 import Register from './pages/Register'
+
+
 import Home from './pages/Home'
+
 import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
+
 import Post from './pages/Post'
 import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
+
 import Dreams from './pages/Dreams'
 import AddTask from './pages/AddTask'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 48e6a45de79e65fedd0cf7094cd8902ca642e857
 import { CheckSession } from './services/Auth'
+import axios from 'axios'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -27,22 +38,18 @@ function App() {
     localStorage.clear()
   }
 
-  const checkToken = async () => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      try {
-        const user = await CheckSession() // Fetch the full user details
-        setUser(user) // Set the user state with the response
-      } catch (err) {
-        console.log('Error fetching user:', err)
-        setUser(null)
-      }
-    }
+  const checkToken = async () =>{
+    const user = await CheckSession()
+    setUser(user)
   }
 
-  useEffect(() => {
-    checkToken() // Check for token on initial load
-  }, [])
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+      checkToken()
+    }
+  },[])
+
 
   return (
     <div>
