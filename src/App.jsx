@@ -1,6 +1,6 @@
 import './App.css'
 
-import { useState } from 'react' 
+import { useState } from 'react'
 
 import { Route, Routes } from 'react-router-dom'
 
@@ -15,7 +15,6 @@ import Home from './pages/Home' //contain the category and posts
 import Profile from './pages/Profile' //show profile
 import EditProfile from './pages/EditProfile' // edit profile
 
-
 //post imports
 import Post from './pages/Post'
 import AddPost from './pages/AddPost'
@@ -26,35 +25,30 @@ import Dreams from './pages/Dreams';
 import AddTask from './pages/AddTask'; 
 
 function App() {
-  const [user,setUser] = useState(null)
+  const [user, setUser] = useState(null)
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
   }
 
-  return(
+  return (
     <div>
       <header>
-        <Nav user={user}
-        handleLogOut={handleLogOut}/>
-        
-
+        <Nav user={user} handleLogOut={handleLogOut} />
       </header>
 
       <Routes>
         {/* user routes */}
-        <Route path='/' element={<StartingPage />}/>
-        <Route path='/sign-in' element = {<SignIn />} />
-        <Route path='/register' element = {<Register />} />
-        
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/edit-profile' element={<EditProfile />} />
-
-        <Route path='/home' element={<Home />} /> {/* will have the <Post />, and <Category /> components */}        
+        <Route path="/" element={<StartingPage />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/home" element={<Home />} />{' '}
+        {/* will have the <Post />, and <Category /> components */}
         {/* Post Routs */}
-        
-
+        <Route path="posts" element={<AddPost />} />
         {/* Task Routs*/}
         <Route path="/dreams" element={<Dreams />} /> 
         <Route path="/add-task" element={<AddTask />} /> 
