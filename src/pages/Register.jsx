@@ -1,52 +1,64 @@
 import React, { useState } from 'react'
 import { BASE_URL } from '../services/api'
 import { useNavigate } from 'react-router-dom'
+import { RegisterUser } from '../services/Auth'
 
 const Register = () => {
-  const [formData, setFormData] = useState({
+  let navigate = useNavigate()
+  let initialState = {
     username: '',
     email: '',
     password: '',
     profileImg: ''
-  })
+  }
 
-  let navigate = useNavigate()
+  const [formData, setFormData] = useState(initialState)
+
 
   const [message, setMessage] = useState('')
 
   // Handle input changes "onChange()"
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
 
   // Handle form submission "onSubmit"
   const handleSubmit = async (e) => {
     e.preventDefault()
     setMessage('')
 
-    try {
-      const response = await fetch(`${BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
+    await RegisterUser ({
+      username: formData.username,
+      email:formData.email,
+      password:formData.password
+    })
+    setFormData(initialState)
+    navigate('/sign-in')
 
-      const data = await response.json()
 
-      if (response.ok) {
-        setMessage(data.msg) // Show success message
-        setFormData({ username: '', email: '', password: '', profileImg: '' }) // Reset form
-        navigate('/sign-in')
-      } else {
-        setMessage(data.msg || 'Registration failed') // Show error message
-      }
-    } catch (error) {
-      console.error('Error during registration:', error)
-      setMessage('Network error. Please try again later.')
-    }
+    // try {
+    //   const response = await fetch(`${BASE_URL}/auth/register`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(formData)
+    //   })
+
+    //   const data = await response.json()
+
+    //   if (response.ok) {
+    //     setMessage(data.msg) // Show success message
+    //     setFormData({ username: '', email: '', password: '', profileImg: '' }) // Reset form
+    //     navigate('/sign-in')
+    //   } else {
+    //     setMessage(data.msg || 'Registration failed') // Show error message
+    //   }
+    // } catch (error) {
+    //   console.error('Error during registration:', error)
+    //   setMessage('Network error. Please try again later.')
+    // }
   }
 
   return (
