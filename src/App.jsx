@@ -1,6 +1,8 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
+
 import Nav from './components/Nav'
 import StartingPage from './pages/StartingPage'
 import SignIn from './pages/SignIn'
@@ -13,6 +15,8 @@ import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
 import Dreams from './pages/Dreams'
 import AddTask from './pages/AddTask'
+
+
 import { CheckSession } from './services/Auth'
 
 function App() {
