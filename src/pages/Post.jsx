@@ -17,10 +17,23 @@ const Post = () => {
   }
   return (
     <div>
-      <AddPost />
-      {/* {posts?.map((post) => (
-      
-      ))} */}
+      {posts?.map((post, index) => (
+        <div key={index} className="post">
+          <img
+            src={post.profilePic}
+            alt={`${post.username}'s profile`}
+            className="profile-pic"
+          />
+          <h2>{post.username}</h2>
+          <p>{post.description}</p>
+          {post.postImg && (
+            <img src={post.postImg} alt="Post content" className="post-img" />
+          )}
+          <p>
+            <strong>Category:</strong> {post.category}
+          </p>
+        </div>
+      ))}
     </div>
   )
 }

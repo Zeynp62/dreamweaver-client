@@ -12,6 +12,25 @@ const AddPost = ({ posts, setPosts }) => {
   }
   const [postState, setPostState] = useState(initialState)
   const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        let response = await axios.get('http://localhost:3001/user')
+        const userData = response.data
+        setUser(userData)
+        setPostState((prevState) => ({
+          ...prevState,
+          profilePic: userData.profilePic,
+          username: userData.username
+        }))
+      } catch (error) {
+        console.log('Error fetching user data:', error)
+      }
+    }
+    getUserData()
+  }, [])
+
   const handleChange = (event) => {
     setPostState({ ...postState, [event.target.id]: event.target.value })
   }
@@ -27,6 +46,7 @@ const AddPost = ({ posts, setPosts }) => {
       console.log('Error submitting post:', error)
     }
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="description">Post Description:</label>
