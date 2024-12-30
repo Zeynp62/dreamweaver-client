@@ -7,20 +7,55 @@ const AddPost = ({ posts, setPosts }) => {
     profilePic: '', //of user
     username: '', //of user
     description: '',
-    postImg: ''
+    postImg: '',
+    category: 'general'
   }
   const [postState, setPostState] = useState(initialState)
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        let response = await axios.get('http://localhost:3001/user')
+        const userData = response.data
+        setUser(userData)
+        setPostState((prevState) => ({
+          ...prevState,
+          profilePic: userData.profilePic,
+          username: userData.username
+        }))
+      } catch (error) {
+        console.log('Error fetching user data:', error)
+      }
+    }
+    getUserData()
+  }, [])
 
   const handleChange = (event) => {
     setPostState({ ...postState, [event.target.id]: event.target.value })
   }
+
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    let response = await axios.post('http://localhost:3001/posts', postState)
-    setPostState(initialState)
+    try {
+      event.preventDefault()
+      let response = await axios.post('http://localhost:3001/posts', postState)
+      setPosts([...posts, response.data])
+      setPostState(initialState)
+      navigate('/')
+    } catch (error) {
+      console.log('Error submitting post:', error)
+    }
   }
+
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        onChange={handleChange}
+        value={postState.title}
+      />
       <label htmlFor="description">Post Description:</label>
       <textarea
         id="description"
