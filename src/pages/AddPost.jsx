@@ -56,24 +56,43 @@ const AddPost = ({ posts, setPosts }) => {
       <input
         type="text"
         id="title"
+        name="title"
         onChange={handleChange}
         value={postState.title}
+        required
       />
       <label htmlFor="description">Post Description:</label>
       <textarea
         id="description"
+        name="description"
         cols="30"
         rows="10"
         onChange={handleChange}
         value={postState.description}
+        required
       ></textarea>
       <label htmlFor="category">Select Category</label>
-      <select id="category" onChange={handleChange} value={postState.category}>
+      <select
+        id="category"
+        name="category"
+        onChange={handleChange}
+        value={postState.category}
+        required
+      >
         <option value="study">Study</option>
         <option value="fitness">Fitness</option>
         <option value="motivation">Motivation</option>
         <option value="general">General</option>
       </select>
+
+      <label htmlFor="image">Upload Image:</label>
+      <input
+        type="file"
+        id="image"
+        name="image"
+        accept="image/*"
+        onChange={handleChange}
+      />
 
       <button type="submit">Post</button>
     </form>
