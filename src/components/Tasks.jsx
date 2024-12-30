@@ -1,51 +1,26 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-const Task = ({ onAddTask, categories }) => {
-    const [taskText, setTaskText] = useState('');
-    const [category, setCategory] = useState('');
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (taskText && category) {
-        onAddTask(taskText, category);
-        setTaskText(''); // Clear input field
-        setCategory(''); // Clear category selection
-      } else {
-        alert('Please fill out both task and category');
-      }
-    };
-  
-    return (
-      <div>
-        <h2>Add New Task</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Task:</label>
-            <input
-              type="text"
-              value={taskText}
-              onChange={(e) => setTaskText(e.target.value)}
-              placeholder="Enter your task"
-            />
-          </div>
-          <div>
-            <label>Category:</label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">Select category</option>
-              {categories.map((cat) => (
-                <option key={cat._id} value={cat._id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button type="submit">Add Task</button>
-        </form>
-      </div>
-    );
+const Task = ({ task }) => {
+  const [taskState, setTaskState] = useState(task.taskState);
+
+  const handleCheckboxChange = () => {
+    setTaskState(!taskState);
+    // Here, you would also want to send an API request to update the task state
+    // axios.put(`http://localhost:3001/task/${task._id}`, { taskState: !taskState });
   };
-  
-  export default Task;
+
+  const categories = {
+    personal: 'Personal',
+    work: 'Work',
+  };
+
+  return (
+    <div>
+      <input type="checkbox" checked={taskState} onChange={handleCheckboxChange} />
+      <span>{task.taskName}</span>
+      <span> - {categories[task.category_id] || 'Unknown Category'}</span>
+    </div>
+  );
+};
+
+export default Task;

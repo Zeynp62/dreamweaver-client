@@ -1,16 +1,34 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const Nav = () => {
-  return (
-    <nav className="navbar">
-      <h4>DreamWeaver</h4>
-      <div>
-        <NavLink to="/home">Home</NavLink>
-        <NavLink to="/dreams">Dreams</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
-        <NavLink to="/posts/addpost">Add post</NavLink>
-      </div>
+const Nav = ({ user, handleLogOut }) => {
+  let userOptions
+  if (user) {
+    userOptions = (
+      <nav>
+        <h3>Welcome {user.username}!</h3>
+        <Link to="/home">Home</Link>
+        <Link to="/dreams">Dreams</Link>
+        <Link to="/profile">Profile</Link>
+        <Link onClick={handleLogOut} to="/">
+          Sign Out
+        </Link>
+      </nav>
+    )
+  }
+
+  const publicOptions = (
+    <nav>
+      <Link to="/home">Home</Link>
+      <Link to="/register">Register</Link>
+      <Link to="/sign-in">Sign In</Link>
     </nav>
+  )
+
+  return (
+    <header>
+      <Link to="/"></Link>
+      {user ? userOptions : publicOptions}
+    </header>
   )
 }
 

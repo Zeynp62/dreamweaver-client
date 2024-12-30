@@ -1,27 +1,19 @@
 import './App.css'
-
-import { useState } from 'react'
-
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-
 import Nav from './components/Nav'
-
 import StartingPage from './pages/StartingPage'
 import SignIn from './pages/SignIn'
 import Register from './pages/Register'
-import Home from './pages/Home' //contain the category and posts
-
-//profile
-import Profile from './pages/Profile' //show profile
-import EditProfile from './pages/EditProfile' // edit profile
-
-//post imports
+import Home from './pages/Home'
+import Profile from './pages/Profile'
+import EditProfile from './pages/EditProfile'
 import Post from './pages/Post'
 import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
-
-//task imports
 import Dreams from './pages/Dreams'
+import AddTask from './pages/AddTask'
+import { CheckSession } from './services/Auth'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -31,6 +23,23 @@ function App() {
     localStorage.clear()
   }
 
+  const checkToken = async () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      try {
+        const user = await CheckSession() // Fetch the full user details
+        setUser(user) // Set the user state with the response
+      } catch (err) {
+        console.log('Error fetching user:', err)
+        setUser(null)
+      }
+    }
+  }
+
+  useEffect(() => {
+    checkToken() // Check for token on initial load
+  }, [])
+
   return (
     <div>
       <header>
@@ -38,18 +47,20 @@ function App() {
       </header>
 
       <Routes>
-        {/* user routes */}
+        {/* User routes */}
         <Route path="/" element={<StartingPage />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/home" element={<Home />} />{' '}
-        {/* will have the <Post />, and <Category /> components */}
-        {/* Post Routs */}
-        <Route path="posts/addpost" element={<AddPost />} />
-        {/* Task Routs*/}
-        <Route path="dreams" element={<Dreams />} />
+        <Route path="/profile" element={<Profile user={user} />} />
+        <Route path="/edit-profile" element={<EditProfile user={user} />} />
+        <Route path="/home" element={<Home user={user} />} />
+
+        {/* Post Routes */}
+        <Route path="posts" element={<AddPost user={user} />} />
+
+        {/* Task Routes */}
+        <Route path="/dreams" element={<Dreams user={user} />} />
+        <Route path="/add-task" element={<AddTask user={user} />} />
       </Routes>
     </div>
   )
