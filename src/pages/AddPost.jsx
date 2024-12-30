@@ -6,6 +6,7 @@ const AddPost = ({ posts, setPosts }) => {
   const initialState = {
     profilePic: '', //of user
     username: '', //of user
+    title: '',
     description: '',
     postImg: '',
     category: 'general'
@@ -39,7 +40,7 @@ const AddPost = ({ posts, setPosts }) => {
 
   const handleSubmit = async (event) => {
     try {
-      e.preventDefault()
+      event.preventDefault()
       const formData = new FormData()
       formData.append('title', postState.title)
       formData.append('description', postState.description)
