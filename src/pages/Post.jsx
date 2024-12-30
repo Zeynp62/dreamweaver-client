@@ -25,6 +25,9 @@ const Post = () => {
             className="profile-pic"
           />
           <h2>{post.username}</h2>
+          <p>
+            <strong>{post.title}</strong>
+          </p>
           <p>{post.description}</p>
           {post.postImg && (
             <img src={post.postImg} alt="Post content" className="post-img" />

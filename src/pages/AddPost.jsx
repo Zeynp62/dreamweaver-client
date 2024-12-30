@@ -49,6 +49,13 @@ const AddPost = ({ posts, setPosts }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        onChange={handleChange}
+        value={postState.title}
+      />
       <label htmlFor="description">Post Description:</label>
       <textarea
         id="description"
