@@ -21,7 +21,8 @@ import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
 
 //task imports
-import Dreams from './pages/Dreams'
+import Dreams from './pages/Dreams';
+import AddTask from './pages/AddTask'; 
 
 function App() {
   const [user, setUser] = useState(null)
@@ -49,7 +50,9 @@ function App() {
         {/* Post Routs */}
         <Route path="posts" element={<AddPost />} />
         {/* Task Routs*/}
-        <Route path="dreams" element={<Dreams />} />
+        <Route path="/dreams" element={<Dreams />} /> 
+        <Route path="/add-task" element={<AddTask />} /> 
+
       </Routes>
     </div>
   )
