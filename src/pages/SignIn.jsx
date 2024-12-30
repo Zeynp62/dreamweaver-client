@@ -23,8 +23,7 @@ const SignIn = ({setUser}) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const payload = await SignInUser(formData)
-    localStorage.setItem('token', payload.token) // Save token
-    setUser(payload.user)
+    // localStorage.setItem('token', payload.token) // Save token
     setFormData(initialState)
     setUser(payload)
     navigate('/home')

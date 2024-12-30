@@ -35,30 +35,6 @@ const Register = () => {
     })
     setFormData(initialState)
     navigate('/sign-in')
-
-
-    // try {
-    //   const response = await fetch(`${BASE_URL}/auth/register`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(formData)
-    //   })
-
-    //   const data = await response.json()
-
-    //   if (response.ok) {
-    //     setMessage(data.msg) // Show success message
-    //     setFormData({ username: '', email: '', password: '', profileImg: '' }) // Reset form
-    //     navigate('/sign-in')
-    //   } else {
-    //     setMessage(data.msg || 'Registration failed') // Show error message
-    //   }
-    // } catch (error) {
-    //   console.error('Error during registration:', error)
-    //   setMessage('Network error. Please try again later.')
-    // }
   }
 
   return (
