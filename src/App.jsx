@@ -1,6 +1,6 @@
 import './App.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Route, Routes } from 'react-router-dom'
 
@@ -24,6 +24,9 @@ import EditPost from './pages/EditPost'
 import Dreams from './pages/Dreams';
 import AddTask from './pages/AddTask'; 
 
+
+import { CheckSession } from './services/Auth'
+
 function App() {
   const [user, setUser] = useState(null)
 
@@ -31,6 +34,18 @@ function App() {
     setUser(null)
     localStorage.clear()
   }
+
+  const checkToken = async () =>{
+    const user = await CheckSession()
+    setUser(user)
+  }
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+      checkToken()
+    }
+  },[])
 
   return (
     <div>
@@ -41,11 +56,11 @@ function App() {
       <Routes>
         {/* user routes */}
         <Route path="/" element={<StartingPage />} />
-        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-in" element={<SignIn setUser={setUser}/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/home" element={<Home />} />{' '}
+        <Route path="/home" element={<Home user={user}/>} />{' '}
         {/* will have the <Post />, and <Category /> components */}
         {/* Post Routs */}
         <Route path="posts" element={<AddPost />} />
