@@ -30,7 +30,11 @@ const Post = () => {
           </p>
           <p>{post.description}</p>
           {post.postImg && (
-            <img src={post.postImg} alt="Post content" className="post-img" />
+            <img
+              src={`${BASE_URL}/uploads/${post.postImg}`}
+              alt="Post content"
+              className="post-img"
+            />
           )}
           <p>
             <strong>Category:</strong> {post.category}

@@ -32,19 +32,26 @@ const AddPost = ({ posts, setPosts }) => {
   }, [])
 
   const handleChange = (event) => {
-    setPostState({ ...postState, [event.target.id]: event.target.value })
+    const { name, type, files, value } = event.target
+
+    setPostState({ ...postState, [name]: type === 'file' ? files[0] : value })
   }
 
   const handleSubmit = async (event) => {
     try {
-      event.preventDefault()
-      let response = await axios.post(
-        'http://localhost:3001/addpost',
-        postState
+      e.preventDefault()
+      const formData = new FormData()
+      formData.append('title', postState.title)
+      formData.append('description', postState.description)
+      formData.append('category', postState.category)
+      formData.append('image', postState.postImg)
+
+      const response = await axios.post(
+        'http://localhost:3001/posts',
+        formData,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
       )
-      setPosts([...posts, response.data])
-      setPostState(initialState)
-      navigate('/')
+      console.log(response.data)
     } catch (error) {
       console.log('Error submitting post:', error)
     }
@@ -65,8 +72,6 @@ const AddPost = ({ posts, setPosts }) => {
       <textarea
         id="description"
         name="description"
-        cols="30"
-        rows="10"
         onChange={handleChange}
         value={postState.description}
         required

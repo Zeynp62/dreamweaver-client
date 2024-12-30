@@ -47,7 +47,7 @@ function App() {
         <Route path="/home" element={<Home />} />{' '}
         {/* will have the <Post />, and <Category /> components */}
         {/* Post Routs */}
-        <Route path="posts" element={<AddPost />} />
+        <Route path="posts/addpost" element={<AddPost />} />
         {/* Task Routs*/}
         <Route path="dreams" element={<Dreams />} />
       </Routes>
