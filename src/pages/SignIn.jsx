@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { SignInUser } from '../services/Auth'
 
 
-const SignIn = () => {
+const SignIn = ({setUser}) => {
   let navigate = useNavigate()
   let initialState = {
     username: '',
@@ -23,7 +23,10 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const payload = await SignInUser(formData)
+    localStorage.setItem('token', payload.token) // Save token
+    setUser(payload.user)
     setFormData(initialState)
+    setUser(payload)
     navigate('/home')
   }
 

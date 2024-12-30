@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 
-
 const Nav = ({ user, handleLogOut }) => {
   let userOptions
   if (user) {
     userOptions = (
       <nav>
-        <h3>Welcome {user.usename}!</h3>
-        <Link to="/home">Posts</Link>
+        <h3>Welcome {user.username}!</h3>
+        <Link to="/home">Home</Link>
+        <Link to="/dreams">Dreams</Link>
+        <Link to="/profile">Profile</Link>
         <Link onClick={handleLogOut} to="/">
           Sign Out
         </Link>
@@ -25,8 +26,7 @@ const Nav = ({ user, handleLogOut }) => {
 
   return (
     <header>
-      <Link to="/">
-      </Link>
+      <Link to="/"></Link>
       {user ? userOptions : publicOptions}
     </header>
   )
