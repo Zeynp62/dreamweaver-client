@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import './App.css'
+
 const Post = () => {
   const [posts, setPosts] = useState([])
   const getPosts = async () => {

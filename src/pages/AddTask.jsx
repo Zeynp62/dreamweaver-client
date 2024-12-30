@@ -23,7 +23,7 @@ const AddTask = ({ setTasks }) => {
       taskDate,
       taskState: false, // Initial state is false (not completed)
       category_id: taskCategory, // Use the selected category
-      user: 'user_id', 
+      user: user._id
     };
 
     try {
