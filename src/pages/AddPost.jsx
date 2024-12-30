@@ -16,7 +16,7 @@ const AddPost = ({ posts, setPosts }) => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        let response = await axios.get('http://localhost:3001/user')
+        let response = await axios.get('http://localhost:3001/:id')
         const userData = response.data
         setUser(userData)
         setPostState((prevState) => ({
@@ -38,7 +38,10 @@ const AddPost = ({ posts, setPosts }) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault()
-      let response = await axios.post('http://localhost:3001/posts', postState)
+      let response = await axios.post(
+        'http://localhost:3001/addpost',
+        postState
+      )
       setPosts([...posts, response.data])
       setPostState(initialState)
       navigate('/')
@@ -66,7 +69,6 @@ const AddPost = ({ posts, setPosts }) => {
       ></textarea>
       <label htmlFor="category">Select Category</label>
       <select id="category" onChange={handleChange} value={postState.category}>
-        {/* //need to edit this */}
         <option value="study">Study</option>
         <option value="fitness">Fitness</option>
         <option value="motivation">Motivation</option>
