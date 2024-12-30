@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
+import AddPost from './AddPost'
 const Post = () => {
   const [posts, setPosts] = useState([])
   const getPosts = async () => {
@@ -11,10 +12,17 @@ const Post = () => {
       console.log(err)
     }
     useEffect(() => {
-      getIssues()
+      getPosts()
     }, [])
   }
-  return <div></div>
+  return (
+    <div>
+      <AddPost />
+      {/* {posts?.map((post) => (
+      
+      ))} */}
+    </div>
+  )
 }
 
 export default Post

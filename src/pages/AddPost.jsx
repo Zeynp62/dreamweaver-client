@@ -7,17 +7,25 @@ const AddPost = ({ posts, setPosts }) => {
     profilePic: '', //of user
     username: '', //of user
     description: '',
-    postImg: ''
+    postImg: '',
+    category: 'general'
   }
   const [postState, setPostState] = useState(initialState)
-
+  const [user, setUser] = useState(null)
   const handleChange = (event) => {
     setPostState({ ...postState, [event.target.id]: event.target.value })
   }
+
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    let response = await axios.post('http://localhost:3001/posts', postState)
-    setPostState(initialState)
+    try {
+      event.preventDefault()
+      let response = await axios.post('http://localhost:3001/posts', postState)
+      setPosts([...posts, response.data])
+      setPostState(initialState)
+      navigate('/')
+    } catch (error) {
+      console.log('Error submitting post:', error)
+    }
   }
   return (
     <form onSubmit={handleSubmit}>
