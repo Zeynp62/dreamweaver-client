@@ -2,14 +2,11 @@ import './App.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-
 import Nav from './components/Nav'
 import StartingPage from './pages/StartingPage'
 
-
 import SignIn from './pages/SignIn'
 import Register from './pages/Register'
-
 
 import Home from './pages/Home'
 
@@ -34,18 +31,17 @@ function App() {
     localStorage.clear()
   }
 
-  const checkToken = async () =>{
+  const checkToken = async () => {
     const user = await CheckSession()
     setUser(user)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const token = localStorage.getItem('token')
-    if(token){
+    if (token) {
       checkToken()
     }
-  },[])
-
+  }, [])
 
   return (
     <div>
@@ -63,7 +59,7 @@ function App() {
         <Route path="/home" element={<Home user={user} />} />
 
         {/* Post Routes */}
-        <Route path="posts" element={<AddPost user={user} />} />
+        <Route path="/posts" element={<AddPost userInfo={user} />} />
 
         {/* Task Routes */}
         <Route path="/dreams" element={<Dreams user={user} />} />

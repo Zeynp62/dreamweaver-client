@@ -7,7 +7,7 @@ const Post = () => {
   const [posts, setPosts] = useState([])
   const getPosts = async () => {
     try {
-      let res = await axios.get('http://localhost:3001/posts/addpost')
+      let res = await axios.get('http://localhost:3001/posts')
       setPosts(res.data)
     } catch (err) {
       console.log(err)

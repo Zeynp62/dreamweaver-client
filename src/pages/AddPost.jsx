@@ -1,36 +1,25 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-const AddPost = ({ posts, setPosts }) => {
+const AddPost = ({ userInfo }) => {
   let navigate = useNavigate()
   const initialState = {
-    profilePic: '', //of user
     username: '', //of user
+    profileImg: '', //of user
     title: '',
     description: '',
-    postImg: '',
-    category: 'general'
+    category: 'general',
+    postImg: null
   }
   const [postState, setPostState] = useState(initialState)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({ username: '', profileImg: '' })
 
   useEffect(() => {
-    const getUserData = async () => {
-      try {
-        let response = await axios.get('http://localhost:3001/:id')
-        const userData = response.data
-        setUser(userData)
-        setPostState((prevState) => ({
-          ...prevState,
-          profilePic: userData.profilePic,
-          username: userData.username
-        }))
-      } catch (error) {
-        console.log('Error fetching user data:', error)
-      }
+    if (userInfo) {
+      setUser(userInfo)
+      console.log('User state updated:', userInfo)
     }
-    getUserData()
-  }, [])
+  }, [userInfo])
 
   const handleChange = (event) => {
     const { name, type, files, value } = event.target
@@ -42,22 +31,22 @@ const AddPost = ({ posts, setPosts }) => {
     try {
       event.preventDefault()
       const formData = new FormData()
+      formData.append('username', user.username) //
+      formData.append('profileImg', user.profileImg) //
       formData.append('title', postState.title)
       formData.append('description', postState.description)
       formData.append('category', postState.category)
-      formData.append('image', postState.postImg)
+      formData.append('image', postState.postImg) //
 
       const response = await axios.post(
-        'http://localhost:3001/posts',
+        `http://localhost:3001/posts/${userInfo.id}`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       )
-      console.log(response.data)
     } catch (error) {
       console.log('Error submitting post:', error)
     }
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
