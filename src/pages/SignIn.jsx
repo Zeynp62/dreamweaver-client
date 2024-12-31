@@ -11,6 +11,8 @@ const SignIn = ({setUser}) => {
     password: ''
   }
 
+  const [message, setMessage] = useState('') 
+
   const [formData, setFormData] = useState(initialState)
   
   // Handle input changes
@@ -22,16 +24,25 @@ const SignIn = ({setUser}) => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const payload = await SignInUser(formData)
-    // localStorage.setItem('token', payload.token) // Save token
-    setFormData(initialState)
-    setUser(payload)
-    navigate('/home')
+    setMessage('')
+
+    try {
+      const payload = await SignInUser(formData)
+      // localStorage.setItem('token', payload.token) // Save token
+      setFormData(initialState)
+      setUser(payload)
+      navigate('/home')
+      
+    } catch (error) {
+      setMessage("Wrong Input")
+
+    }
   }
 
   return (
     <div>
       <h2>Sign In</h2>
+      <p style={{color:"red"}}>{message}</p>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>
