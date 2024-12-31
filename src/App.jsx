@@ -1,7 +1,6 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-
 import Nav from './components/Nav'
 import StartingPage from './pages/StartingPage'
 
@@ -55,7 +54,10 @@ function App() {
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile user={user} />} />
-        <Route path="/edit-profile" element={<EditProfile user={user} setUser={setUser} />} />
+        <Route
+          path="/edit-profile"
+          element={<EditProfile user={user} setUser={setUser} />}
+        />
         <Route path="/home" element={<Home user={user} />} />
 
         {/* Post Routes */}

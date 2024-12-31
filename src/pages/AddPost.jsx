@@ -4,25 +4,35 @@ import axios from 'axios'
 const AddPost = ({ userInfo }) => {
   let navigate = useNavigate()
   const initialState = {
-    username: '', //of user
-    profileImg: '', //of user
     title: '',
     description: '',
-    category: 'general',
+    category: '',
     postImg: null
   }
   const [postState, setPostState] = useState(initialState)
-  const [user, setUser] = useState({ username: '', profileImg: '' })
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    if (userInfo) {
-      setUser(userInfo)
-      console.log('User state updated:', userInfo)
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/category')
+        setCategories(response.data)
+      } catch (error) {
+        console.error('Error fetching categories:', error)
+      }
+      console.log('Fetched Categories:', response.data)
     }
-  }, [userInfo])
+    fetchCategories()
+  }, [])
 
   const handleChange = (event) => {
     const { name, type, files, value } = event.target
+
+    if (name === 'category') {
+      const selectedCategory = categories.find((cat) => cat._id === value)
+      setPostState({ ...postState, category: selectedCategory })
+      return
+    }
 
     setPostState({ ...postState, [name]: type === 'file' ? files[0] : value })
   }
@@ -31,18 +41,19 @@ const AddPost = ({ userInfo }) => {
     try {
       event.preventDefault()
       const formData = new FormData()
-      formData.append('username', user.username) //
-      formData.append('profileImg', user.profileImg) //
       formData.append('title', postState.title)
       formData.append('description', postState.description)
-      formData.append('category', postState.category)
-      formData.append('image', postState.postImg) //
-
+      formData.append('category', postState.category._id)
+      formData.append('postImg', postState.postImg)
+      formData.append('user', userInfo._id)
+      console.log([...formData]) // Log form data before axios post
       const response = await axios.post(
         `http://localhost:3001/posts/${userInfo.id}`,
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       )
+      console.log('Response from server:', response)
+      navigate('/posts')
     } catch (error) {
       console.log('Error submitting post:', error)
     }
@@ -71,20 +82,22 @@ const AddPost = ({ userInfo }) => {
         id="category"
         name="category"
         onChange={handleChange}
-        value={postState.category}
+        value={postState.category._id}
         required
       >
-        <option value="study">Study</option>
-        <option value="fitness">Fitness</option>
-        <option value="motivation">Motivation</option>
-        <option value="general">General</option>
+        <option value="">Select a category</option>
+        {categories.map((cat) => (
+          <option key={cat._id} value={cat._id}>
+            {cat.categoryName}
+          </option>
+        ))}
       </select>
 
-      <label htmlFor="image">Upload Image:</label>
+      <label htmlFor="postImg">Upload Image:</label>
       <input
         type="file"
-        id="image"
-        name="image"
+        id="postImg"
+        name="postImg"
         accept="image/*"
         onChange={handleChange}
       />
