@@ -1,58 +1,37 @@
 import React, { useState } from 'react'
 import { BASE_URL } from '../services/api'
 import { useNavigate } from 'react-router-dom'
+import { SignInUser } from '../services/Auth'
 
-const SignIn = () => {
-  const [formData, setFormData] = useState({
+
+const SignIn = ({setUser}) => {
+  let navigate = useNavigate()
+  let initialState = {
     username: '',
     password: ''
-  })
+  }
 
-  let navigate = useNavigate()
-
-  const [message, setMessage] = useState('')
-
+  const [formData, setFormData] = useState(initialState)
+  
   // Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setMessage('')
-
-    try {
-      const response = await fetch(`${BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        setMessage('Login successful!')
-        console.log('Logged-in user:', data.user) // User details for debugging
-        // Optionally, store user/token in localStorage or context
-        navigate('/home')
-      } else {
-        setMessage(data.msg || 'Login failed') // Show error message
-      }
-    } catch (error) {
-      console.error('Error during login:', error)
-      setMessage('Network error. Please try again later.')
-    }
+    const payload = await SignInUser(formData)
+    // localStorage.setItem('token', payload.token) // Save token
+    setFormData(initialState)
+    setUser(payload)
+    navigate('/home')
   }
 
   return (
     <div>
       <h2>Sign In</h2>
-      <p>{message}</p>
-
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>

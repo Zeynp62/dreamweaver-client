@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import './App.css'
+
+import '../App.css'
 import AddPost from './AddPost'
 const Post = () => {
   const [posts, setPosts] = useState([])
   const getPosts = async () => {
     try {
-      let res = await axios.get('http://localhost:3001/posts')
+      let res = await axios.get('http://localhost:3001/posts/addpost')
       setPosts(res.data)
     } catch (err) {
       console.log(err)

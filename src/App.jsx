@@ -1,64 +1,73 @@
 import './App.css'
-
-import { useState } from 'react' 
-
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import Nav from './components/Nav'
 
+import Nav from './components/Nav'
 import StartingPage from './pages/StartingPage'
+
+
 import SignIn from './pages/SignIn'
 import Register from './pages/Register'
-import Home from './pages/Home' //contain the category and posts
-
-//profile
-import Profile from './pages/Profile' //show profile
-import EditProfile from './pages/EditProfile' // edit profile
 
 
-//post imports
+import Home from './pages/Home'
+
+import Profile from './pages/Profile'
+import EditProfile from './pages/EditProfile'
+
 import Post from './pages/Post'
 import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
 
-//task imports
-import Dreams from './pages/Dreams';
-import AddTask from './pages/AddTask'; 
+import Dreams from './pages/Dreams'
+import AddTask from './pages/AddTask'
+
+import { CheckSession } from './services/Auth'
+import axios from 'axios'
 
 function App() {
-  const [user,setUser] = useState(null)
+  const [user, setUser] = useState(null)
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
   }
 
-  return(
+  const checkToken = async () =>{
+    const user = await CheckSession()
+    setUser(user)
+  }
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+      checkToken()
+    }
+  },[])
+
+
+  return (
     <div>
       <header>
-        <Nav user={user}
-        handleLogOut={handleLogOut}/>
-        
-
+        <Nav user={user} handleLogOut={handleLogOut} />
       </header>
 
       <Routes>
-        {/* user routes */}
-        <Route path='/' element={<StartingPage />}/>
-        <Route path='/sign-in' element = {<SignIn />} />
-        <Route path='/register' element = {<Register />} />
-        
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/edit-profile' element={<EditProfile />} />
+        {/* User routes */}
+        <Route path="/" element={<StartingPage />} />
+        <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile user={user} />} />
+        <Route path="/edit-profile" element={<EditProfile user={user} />} />
+        <Route path="/home" element={<Home user={user} />} />
 
-        <Route path='/home' element={<Home />} /> {/* will have the <Post />, and <Category /> components */}        
-        {/* Post Routs */}
-        
+        {/* Post Routes */}
+        <Route path="posts" element={<AddPost user={user} />} />
 
-        {/* Task Routs*/}
-        <Route path="/dreams" element={<Dreams />} /> 
-        <Route path="/add-task" element={<AddTask />} /> 
-
+        {/* Task Routes */}
+        <Route path="/dreams" element={<Dreams user={user}/>} />
+        <Route path="/add-task" element={<AddTask user={user}/>} />
       </Routes>
     </div>
   )
