@@ -1,86 +1,165 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const EditProfile = ({ user, setUser }) => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
-    username: user.username,
     email: user.email,
+    oldPassword: '',
+    newPassword: '',
     profileImg: null,
+    message: ''
   })
+  const [message, setMessage] = useState('')
 
-  const [message,setMessage] = useState('')
+  const [selectedSection, setSelectedSection] = useState('')
 
-  //handle change in the form
+  const token = localStorage.getItem('token')
+  const config = { headers: { Authorization: `Bearer ${token}` } }
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    const { name, value, files } = e.target
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: files ? files[0] : value
+    }))
+  } //work with img too
 
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, profileImg: e.target.files[0] }));
-  }
-
-  // const handleSectionChange = () =>{
-  //   setCurrentSection(section)
-  // }
-
-  const handleSubmit = async (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault()
-    const token = localStorage.getItem('token')
+    try {
+      //update email
+      const response = await axios.put(
+        `http://localhost:3001/user/update-email/${user._id}`,
+        { email: formData.email },
+        config
+      )
+      setUser(response.data.user) // Updating the user state data
+      alert('Email updated successfully!')
+      navigate('/profile')
+    } catch (error) {
+      console.error('Error updating email:', error)
+      setMessage('Error updating email.')
+    }
+  }
 
-    const config = { headers: { Authorization: `Bearer ${token}` } }
+  const handlePasswordSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.put(
+        `http://localhost:3001/user/update-password/${user._id}`,
+        {
+          oldPassword: formData.oldPassword,
+          newPassword: formData.newPassword
+        },
+        config
+      )
+      alert('Password updated successfully!')
+      navigate('/profile')
+    } catch (error) {
+      console.error('Error updating password:', error)
+      setMessage('Error updating password.')
+    }
+  }
 
+  const handleProfileImgSubmit = async (e) => {
+    e.preventDefault()
     const data = new FormData()
-    data.append('username', formData.username)
-    data.append('email', formData.email)
-    if (formData.profileImg) data.append('profileImg', formData.profileImg)
+    data.append('profileImg', formData.profileImg)
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update/${user._id}`,
+        `http://localhost:3001/user/update-profile-image/${user._id}`,
         data,
         config
       )
-      setUser(response.data.user); // Update the user state with the updated profile
-      alert('Profile updated successfully!')
+      setUser(response.data.user) //update state
+      alert('Profile image updated successfully!')
       navigate('/profile')
     } catch (error) {
-      console.error('Error updating profile:', error)
-      setMessage("Error While Editing The Profile")
+      console.error('Error updating profile image:', error)
+      setMessage('Error updating profile image.')
     }
-  };
+  }
 
-  return (
+  
+    return user ? (
     <div>
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-    <p>{message}</p>
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Profile Image:</label>
-        <input type="file" name="profileImg" onChange={handleFileChange} />
-      </div>
-      <button type="submit">Save Changes</button>
-    </form>
-    </div>
-  );
-};
+      <h1>Edit Profile</h1>
+      <p style={{ color: 'red' }}>{message}</p>
 
-export default EditProfile;
+      <div>
+        <button onClick={() => setSelectedSection('email')}>Edit Email</button>
+        <button onClick={() => setSelectedSection('password')}>
+          Change Password
+        </button>
+        <button onClick={() => setSelectedSection('profileImg')}>
+          Update Profile Image
+        </button>
+      </div>
+
+      {selectedSection === 'email' && (
+        <form onSubmit={handleEmailSubmit}>
+          <div>
+            <label>New Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Update Email</button>
+        </form>
+      )}
+
+      {selectedSection === 'password' && (
+        <form onSubmit={handlePasswordSubmit}>
+          <div>
+            <label>Old Password:</label>
+            <input
+              type="password"
+              name="oldPassword"
+              value={formData.oldPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label>New Password:</label>
+            <input
+              type="password"
+              name="newPassword"
+              value={formData.newPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Change Password</button>
+        </form>
+      )}
+
+      {selectedSection === 'profileImg' && (
+        <form onSubmit={handleProfileImgSubmit} encType="multipart/form-data">
+          <div>
+            <label>Profile Image:</label>
+            <input
+              type="file"
+              name="profileImg"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Update Profile Image</button>
+        </form>
+      )}
+    </div>
+    ) : (
+      <h1>Loading . . . </h1>
+    )
+}
+
+export default EditProfile
