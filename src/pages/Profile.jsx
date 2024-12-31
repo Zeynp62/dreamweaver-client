@@ -22,7 +22,7 @@ const Profile = ({ user }) => {
           <div key={post._id} style={{ border: '1px solid black' }}>
             <h3>{post.title}</h3>
             <p>{post.description}</p>
-            <img src={post.postImg} alt={`${post.title} Image`} />
+            <img src={`http://localhost:3001/${post.postImg}`} alt={`${post.title} Image`} />
           </div>
         ))}
       </div>
