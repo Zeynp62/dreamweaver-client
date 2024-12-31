@@ -23,10 +23,6 @@ import EditPost from './pages/EditPost'
 import Dreams from './pages/Dreams'
 import AddTask from './pages/AddTask'
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 48e6a45de79e65fedd0cf7094cd8902ca642e857
 import { CheckSession } from './services/Auth'
 import axios from 'axios'
 
@@ -63,7 +59,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile user={user} />} />
-        <Route path="/edit-profile" element={<EditProfile user={user} />} />
+        <Route path="/edit-profile" element={<EditProfile user={user} setUser={setUser} />} />
         <Route path="/home" element={<Home user={user} />} />
 
         {/* Post Routes */}

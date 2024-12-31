@@ -9,7 +9,7 @@ const Register = () => {
     username: '',
     email: '',
     password: '',
-    profileImg: ''
+    confirmPassword: ""
   }
 
   const [formData, setFormData] = useState(initialState)
@@ -28,19 +28,30 @@ const Register = () => {
     e.preventDefault()
     setMessage('')
 
-    await RegisterUser ({
-      username: formData.username,
-      email:formData.email,
-      password:formData.password
-    })
-    setFormData(initialState)
-    navigate('/sign-in')
+    try {
+      if(formData.password !== formData.confirmPassword){
+        setMessage('Passwords do not match.')
+        return
+      }
+  
+      await RegisterUser ({
+        username: formData.username,
+        email:formData.email,
+        password:formData.password
+      })
+      setFormData(initialState)
+      navigate('/sign-in')
+      alert('User Registered Successfully!');
+      
+    } catch (error) {
+      setMessage('This User Already exist')
+    }
   }
 
   return (
     <div>
       <h2>Register</h2>
-      <p>{message}</p>
+      <p style={{color:"red"}}>{message}</p>
 
       <form onSubmit={handleSubmit}>
         <div>
@@ -74,11 +85,11 @@ const Register = () => {
           />
         </div>
         <div>
-          <label>Profile Image URL (optional):</label>
+          <label>Confirm Password:</label>
           <input
-            type="text"
-            name="profileImg"
-            value={formData.profileImg}
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
             onChange={handleChange}
           />
         </div>
