@@ -90,7 +90,3 @@ const AddTask = ({ setTasks , user}) => {
 };
 
 export default AddTask;
-
-
-
-

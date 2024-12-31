@@ -6,7 +6,7 @@ const Task = ({ task }) => {
   const handleCheckboxChange = () => {
     setTaskState(!taskState);
     // Here, you would also want to send an API request to update the task state
-    // axios.put(`http://localhost:3001/task/${task._id}`, { taskState: !taskState });
+    // axios.put(http://localhost:3001/task/${task._id}, { taskState: !taskState });
   };
 
   const categories = {
