@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { createATask } from '../services/Task';
 
 const AddTask = ({ setTasks , user}) => {
   const [taskName, setTaskName] = useState('');
@@ -28,17 +29,18 @@ const AddTask = ({ setTasks , user}) => {
 
     try {
       // Submit the new task via the backend API
-      const response = await axios.post('http://localhost:3001/task', newTask);
+      const response = await createATask(newTask);
+      console.log(response)
 
-      // Update the tasks in the Dreams page state (via props)
-      setTasks(prevTasks => [...prevTasks, response.data]);
+   // Update the tasks in the Dreams page state (via props)
+     setTasks(prevTasks => [...prevTasks, response.data]);
 
-      // Reset form fields
-      setTaskName('');
-      setTaskDate('');
-      setTaskCategory('');
+       // Reset form fields
+       setTaskName('');
+       setTaskDate('');
+       setTaskCategory('');
       
-      // Redirect to Dreams page after adding the task
+   // Redirect to Dreams page after adding the task
       navigate('/dreams');
     } catch (error) {
       console.error('Error adding task:', error);
