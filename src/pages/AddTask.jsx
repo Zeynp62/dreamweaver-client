@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const AddTask = ({ setTasks }) => {
+const AddTask = ({ setTasks , user}) => {
   const [taskName, setTaskName] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [taskCategory, setTaskCategory] = useState('');
@@ -23,7 +23,7 @@ const AddTask = ({ setTasks }) => {
       taskDate,
       taskState: false, // Initial state is false (not completed)
       category_id: taskCategory, // Use the selected category
-      user: user._id
+      user: user._id, 
     };
 
     try {

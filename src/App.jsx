@@ -67,7 +67,7 @@ function App() {
 
         {/* Task Routes */}
         <Route path="/dreams" element={<Dreams user={user}/>} />
-        <Route path="/add-task" element={<AddTask user={user}/>} />
+        <Route path="/add-task" element={<AddTask  user={user}/>} />
       </Routes>
     </div>
   )

@@ -10,7 +10,7 @@ const Task = ({ task }) => {
   };
 
   const categories = {
-    personal: 'Personal',
+    personal:'Personal',
     work: 'Work',
   };
 
