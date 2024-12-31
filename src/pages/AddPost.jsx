@@ -20,7 +20,6 @@ const AddPost = ({ userInfo }) => {
       } catch (error) {
         console.error('Error fetching categories:', error)
       }
-      console.log('Fetched Categories:', response.data)
     }
     fetchCategories()
   }, [])
@@ -52,7 +51,7 @@ const AddPost = ({ userInfo }) => {
         formData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       )
-      console.log('Response from server:', response)
+      console.log('Response from server:', response.data)
       navigate('/posts')
     } catch (error) {
       console.log('Error submitting post:', error)
