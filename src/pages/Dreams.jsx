@@ -5,7 +5,6 @@ import Client from '../services/api'
 const Dreams = ({ user, setUser, categories }) => {
   const [tasks, setTasks] = useState([]) // Local state for tasks
 
-
   // mark the task as completed
   const toggleCompletion = async (task) => {
     try {
@@ -28,15 +27,7 @@ const Dreams = ({ user, setUser, categories }) => {
     }
   }
 
-
-  // Sort tasks in ascending order by taskDate
-  const sortedTasks = tasks.sort((a, b) => {
-    const dateA = a.taskDate ? new Date(a.taskDate) : new Date()
-    const dateB = b.taskDate ? new Date(b.taskDate) : new Date()
-    return dateA - dateB
-  })
-
-  // Set tasks in local state when the user data is loaded
+  // show when loaded
   useEffect(() => {
     if (user && Array.isArray(user.tasks)) {
       setTasks(user.tasks)
@@ -46,28 +37,17 @@ const Dreams = ({ user, setUser, categories }) => {
   return user ? (
     <div>
       <h1>My Dreams</h1>
-      <AddTask
-        user={user}
-        setUser={setUser}
-        categories={categories}
-      />
+      <AddTask user={user} setUser={setUser} categories={categories} />
       <div>
-        {sortedTasks.map((task) => (
-          <div
-            key={task._id}
-            style={{
-              textDecoration: task.taskState ? 'line-through' : 'none', // Apply line-through if task is completed
-              opacity: task.taskState ? 0.6 : 1 // Optionally adjust opacity for completed tasks
-            }}
-          >
+        {tasks.map((task) => (
+          <div key={task._id}>
             <h3>{task.taskName}</h3>
-            <p>
+            <p>{/*to show the date and time */}
               {task.taskDate &&
                 new Date(task.taskDate).toLocaleDateString() +
                   ' ' +
                   new Date(task.taskDate).toLocaleTimeString()}
             </p>
-
             <label>
               <input
                 type="checkbox"
@@ -75,7 +55,7 @@ const Dreams = ({ user, setUser, categories }) => {
                 onChange={() => toggleCompletion(task)} // Toggle task completion when clicked
               />
               Completed
-            </label>yyyyyy
+            </label>
           </div>
         ))}
       </div>

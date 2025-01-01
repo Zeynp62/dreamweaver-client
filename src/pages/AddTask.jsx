@@ -9,7 +9,9 @@ const AddTask = ({
   categories
 }) => {
   const [taskName, setTaskName] = useState('')
-  const [taskDate, setTaskDate] = useState('')
+  const [taskDate, setTaskDate] = useState(
+    new Date().toISOString().slice(0, 16) 
+  )
   const [taskState, setTaskState] = useState(false)
   const [category, setCategory] = useState('')
 
@@ -65,7 +67,7 @@ const AddTask = ({
         required
       />
       <input
-        type="date"
+        type="datetime-local"
         value={taskDate}
         onChange={(e) => setTaskDate(e.target.value)}
       />
