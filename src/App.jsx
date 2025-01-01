@@ -41,6 +41,8 @@ function App() {
     setUser(user)
 
     const categoriesData = await GetCategories()
+    console.log('Fetched Categories:', categoriesData); // Debugging log
+
     setCategories(categoriesData) 
   }
 
@@ -72,8 +74,8 @@ function App() {
         <Route path="posts" element={<AddPost user={user} />} />
 
         {/* Task Routes */}
-        <Route path="/dreams" element={<Dreams user={user}/>} />
-        <Route path="/add-task" element={<AddTask user={user}/>} />
+        <Route path="/dreams" element={<Dreams user={user} setUser={setUser} categories={categories}/>} />
+        <Route path="/add-task" element={<AddTask user={user} categories={categories}/>} />
       </Routes>
     </div>
   )
