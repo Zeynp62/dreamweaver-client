@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Client from '../services/api'
 import axios from 'axios'
+
 const AddPost = ({ userInfo }) => {
   let navigate = useNavigate()
   const initialState = {
@@ -46,10 +48,12 @@ const AddPost = ({ userInfo }) => {
       formData.append('postImg', postState.postImg)
       formData.append('user', userInfo._id)
       console.log([...formData]) // Log form data before axios post
-      const response = await axios.post(
-        `http://localhost:3001/posts/${userInfo.id}`,
+      const response = await Client.post(
+        `http://localhost:3001/posts`,
         formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
       )
       console.log('Response from server:', response.data)
       navigate('/posts')

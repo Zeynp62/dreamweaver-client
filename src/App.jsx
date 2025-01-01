@@ -25,6 +25,12 @@ import axios from 'axios'
 function App() {
   const [user, setUser] = useState(null)
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
   const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
@@ -34,13 +40,6 @@ function App() {
     const user = await CheckSession()
     setUser(user)
   }
-
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      checkToken()
-    }
-  }, [])
 
   return (
     <div>
