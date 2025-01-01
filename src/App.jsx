@@ -43,7 +43,7 @@ function App() {
     setUser(user)
 
     const categoriesData = await GetCategories()
-    console.log('Fetched Categories:', categoriesData); // Debugging log
+    // console.log('Fetched Categories:', categoriesData); // to check if categories is passed correctly
 
     setCategories(categoriesData) 
   }
