@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Tasks from '../components/Tasks';
+import AddTask from './AddTasks';
 
-const Dreams = () => {
+
+
+const Dreams = ({user}) => {
   const [tasks, setTasks] = useState([]);
 
   // Fetch tasks when the component mounts
@@ -22,10 +25,11 @@ const Dreams = () => {
   return (
     <div>
     <h1>My Tasks</h1>
+    <AddTask  setTasks={setTasks} />
     <button onClick={() => window.location.href = '/add-task'}>Add Task</button>
     <div>
       {tasks.map(task => (
-        <Task key={task._id} task={task} />
+        <Tasks key={task._id} task={task} />
       ))}
     </div>
   </div>

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { createATask } from '../services/Task';
+import Client from '../services/api'
 
-const AddTask = ({ setTasks , user}) => {
+
+const AddTask = ({ setTasks , user  }) => {
   const [taskName, setTaskName] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [taskCategory, setTaskCategory] = useState('');
@@ -18,29 +18,31 @@ const AddTask = ({ setTasks , user}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    
     // Prepare the new task object to submit
     const newTask = {
       taskName,
       taskDate,
       taskState: false, // Initial state is false (not completed)
-      category_id: taskCategory, // Use the selected category
-      user: user._id, 
+      category: taskCategory, // Use the selected category
+      user: user._id
     };
 
     try {
       // Submit the new task via the backend API
-      const response = await createATask(newTask);
-      console.log(response)
+      const response = await Client.post('http://localhost:3001/task', newTask );
 
-   // Update the tasks in the Dreams page state (via props)
-     setTasks(prevTasks => [...prevTasks, response.data]);
+      console.log('New task added:', response.data);
 
-       // Reset form fields
-       setTaskName('');
-       setTaskDate('');
-       setTaskCategory('');
+      // Update the tasks in the Dreams page state (via props)
+      setTasks(prevTasks => [...prevTasks, response.data]);
+
+      // Reset form fields
+      setTaskName('');
+      setTaskDate('');
+      setTaskCategory('');
       
-   // Redirect to Dreams page after adding the task
+      // Redirect to Dreams page after adding the task
       navigate('/dreams');
     } catch (error) {
       console.error('Error adding task:', error);

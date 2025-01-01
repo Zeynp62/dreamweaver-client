@@ -17,7 +17,7 @@ import AddPost from './pages/AddPost'
 import EditPost from './pages/EditPost'
 
 import Dreams from './pages/Dreams'
-import AddTask from './pages/AddTask'
+import AddTask from './pages/AddTasks'
 
 import { CheckSession } from './services/Auth'
 import {GetCategories} from './services/category'
@@ -67,7 +67,7 @@ function App() {
 
         {/* Task Routes */}
         <Route path="/dreams" element={<Dreams user={user} />} />
-        <Route path="/add-task" element={<AddTask user={user} />} />
+        <Route path="/add-task" element={<AddTask  user={user} />} />
       </Routes>
     </div>
   )
