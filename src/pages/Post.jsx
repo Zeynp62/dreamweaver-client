@@ -7,7 +7,7 @@ const Post = () => {
   const [posts, setPosts] = useState([])
   const getPosts = async () => {
     try {
-      let res = await axios.get('http://localhost:3001/posts/addpost')
+      let res = await axios.get('http://localhost:3001/posts')
       setPosts(res.data)
     } catch (err) {
       console.log(err)
@@ -31,7 +31,11 @@ const Post = () => {
           </p>
           <p>{post.description}</p>
           {post.postImg && (
-            <img src={post.postImg} alt="Post content" className="post-img" />
+            <img
+              src={`${BASE_URL}/uploads/${post.postImg}`}
+              alt="Post content"
+              className="post-img"
+            />
           )}
           <p>
             <strong>Category:</strong> {post.category}

@@ -1,15 +1,11 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-
-
 import Nav from './components/Nav'
 import StartingPage from './pages/StartingPage'
 
-
 import SignIn from './pages/SignIn'
 import Register from './pages/Register'
-
 
 import Home from './pages/Home'
 
@@ -31,12 +27,18 @@ function App() {
   const [user, setUser] = useState(null)
   const [categories, setCategories] = useState(null)
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
   const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
   }
 
-  const checkToken = async () =>{
+  const checkToken = async () => {
     const user = await CheckSession()
     setUser(user)
 
@@ -46,15 +48,6 @@ function App() {
     setCategories(categoriesData) 
   }
 
-  useEffect(()=>{
-    const token = localStorage.getItem('token')
-    if(token){
-      checkToken()
-    }
-  },[])
-
-
-  
   return (
     <div>
       <header>
@@ -70,8 +63,9 @@ function App() {
         <Route path="/edit-profile" element={<EditProfile user={user} setUser={setUser} />} />
         <Route path="/home" element={<Home user={user} categories={categories}/>} />
 
+
         {/* Post Routes */}
-        <Route path="posts" element={<AddPost user={user} />} />
+        <Route path="/posts" element={<AddPost userInfo={user} />} />
 
         {/* Task Routes */}
         <Route path="/dreams" element={<Dreams user={user} setUser={setUser} categories={categories}/>} />
