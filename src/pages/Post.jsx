@@ -6,30 +6,17 @@ import Client from '../services/api'
 const BASE_URL = 'http://localhost:3001'
 const Post = ({ thisposts }) => {
   const [posts, setPosts] = useState(thisposts)
-  const getPosts = async () => {
-    try {
-      console.log('this ')
 
-      let res = await Client.get('http://localhost:3001/posts/')
-      console.log(res)
-      setPosts(posts)
-    } catch (err) {
-      console.log(err)
-    }
-    useEffect(() => {
-      getPosts()
-    }, [])
-  }
   return (
     <div className="posts-container">
       {posts?.map((post) => (
         <div key={post._id} className="post-card">
           <div className="user-info">
-            {/* <img
-              src={`uploads/${post.user}`} //  adjust based on actual user profile image
+            <img
+              src={`uploads/${post.user.profileImg}`} //  adjust based on actual user profile image
               alt="User Profile"
               className="user-profile-img"
-            /> */}
+            />
             <p className="username">{post.user.username}</p>
           </div>
 
@@ -41,9 +28,9 @@ const Post = ({ thisposts }) => {
           <p className="post-category">{post.category.categoryName}</p>
 
           {/* Post Image */}
-          {/* {post.postImg && post.postImg !== 'null' && (
+          {post.postImg && post.postImg !== 'null' && (
             <img src={post.postImg} alt="Post" className="post-img" />
-          )} */}
+          )}
         </div>
       ))}
     </div>
