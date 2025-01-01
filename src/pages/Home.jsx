@@ -52,7 +52,7 @@ const Home = ({ user, categories }) => {
         ) : (
           <p>No posts available for this category.</p>
         )} */}
-        <Post thisposts={posts} />
+        <Post thisposts={posts} thisuser={user} />
       </div>
     </div>
   ) : (

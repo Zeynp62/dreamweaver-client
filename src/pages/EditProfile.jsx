@@ -84,8 +84,7 @@ const EditProfile = ({ user, setUser }) => {
     }
   }
 
-  
-    return user ? (
+  return user ? (
     <div>
       <h1>Edit Profile</h1>
       <p style={{ color: 'red' }}>{message}</p>
@@ -157,9 +156,9 @@ const EditProfile = ({ user, setUser }) => {
         </form>
       )}
     </div>
-    ) : (
-      <h1>Loading . . . </h1>
-    )
+  ) : (
+    <h1>Loading . . . </h1>
+  )
 }
 
 export default EditProfile

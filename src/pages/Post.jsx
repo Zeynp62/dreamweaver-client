@@ -4,7 +4,7 @@ import '../App.css'
 import AddPost from './AddPost'
 import Client from '../services/api'
 const BASE_URL = 'http://localhost:3001'
-const Post = ({ thisposts }) => {
+const Post = ({ thisposts, thisuser }) => {
   const [posts, setPosts] = useState(thisposts)
 
   return (

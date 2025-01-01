@@ -66,6 +66,9 @@ const Profile = ({ user, setUser }) => {
               src={`http://localhost:3001/${post.postImg}`}
               alt={`${post.title} Image`}
             />
+            <Link to={`/posts/${post._id}`} className="edit-link">
+              Edit Post
+            </Link>
           </div>
         ))}
       </div>
