@@ -12,6 +12,17 @@ const EditPost = ({ user }) => {
   })
   const [categories, setCategories] = useState([])
 
+  const handleDeletePost = async () => {
+    try {
+      await Client.delete(`http://localhost:3001/posts/${id}`)
+      setPostState(null)
+      navigate('/home') // back to StartPage
+    } catch (error) {
+      console.error('Error deleting account:', error)
+      setMessage('Error Deleting Account.')
+    }
+  }
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -70,52 +81,59 @@ const EditPost = ({ user }) => {
   }
 
   return postState ? (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title:</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        onChange={handleChange}
-        value={postState.title}
-        required
-      />
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          onChange={handleChange}
+          value={postState.title}
+          required
+        />
 
-      <label htmlFor="description">Post Description:</label>
-      <textarea
-        id="description"
-        name="description"
-        onChange={handleChange}
-        value={postState.description}
-        required
-      ></textarea>
+        <label htmlFor="description">Post Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          onChange={handleChange}
+          value={postState.description}
+          required
+        ></textarea>
 
-      <label htmlFor="category">Select Category:</label>
-      <select
-        id="category"
-        name="category"
-        onChange={handleChange}
-        value={postState.category}
-        required
-      >
-        {categories.map((category) => (
-          <option key={category._id} value={category._id}>
-            {category.categoryName}
-          </option>
-        ))}
-      </select>
+        <label htmlFor="category">Select Category:</label>
+        <select
+          id="category"
+          name="category"
+          onChange={handleChange}
+          value={postState.category}
+          required
+        >
+          {categories.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.categoryName}
+            </option>
+          ))}
+        </select>
 
-      <label htmlFor="postImg">Upload New Image (optional):</label>
-      <input
-        type="file"
-        id="postImg"
-        name="postImg"
-        accept="image/*"
-        onChange={handleChange}
-      />
+        <label htmlFor="postImg">Upload New Image (optional):</label>
+        <input
+          type="file"
+          id="postImg"
+          name="postImg"
+          accept="image/*"
+          onChange={handleChange}
+        />
 
-      <button type="submit">Update Post</button>
-    </form>
+        <button type="submit">Update Post</button>
+      </form>
+      <form>
+        <button type="button" onClick={handleDeletePost}>
+          Delete Account
+        </button>
+      </form>
+    </div>
   ) : (
     <p>Loading post...</p>
   )
