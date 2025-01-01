@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Client from '../services/api'
-import axios from 'axios'
+// import axios from 'axios'
 
 const AddPost = ({ userInfo }) => {
   let navigate = useNavigate()
@@ -17,7 +17,7 @@ const AddPost = ({ userInfo }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/category')
+        const response = await Client.get('http://localhost:3001/category')
         setCategories(response.data)
       } catch (error) {
         console.error('Error fetching categories:', error)
