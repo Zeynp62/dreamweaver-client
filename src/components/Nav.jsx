@@ -5,7 +5,10 @@ const Nav = ({ user, handleLogOut }) => {
   if (user) {
     userOptions = (
       <nav>
-        <h3>Welcome {user.username}!</h3>
+        <h3>Welcome {user.username}!</h3> {/* can delete it for design */}
+        <img src={`http://localhost:3001/${user.profileImg}`}
+        alt={`${user.username} Profile Picture`}
+        width={50} />
         <Link to="/home">Home</Link>
         <Link to="/dreams">Dreams</Link>
         <Link to="/profile">Profile</Link>

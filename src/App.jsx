@@ -20,10 +20,12 @@ import Dreams from './pages/Dreams'
 import AddTask from './pages/AddTask'
 
 import { CheckSession } from './services/Auth'
+import {GetCategories} from './services/category'
 import axios from 'axios'
 
 function App() {
   const [user, setUser] = useState(null)
+  const [categories, setCategories] = useState(null)
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -39,6 +41,9 @@ function App() {
   const checkToken = async () => {
     const user = await CheckSession()
     setUser(user)
+
+    const categoriesData = await GetCategories()
+    setCategories(categoriesData) 
   }
 
   return (
@@ -52,12 +57,10 @@ function App() {
         <Route path="/" element={<StartingPage />} />
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile user={user} />} />
-        <Route
-          path="/edit-profile"
-          element={<EditProfile user={user} setUser={setUser} />}
-        />
-        <Route path="/home" element={<Home user={user} />} />
+        <Route path="/profile" element={<Profile user={user} setUser={setUser}/>} />
+        <Route path="/edit-profile" element={<EditProfile user={user} setUser={setUser} />} />
+        <Route path="/home" element={<Home user={user} categories={categories}/>} />
+
 
         {/* Post Routes */}
         <Route path="/posts" element={<AddPost userInfo={user} />} />
