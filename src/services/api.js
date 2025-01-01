@@ -4,7 +4,6 @@ export const BASE_URL = 'http://localhost:3001'
 
 const Client = Axios.create({ baseURL: BASE_URL })
 
-
 // Intercepts every request axios makes
 Client.interceptors.request.use(
   (config) => {
@@ -19,7 +18,5 @@ Client.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 )
-
-
 
 export default Client

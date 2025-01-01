@@ -1,55 +1,66 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Client from '../services/api'
 import axios from 'axios'
-const AddPost = ({ posts, setPosts }) => {
+
+const AddPost = ({ userInfo }) => {
   let navigate = useNavigate()
   const initialState = {
-    profilePic: '', //of user
-    username: '', //of user
+    title: '',
     description: '',
-    postImg: '',
-    category: 'general'
+    category: '',
+    postImg: null
   }
   const [postState, setPostState] = useState(initialState)
-  const [user, setUser] = useState(null)
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    const getUserData = async () => {
+    const fetchCategories = async () => {
       try {
-        let response = await axios.get('http://localhost:3001/:id')
-        const userData = response.data
-        setUser(userData)
-        setPostState((prevState) => ({
-          ...prevState,
-          profilePic: userData.profilePic,
-          username: userData.username
-        }))
+        const response = await axios.get('http://localhost:3001/category')
+        setCategories(response.data)
       } catch (error) {
-        console.log('Error fetching user data:', error)
+        console.error('Error fetching categories:', error)
       }
     }
-    getUserData()
+    fetchCategories()
   }, [])
 
   const handleChange = (event) => {
-    setPostState({ ...postState, [event.target.id]: event.target.value })
+    const { name, type, files, value } = event.target
+
+    if (name === 'category') {
+      const selectedCategory = categories.find((cat) => cat._id === value)
+      setPostState({ ...postState, category: selectedCategory })
+      return
+    }
+
+    setPostState({ ...postState, [name]: type === 'file' ? files[0] : value })
   }
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault()
-      let response = await axios.post(
-        'http://localhost:3001/addpost',
-        postState
+      const formData = new FormData()
+      formData.append('title', postState.title)
+      formData.append('description', postState.description)
+      formData.append('category', postState.category._id)
+      formData.append('postImg', postState.postImg)
+      formData.append('user', userInfo._id)
+      console.log([...formData]) // Log form data before axios post
+      const response = await Client.post(
+        `http://localhost:3001/posts`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
       )
-      setPosts([...posts, response.data])
-      setPostState(initialState)
-      navigate('/')
+      console.log('Response from server:', response.data)
+      navigate('/posts')
     } catch (error) {
       console.log('Error submitting post:', error)
     }
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
@@ -65,8 +76,6 @@ const AddPost = ({ posts, setPosts }) => {
       <textarea
         id="description"
         name="description"
-        cols="30"
-        rows="10"
         onChange={handleChange}
         value={postState.description}
         required
@@ -76,20 +85,22 @@ const AddPost = ({ posts, setPosts }) => {
         id="category"
         name="category"
         onChange={handleChange}
-        value={postState.category}
+        value={postState.category._id}
         required
       >
-        <option value="study">Study</option>
-        <option value="fitness">Fitness</option>
-        <option value="motivation">Motivation</option>
-        <option value="general">General</option>
+        <option value="">Select a category</option>
+        {categories.map((cat) => (
+          <option key={cat._id} value={cat._id}>
+            {cat.categoryName}
+          </option>
+        ))}
       </select>
 
-      <label htmlFor="image">Upload Image:</label>
+      <label htmlFor="postImg">Upload Image:</label>
       <input
         type="file"
-        id="image"
-        name="image"
+        id="postImg"
+        name="postImg"
         accept="image/*"
         onChange={handleChange}
       />
