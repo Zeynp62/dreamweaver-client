@@ -40,28 +40,27 @@ const AddPost = ({ userInfo }) => {
 
   const handleSubmit = async (event) => {
     try {
-
-      event.preventDefault();
-      const formData = new FormData();
-      formData.append('title', postState.title);
-      formData.append('description', postState.description);
-      formData.append('category', postState.category._id);
+      event.preventDefault()
+      const formData = new FormData()
+      formData.append('title', postState.title)
+      formData.append('description', postState.description)
+      formData.append('category', postState.category._id)
       formData.append('user', userInfo._id)
 
       if (postState.postImg) {
-        formData.append('image', postState.postImg); // Ensure the key matches multer's `upload.single('image')`
+        formData.append('image', postState.postImg) // Ensure the key matches multer's `upload.single('image')`
       }
-  
+
       const response = await Client.post('/posts', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-  
-      navigate('/home');
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+
+      navigate('/home')
     } catch (error) {
-      console.log('Error submitting post:', error);
+      console.log('Error submitting post:', error)
     }
-  };
-  
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>
