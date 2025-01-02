@@ -15,9 +15,7 @@ const AddTask = ({
   const [taskState, setTaskState] = useState(false)
   const [category, setCategory] = useState('')
 
-  useEffect(() => {
-    console.log('Categories in AddTask:', categories)
-  }, [categories])
+  useEffect(() => {}, [categories])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -33,8 +31,6 @@ const AddTask = ({
       const response = editingTask
         ? await Client.put(`/tasks/${editingTask._id}`, taskData)
         : await Client.post('/tasks', taskData)
-
-      console.log(editingTask ? 'Task updated:' : 'Task added:', response.data)
 
       // Update user's tasks
       setUser((prevUser) => ({
