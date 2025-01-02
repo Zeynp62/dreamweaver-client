@@ -92,6 +92,7 @@ const EditProfile = ({ user, setUser }) => {
     }))
   }, [user])
 
+
   return user ? (
     <div>
       <h1>Edit Profile</h1>
@@ -166,6 +167,7 @@ const EditProfile = ({ user, setUser }) => {
     </div>
   ) : (
     <h3>Error: You Should Sign In to Access This Page</h3>
+    <h1>Loading . . . </h1>
   )
 }
 

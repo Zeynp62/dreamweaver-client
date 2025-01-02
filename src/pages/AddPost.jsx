@@ -40,11 +40,14 @@ const AddPost = ({ userInfo }) => {
 
   const handleSubmit = async (event) => {
     try {
+
       event.preventDefault();
       const formData = new FormData();
       formData.append('title', postState.title);
       formData.append('description', postState.description);
       formData.append('category', postState.category._id);
+      formData.append('user', userInfo._id)
+
       if (postState.postImg) {
         formData.append('image', postState.postImg); // Ensure the key matches multer's `upload.single('image')`
       }
@@ -53,7 +56,7 @@ const AddPost = ({ userInfo }) => {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
   
-      navigate('/posts');
+      navigate('/home');
     } catch (error) {
       console.log('Error submitting post:', error);
     }
@@ -86,7 +89,6 @@ const AddPost = ({ userInfo }) => {
         value={postState.category._id}
         required
       >
-        <option value="">Select a category</option>
         {categories.map((cat) => (
           <option key={cat._id} value={cat._id}>
             {cat.categoryName}

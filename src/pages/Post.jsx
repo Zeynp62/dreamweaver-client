@@ -5,7 +5,8 @@ import AddPost from './AddPost'
 import Client from '../services/api'
 const BASE_URL = 'http://localhost:3001'
 
-const Post = ({ thisposts, user }) => {
+const Post = ({ thisposts, thisuser }) => {
+
   const [posts, setPosts] = useState(thisposts)
 
   useEffect(() => {
