@@ -9,7 +9,10 @@ const Post = ({ thisposts, user }) => {
   const [posts, setPosts] = useState(thisposts)
 
   useEffect(() => {
-    setPosts(thisposts)
+    const sortedPosts = [...thisposts].sort((b, a) => 
+      new Date(a.createdAt) - new Date(b.createdAt) // Adjust the key for sorting
+    )
+    setPosts(sortedPosts)
   }, [thisposts])
 
   return (

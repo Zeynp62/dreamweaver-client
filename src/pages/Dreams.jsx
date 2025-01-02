@@ -5,18 +5,36 @@ import Client from '../services/api'
 const Dreams = ({ user, setUser, categories }) => {
   const [tasks, setTasks] = useState([]) // Local state for tasks
 
+
+  // Sort tasks in ascending order by taskDate
+  const sortedTasks = tasks.sort((a, b) => {
+    const dateA = a.taskDate ? new Date(a.taskDate) : new Date()
+    const dateB = b.taskDate ? new Date(b.taskDate) : new Date()
+    return dateA - dateB
+  })
+
+  //delete task
+  const deleteTask = async (taskId) => {
+    try {
+      const response = await Client.delete(`/tasks/${taskId}`)
+      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId))
+    } catch (error) {
+      console.error('Error deleting task:', error)
+    }
+  }
+
   // mark the task as completed
   const toggleCompletion = async (task) => {
     try {
       const updatedTask = {
         ...task,
-        taskState: !task.taskState // Toggle change
+        taskState: !task.taskState // Toggle the state
       }
 
-      // Update task in the backend
+      // Update task completion status in the backend
       const response = await Client.put(`/tasks/${task._id}`, updatedTask)
 
-      // Update task in the state
+      // Update the task in the local state
       setTasks((prevTasks) =>
         prevTasks.map((taskItem) =>
           taskItem._id === task._id ? response.data : taskItem
@@ -26,7 +44,7 @@ const Dreams = ({ user, setUser, categories }) => {
       console.error('Error updating task completion:', error)
     }
   }
-
+  
   // show when loaded
   useEffect(() => {
     if (user && Array.isArray(user.tasks)) {
@@ -55,13 +73,15 @@ const Dreams = ({ user, setUser, categories }) => {
                 onChange={() => toggleCompletion(task)} // Toggle task completion when clicked
               />
               Completed
-            </label>
+            </label><button onClick={() => deleteTask(task._id)}>Delete</button>
+            
           </div>
+          
         ))}
       </div>
     </div>
   ) : (
-    <p>Loading...</p>
+    <h3>Error: You Should Sign In to Access This Page</h3>
   )
 }
 

@@ -6,9 +6,9 @@ const Nav = ({ user, handleLogOut }) => {
     userOptions = (
       <nav>
         <h3>Welcome {user.username}!</h3> {/* can delete it for design */}
-        <img src={`http://localhost:3001/${user.profileImg}`}
+        <Link to="/profile"><img src={`http://localhost:3001/${user.profileImg}`}
         alt={`${user.username} Profile Picture`}
-        width={50} />
+        width={50} /></Link>
         <Link to="/home">Home</Link>
         <Link to="/dreams">Dreams</Link>
         <Link to="/profile">Profile</Link>
@@ -28,12 +28,12 @@ const Nav = ({ user, handleLogOut }) => {
     </nav>
   )
 
-  return (
+  return user ? (
     <header>
       <Link to="/"></Link>
       {user ? userOptions : publicOptions}
     </header>
-  )
+  ):(<></>)
 }
 
 export default Nav

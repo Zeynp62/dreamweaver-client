@@ -79,7 +79,7 @@ const AddTask = ({
           onChange={(e) => setTaskState(e.target.checked)}
         />
       </label>
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+      <select value={category} onChange={(e) => setCategory(e.target.value)} required> 
         <option value="">Select Category</option>
         {categories?.map((cat) => (
           <option key={cat._id} value={cat._id}>
