@@ -52,7 +52,6 @@ const Profile = ({ user, setUser }) => {
       </form>
 
       {/*user post if exist */}
-
       <div className="user-posts-container">
         {user.posts?.map((post) => (
           <div
