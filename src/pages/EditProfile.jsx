@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -32,7 +32,7 @@ const EditProfile = ({ user, setUser }) => {
     try {
       //update email
       const response = await axios.put(
-        `http://localhost:3001/user/update-email/${user._id}`,
+        `http://localhost:3001/user/update-email/${user.id}`,
         { email: formData.email },
         config
       )
@@ -49,13 +49,14 @@ const EditProfile = ({ user, setUser }) => {
     e.preventDefault()
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-password/${user._id}`,
+        `http://localhost:3001/user/update-password/${user.id}`,
         {
           oldPassword: formData.oldPassword,
           newPassword: formData.newPassword
         },
         config
       )
+      setUser(response.data.user)
       alert('Password updated successfully!')
       navigate('/profile')
     } catch (error) {
@@ -71,7 +72,7 @@ const EditProfile = ({ user, setUser }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-profile-image/${user._id}`,
+        `http://localhost:3001/user/update-profile-image/${user.id}`,
         data,
         config
       )
@@ -84,8 +85,14 @@ const EditProfile = ({ user, setUser }) => {
     }
   }
 
-  
-    return user ? (
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      email: user?.email || ''
+    }))
+  }, [user])
+
+  return user ? (
     <div>
       <h1>Edit Profile</h1>
       <p style={{ color: 'red' }}>{message}</p>
@@ -157,9 +164,9 @@ const EditProfile = ({ user, setUser }) => {
         </form>
       )}
     </div>
-    ) : (
-      <h1>Loading . . . </h1>
-    )
+  ) : (
+    <h3>Error: You Should Sign In to Access This Page</h3>
+  )
 }
 
 export default EditProfile

@@ -52,7 +52,6 @@ const Profile = ({ user, setUser }) => {
       </form>
 
       {/*user post if exist */}
-
       <div className="user-posts-container">
         {user.posts?.map((post) => (
           <div
@@ -65,7 +64,11 @@ const Profile = ({ user, setUser }) => {
             <img
               src={`http://localhost:3001/${post.postImg}`}
               alt={`${post.title} Image`}
+              width={300}
             />
+            <Link to={`/posts/${post._id}`} className="edit-link">
+              Edit Post
+            </Link>
           </div>
         ))}
       </div>

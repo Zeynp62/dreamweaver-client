@@ -20,7 +20,7 @@ import Dreams from './pages/Dreams'
 import AddTask from './pages/AddTask'
 
 import { CheckSession } from './services/Auth'
-import {GetCategories} from './services/category'
+import { GetCategories } from './services/category'
 import axios from 'axios'
 
 function App() {
@@ -43,6 +43,8 @@ function App() {
     setUser(user)
 
     const categoriesData = await GetCategories()
+    // console.log('Fetched Categories:', categoriesData); // to check if categories is passed correctly
+
     setCategories(categoriesData) 
   }
 
@@ -57,17 +59,29 @@ function App() {
         <Route path="/" element={<StartingPage />} />
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile user={user} setUser={setUser}/>} />
-        <Route path="/edit-profile" element={<EditProfile user={user} setUser={setUser} />} />
-        <Route path="/home" element={<Home user={user} categories={categories}/>} />
-
+        <Route
+          path="/profile"
+          element={<Profile user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/edit-profile"
+          element={<EditProfile user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/home"
+          element={<Home user={user} categories={categories} />}
+        />
 
         {/* Post Routes */}
         <Route path="/posts" element={<AddPost userInfo={user} />} />
+        <Route
+          path="/posts/:id"
+          element={<EditPost userInfo={user} setUser={setUser} />}
+        />
 
         {/* Task Routes */}
-        <Route path="/dreams" element={<Dreams user={user} />} />
-        <Route path="/add-task" element={<AddTask user={user} />} />
+        <Route path="/dreams" element={<Dreams user={user} setUser={setUser} categories={categories}/>} />
+        <Route path="/add-task" element={<AddTask user={user} categories={categories}/>} />
       </Routes>
     </div>
   )
