@@ -110,6 +110,7 @@ const EditPost = ({ user }) => {
           value={postState.category}
           required
         >
+          <option value="">select category</option>
           {categories.map((category) => (
             <option key={category._id} value={category._id}>
               {category.categoryName}
