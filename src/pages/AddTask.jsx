@@ -10,7 +10,7 @@ const AddTask = ({
 }) => {
   const [taskName, setTaskName] = useState('')
   const [taskDate, setTaskDate] = useState(
-    new Date().toISOString().slice(0, 16) 
+    new Date().toISOString().slice(0, 16)
   )
   const [taskState, setTaskState] = useState(false)
   const [category, setCategory] = useState('')
@@ -27,7 +27,7 @@ const AddTask = ({
         taskDate,
         taskState,
         category_id: category,
-        user: user._id
+        user: user.id
       }
 
       const response = editingTask
@@ -79,7 +79,11 @@ const AddTask = ({
           onChange={(e) => setTaskState(e.target.checked)}
         />
       </label>
-      <select value={category} onChange={(e) => setCategory(e.target.value)} required> 
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        required
+      >
         <option value="">Select Category</option>
         {categories?.map((cat) => (
           <option key={cat._id} value={cat._id}>
