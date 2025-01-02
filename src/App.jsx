@@ -1,15 +1,11 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-
-
 import Nav from './components/Nav'
 import StartingPage from './pages/StartingPage'
 
-
 import SignIn from './pages/SignIn'
 import Register from './pages/Register'
-
 
 import Home from './pages/Home'
 
@@ -24,35 +20,34 @@ import Dreams from './pages/Dreams'
 import AddTask from './pages/AddTask'
 
 import { CheckSession } from './services/Auth'
-import {GetCategories} from './services/category'
+import { GetCategories } from './services/category'
 import axios from 'axios'
 
 function App() {
   const [user, setUser] = useState(null)
   const [categories, setCategories] = useState(null)
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
   const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
   }
 
-  const checkToken = async () =>{
+  const checkToken = async () => {
     const user = await CheckSession()
     setUser(user)
 
     const categoriesData = await GetCategories()
+    // console.log('Fetched Categories:', categoriesData); // to check if categories is passed correctly
+
     setCategories(categoriesData) 
   }
 
-  useEffect(()=>{
-    const token = localStorage.getItem('token')
-    if(token){
-      checkToken()
-    }
-  },[])
-
-
-  
   return (
     <div>
       <header>
@@ -64,16 +59,29 @@ function App() {
         <Route path="/" element={<StartingPage />} />
         <Route path="/sign-in" element={<SignIn setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile user={user} setUser={setUser}/>} />
-        <Route path="/edit-profile" element={<EditProfile user={user} setUser={setUser} />} />
-        <Route path="/home" element={<Home user={user} categories={categories}/>} />
+        <Route
+          path="/profile"
+          element={<Profile user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/edit-profile"
+          element={<EditProfile user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/home"
+          element={<Home user={user} categories={categories} />}
+        />
 
         {/* Post Routes */}
-        <Route path="posts" element={<AddPost user={user} />} />
+        <Route path="/posts" element={<AddPost userInfo={user} />} />
+        <Route
+          path="/posts/:id"
+          element={<EditPost userInfo={user} setUser={setUser} />}
+        />
 
         {/* Task Routes */}
-        <Route path="/dreams" element={<Dreams user={user}/>} />
-        <Route path="/add-task" element={<AddTask user={user}/>} />
+        <Route path="/dreams" element={<Dreams user={user} setUser={setUser} categories={categories}/>} />
+        <Route path="/add-task" element={<AddTask user={user} categories={categories}/>} />
       </Routes>
     </div>
   )

@@ -1,35 +1,88 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Tasks from '../components/Tasks';
+import React, { useState, useEffect } from 'react'
+import AddTask from './AddTask'
+import Client from '../services/api'
 
-const Dreams = () => {
-  const [tasks, setTasks] = useState([]);
+const Dreams = ({ user, setUser, categories }) => {
+  const [tasks, setTasks] = useState([]) // Local state for tasks
 
-  // Fetch tasks when the component mounts
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/task');
-        setTasks(response.data);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
+
+  // Sort tasks in ascending order by taskDate
+  const sortedTasks = tasks.sort((a, b) => {
+    const dateA = a.taskDate ? new Date(a.taskDate) : new Date()
+    const dateB = b.taskDate ? new Date(b.taskDate) : new Date()
+    return dateA - dateB
+  })
+
+  //delete task
+  const deleteTask = async (taskId) => {
+    try {
+      const response = await Client.delete(`/tasks/${taskId}`)
+      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId))
+    } catch (error) {
+      console.error('Error deleting task:', error)
+    }
+  }
+
+  // mark the task as completed
+  const toggleCompletion = async (task) => {
+    try {
+      const updatedTask = {
+        ...task,
+        taskState: !task.taskState // Toggle the state
       }
-    };
 
-    fetchTasks();
-  }, []);
+      // Update task completion status in the backend
+      const response = await Client.put(`/tasks/${task._id}`, updatedTask)
 
-  return (
+      // Update the task in the local state
+      setTasks((prevTasks) =>
+        prevTasks.map((taskItem) =>
+          taskItem._id === task._id ? response.data : taskItem
+        )
+      )
+    } catch (error) {
+      console.error('Error updating task completion:', error)
+    }
+  }
+  
+  // show when loaded
+  useEffect(() => {
+    if (user && Array.isArray(user.tasks)) {
+      setTasks(user.tasks)
+    }
+  }, [user])
+
+  return user ? (
     <div>
-    <h1>My Tasks</h1>
-    <button onClick={() => window.location.href = '/add-task'}>Add Task</button>
-    <div>
-      {tasks.map(task => (
-        <Task key={task._id} task={task} />
-      ))}
+      <h1>My Dreams</h1>
+      <AddTask user={user} setUser={setUser} categories={categories} />
+      <div>
+        {tasks.map((task) => (
+          <div key={task._id}>
+            <h3>{task.taskName}</h3>
+            <p>{/*to show the date and time */}
+              {task.taskDate &&
+                new Date(task.taskDate).toLocaleDateString() +
+                  ' ' +
+                  new Date(task.taskDate).toLocaleTimeString()}
+            </p>
+            <label>
+              <input
+                type="checkbox"
+                checked={task.taskState}
+                onChange={() => toggleCompletion(task)} // Toggle task completion when clicked
+              />
+              Completed
+            </label><button onClick={() => deleteTask(task._id)}>Delete</button>
+            
+          </div>
+          
+        ))}
+      </div>
     </div>
-  </div>
-  );
-};
+  ) : (
+    <h3>Error: You Should Sign In to Access This Page</h3>
+  )
+}
 
-export default Dreams;
+export default Dreams
