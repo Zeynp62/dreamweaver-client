@@ -2,4 +2,13 @@ body{
   box-sizing: border-box;
   margin: 0;
   background-color: aliceblue;
+  display: flex;
+  /* text-align: center;
+  align-items: center;
+  justify-content: center; */
+}
+
+form{
+  display: flex;
+  flex-direction: column;
 }

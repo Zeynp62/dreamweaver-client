@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Client from '../services/api'
-import axios from 'axios'
+// import axios from 'axios'
 
 const AddPost = ({ userInfo }) => {
   let navigate = useNavigate()
@@ -17,7 +17,7 @@ const AddPost = ({ userInfo }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/category')
+        const response = await Client.get('http://localhost:3001/category')
         setCategories(response.data)
       } catch (error) {
         console.error('Error fetching categories:', error)
@@ -40,27 +40,28 @@ const AddPost = ({ userInfo }) => {
 
   const handleSubmit = async (event) => {
     try {
-      event.preventDefault()
-      const formData = new FormData()
-      formData.append('title', postState.title)
-      formData.append('description', postState.description)
-      formData.append('category', postState.category._id)
-      formData.append('postImg', postState.postImg)
+
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('title', postState.title);
+      formData.append('description', postState.description);
+      formData.append('category', postState.category._id);
       formData.append('user', userInfo._id)
-      console.log([...formData]) // Log form data before axios post
-      const response = await Client.post(
-        `http://localhost:3001/posts`,
-        formData,
-        {
-          headers: { 'Content-Type': 'multipart/form-data' }
-        }
-      )
-      console.log('Response from server:', response.data)
-      navigate('/home')
+
+      if (postState.postImg) {
+        formData.append('image', postState.postImg); // Ensure the key matches multer's `upload.single('image')`
+      }
+  
+      const response = await Client.post('/posts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+  
+      navigate('/home');
     } catch (error) {
-      console.log('Error submitting post:', error)
+      console.log('Error submitting post:', error);
     }
-  }
+  };
+  
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title:</label>

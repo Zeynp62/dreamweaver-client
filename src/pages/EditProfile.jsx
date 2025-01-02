@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -56,6 +56,7 @@ const EditProfile = ({ user, setUser }) => {
         },
         config
       )
+      setUser(response.data.user)
       alert('Password updated successfully!')
       navigate('/profile')
     } catch (error) {
@@ -83,6 +84,14 @@ const EditProfile = ({ user, setUser }) => {
       setMessage('Error updating profile image.')
     }
   }
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      email: user?.email || ''
+    }))
+  }, [user])
+
 
   return user ? (
     <div>
@@ -157,6 +166,7 @@ const EditProfile = ({ user, setUser }) => {
       )}
     </div>
   ) : (
+    <h3>Error: You Should Sign In to Access This Page</h3>
     <h1>Loading . . . </h1>
   )
 }
