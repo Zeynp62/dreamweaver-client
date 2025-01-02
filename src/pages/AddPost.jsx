@@ -88,7 +88,6 @@ const AddPost = ({ userInfo }) => {
         value={postState.category._id}
         required
       >
-        <option value="">select category</option>
         {categories.map((cat) => (
           <option key={cat._id} value={cat._id}>
             {cat.categoryName}
