@@ -6,12 +6,11 @@ import Client from '../services/api'
 const BASE_URL = 'http://localhost:3001'
 
 const Post = ({ thisposts, thisuser }) => {
-
   const [posts, setPosts] = useState(thisposts)
 
   useEffect(() => {
-    const sortedPosts = [...thisposts].sort((b, a) => 
-      new Date(a.createdAt) - new Date(b.createdAt) // Adjust the key for sorting
+    const sortedPosts = [...thisposts].sort(
+      (b, a) => new Date(a.createdAt) - new Date(b.createdAt) // Adjust the key for sorting
     )
     setPosts(sortedPosts)
   }, [thisposts])
@@ -24,11 +23,11 @@ const Post = ({ thisposts, thisuser }) => {
             <div className="user-info"></div>
             <p>{post.user.username}</p>
             {/* Post Info */}
-          <h3 className="post-title">{post.title}</h3>
-          <p className="post-description">{post.description}</p>
+            <h3 className="post-title">{post.title}</h3>
+            <p className="post-description">{post.description}</p>
 
             {/* Category */}
-          <p className="post-category">{post.category.categoryName}</p>
+            <p className="post-category">{post.category.categoryName}</p>
 
             {/* Post Image */}
             {post.postImg && post.postImg !== 'null' && (
