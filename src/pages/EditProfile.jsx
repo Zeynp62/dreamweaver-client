@@ -1,8 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const EditProfile = ({ user, setUser }) => {
+  if (!user) {
+    return <h1>Loading...</h1>;
+  }
+
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -32,7 +36,7 @@ const EditProfile = ({ user, setUser }) => {
     try {
       //update email
       const response = await axios.put(
-        `http://localhost:3001/user/update-email/${user.id}`,
+        `http://localhost:3001/user/update-email/${user._id}`,
         { email: formData.email },
         config
       )
@@ -49,14 +53,13 @@ const EditProfile = ({ user, setUser }) => {
     e.preventDefault()
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-password/${user.id}`,
+        `http://localhost:3001/user/update-password/${user._id}`,
         {
           oldPassword: formData.oldPassword,
           newPassword: formData.newPassword
         },
         config
       )
-      setUser(response.data.user)
       alert('Password updated successfully!')
       navigate('/profile')
     } catch (error) {
@@ -72,7 +75,7 @@ const EditProfile = ({ user, setUser }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-profile-image/${user.id}`,
+        `http://localhost:3001/user/update-profile-image/${user._id}`,
         data,
         config
       )
@@ -84,15 +87,8 @@ const EditProfile = ({ user, setUser }) => {
       setMessage('Error updating profile image.')
     }
   }
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      email: user?.email || ''
-    }))
-  }, [user])
-
-  return user ? (
+  
+    return user ? (
     <div>
       <h1>Edit Profile</h1>
       <p style={{ color: 'red' }}>{message}</p>
@@ -164,9 +160,9 @@ const EditProfile = ({ user, setUser }) => {
         </form>
       )}
     </div>
-  ) : (
-    <h3>Error: You Should Sign In to Access This Page</h3>
-  )
+    ) : (
+      <h1>Loading . . . </h1>
+    )
 }
 
 export default EditProfile
