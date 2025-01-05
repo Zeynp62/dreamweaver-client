@@ -16,7 +16,7 @@ const EditPost = ({ user }) => {
     try {
       await Client.delete(`http://localhost:3001/posts/${id}`)
       setPostState(null)
-      navigate('/home') // back to StartPage
+      navigate('/home')
     } catch (error) {
       console.error('Error deleting account:', error)
       setMessage('Error Deleting Account.')
