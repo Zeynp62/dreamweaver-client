@@ -130,7 +130,7 @@ const EditPost = ({ user }) => {
       </form>
       <form>
         <button type="button" onClick={handleDeletePost}>
-          Delete Account
+          Delete Post
         </button>
       </form>
     </div>
