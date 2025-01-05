@@ -21,7 +21,11 @@ import AddTask from './pages/AddTask'
 
 import { CheckSession } from './services/Auth'
 import { GetCategories } from './services/category'
+
+import Quotes from './components/Quote'
+
 import axios from 'axios'
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -33,6 +37,7 @@ function App() {
       checkToken()
     }
   }, [])
+  
   const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
@@ -82,6 +87,9 @@ function App() {
         {/* Task Routes */}
         <Route path="/dreams" element={<Dreams user={user} setUser={setUser} categories={categories}/>} />
         <Route path="/add-task" element={<AddTask user={user} categories={categories}/>} />
+
+
+        <Route path='/motivation' element={<Quotes user={user}/>}/>
       </Routes>
     </div>
   )
