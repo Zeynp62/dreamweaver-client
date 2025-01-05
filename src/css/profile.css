@@ -1,0 +1,122 @@
+/* Profile Page Container */
+.profile-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.6); 
+  margin-top: 130px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Profile Image */
+.profile-container img {
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+/* Profile Info Section */
+.profile-info {
+  margin-top: 30px;
+}
+
+/* Profile Form */
+.profile-form {
+  background: rgba(255, 255, 255, 0.9); /* Slightly opaque for contrast */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+/* Edit Profile Link */
+.edit-profile-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #cc4128;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-profile-link:hover {
+    background-color: #c46554;
+
+  }
+/* Buttons */
+.profile-form button, .delete-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #cc4128;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-form button:hover, .delete-button:hover {
+    background-color: #c46554;
+
+}
+
+/* Links */
+.profile-form a {
+  color: #8c1f5d;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.profile-form a:hover {
+  text-decoration: underline;
+}
+
+/* User Post Section */
+.user-posts-container {
+  margin-top: 40px;
+}
+
+.user-post {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: rgba(36, 28, 28, 0.6); 
+}
+
+.user-post img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.edit-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  background-color: #cc4128;
+
+}
+
+.edit-link:hover {
+  text-decoration: underline;
+}
+
+.edit-post-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    background-color: #cc4128;
+
+  }
+  
+  .edit-post-link:hover {
+    text-decoration: underline;
+  }

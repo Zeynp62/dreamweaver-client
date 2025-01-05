@@ -53,14 +53,17 @@ const Dreams = ({ user, setUser, categories }) => {
   }, [user])
 
   return user ? (
-    <div>
+    <div className="dreams-container">
       <h1>My Dreams</h1>
       <AddTask user={user} setUser={setUser} categories={categories} />
-      <div>
+
+      {/* Display tasks in frames */}
+      <div className="tasks-container">
         {tasks.map((task) => (
-          <div key={task._id}>
+          <div key={task._id} className="task-card">
             <h3>{task.taskName}</h3>
-            <p>{/*to show the date and time */}
+            <p>
+              {/* to show the date and time */}
               {task.taskDate &&
                 new Date(task.taskDate).toLocaleDateString() +
                   ' ' +
@@ -73,16 +76,14 @@ const Dreams = ({ user, setUser, categories }) => {
                 onChange={() => toggleCompletion(task)} // Toggle task completion when clicked
               />
               Completed
-            </label><button onClick={() => deleteTask(task._id)}>Delete</button>
-            
+            </label>
+            <button onClick={() => deleteTask(task._id)}>Delete</button>
           </div>
-          
         ))}
       </div>
     </div>
   ) : (
     <h3>Error: You Should Sign In to Access This Page</h3>
-  )
-}
-
+  );
+};
 export default Dreams

@@ -73,8 +73,8 @@ const EditPost = ({ user }) => {
     }
   }
   return postState ? (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="edit-post-container">
+      <form onSubmit={handleSubmit} className="edit-post-form">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
