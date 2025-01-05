@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Client from '../services/api'
-// import axios from 'axios'
 
 const AddPost = ({ userInfo }) => {
   let navigate = useNavigate()
@@ -48,7 +47,7 @@ const AddPost = ({ userInfo }) => {
       formData.append('user', userInfo._id)
 
       if (postState.postImg) {
-        formData.append('image', postState.postImg) // Ensure the key matches multer's `upload.single('image')`
+        formData.append('image', postState.postImg)
       }
 
       const response = await Client.post('/posts', formData, {
@@ -62,50 +61,52 @@ const AddPost = ({ userInfo }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title:</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        onChange={handleChange}
-        value={postState.title}
-        required
-      />
-      <label htmlFor="description">Post Description:</label>
-      <textarea
-        id="description"
-        name="description"
-        onChange={handleChange}
-        value={postState.description}
-        required
-      ></textarea>
-      <label htmlFor="category">Select Category</label>
-      <select
-        id="category"
-        name="category"
-        onChange={handleChange}
-        value={postState.category._id}
-        required
-      >
-        {categories.map((cat) => (
-          <option key={cat._id} value={cat._id}>
-            {cat.categoryName}
-          </option>
-        ))}
-      </select>
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="post-form">
+        <label htmlFor="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          onChange={handleChange}
+          value={postState.title}
+          required
+        />
+        <label htmlFor="description">Post Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          onChange={handleChange}
+          value={postState.description}
+          required
+        ></textarea>
+        <label htmlFor="category">Select Category</label>
+        <select
+          id="category"
+          name="category"
+          onChange={handleChange}
+          value={postState.category._id}
+          required
+        >
+          {categories.map((cat) => (
+            <option key={cat._id} value={cat._id}>
+              {cat.categoryName}
+            </option>
+          ))}
+        </select>
 
-      <label htmlFor="postImg">Upload Image:</label>
-      <input
-        type="file"
-        id="postImg"
-        name="postImg"
-        accept="image/*"
-        onChange={handleChange}
-      />
+        <label htmlFor="postImg">Upload Image:</label>
+        <input
+          type="file"
+          id="postImg"
+          name="postImg"
+          accept="image/*"
+          onChange={handleChange}
+        />
 
-      <button type="submit">Post</button>
-    </form>
+        <button type="submit">Post</button>
+      </form>
+    </div>
   )
 }
 

@@ -33,11 +33,12 @@ const Home = ({ user, categories }) => {
   return user ? (
     <div className="main-content">
       <div className="navbar">
-        <img src={`http://localhost:3001/${user.profileImg}`} alt="Profile" />
         <a href="/profile">{user.name}</a>
       </div>
       <h1>Welcome To the Home Page</h1>
-      <CategoryFilter categories={categories} onChange={handleChange} />
+      <div className="category-filter">
+        <CategoryFilter categories={categories} onChange={handleChange} />
+      </div>
       <div>
         <h3>Posts</h3>
         <Post thisposts={posts} thisuser={user} />
@@ -49,4 +50,3 @@ const Home = ({ user, categories }) => {
 };
 
 export default Home;
-

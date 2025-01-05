@@ -1,0 +1,79 @@
+/* Container for the Edit Post Form */
+.edit-post-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 80px auto; /* Centering the form */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  /* Edit Post Form Styling */
+  .edit-post-form {
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque than container */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+  }
+  
+  /* Input Fields Styling */
+  .edit-post-form input,
+  .edit-post-form select,
+  .edit-post-form textarea,
+  .edit-post-form button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+  }
+  
+  /* Button Styling */
+  .edit-post-form button {
+    background-color: #8c1f5d; /* Button color */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-post-form button:hover {
+    background-color: #bd45bd;
+  }
+  
+  /* Styling for the Delete Button */
+  .edit-post-form button[type="button"] {
+    background-color: #e53946; /* Red button */
+  }
+  
+  .edit-post-form button[type="button"]:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+  }
+  
+  /* Label Styling */
+  .edit-post-form label {
+    text-align: left;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+  /* Textarea Styling */
+  .edit-post-form textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .edit-post-container {
+      padding: 20px;
+    }
+  
+    .edit-post-form {
+      padding: 20px;
+    }
+  }
+  

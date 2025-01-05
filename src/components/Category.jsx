@@ -1,6 +1,6 @@
 const Category = ({ categories, onChange }) => {
   return (
-    <div>
+    <div className="category-filter">
       {categories?.map((category) => (
         <button
           key={category._id}
@@ -11,7 +11,7 @@ const Category = ({ categories, onChange }) => {
         </button>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;

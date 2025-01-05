@@ -1,0 +1,63 @@
+/* AddPost.css */
+  
+  .post-form {
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    transition: all 0.3s ease;
+  }
+  
+  .post-form:hover {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* More shadow on hover */
+  }
+  
+  .post-form label {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: block;
+    color: #333;
+  }
+  
+  .post-form input,
+  .post-form textarea,
+  .post-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+  }
+  
+  .post-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .post-form button {
+    background-color: #9a137f;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .post-form button:hover {
+    background-color: #d056ce;
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    .post-form {
+      padding: 20px;
+      max-width: 100%;
+    }
+  }
+  
