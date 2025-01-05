@@ -1,9 +1,16 @@
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 const EditProfile = ({ user, setUser }) => {
-  const navigate = useNavigate();
+  if (!user) {
+    return <h1>Loading...</h1>;
+  }
+
+  const navigate = useNavigate()
+
 
   const [formData, setFormData] = useState({
     email: user.email,
@@ -30,7 +37,7 @@ const EditProfile = ({ user, setUser }) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-email/${user.id}`,
+        `http://localhost:3001/user/update-email/${user._id || user.id}`,
         { email: formData.email },
         config
       );
@@ -47,16 +54,22 @@ const EditProfile = ({ user, setUser }) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-password/${user.id}`,
+        `http://localhost:3001/user/update-password/${user._id || user.id}`,
         {
           oldPassword: formData.oldPassword,
           newPassword: formData.newPassword
         },
         config
+
       );
       setUser(response.data.user);
       alert('Password updated successfully!');
       navigate('/profile');
+=======
+      )
+      alert('Password updated successfully!')
+      navigate('/profile')
+
     } catch (error) {
       console.error('Error updating password:', error);
       setFormData((prevState) => ({ ...prevState, message: 'Error updating password.' }));
@@ -70,7 +83,7 @@ const EditProfile = ({ user, setUser }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-profile-image/${user.id}`,
+        `http://localhost:3001/user/update-profile-image/${user._id || user.id}`,
         data,
         config
       );
@@ -81,6 +94,7 @@ const EditProfile = ({ user, setUser }) => {
       console.error('Error updating profile image:', error);
       setFormData((prevState) => ({ ...prevState, message: 'Error updating profile image.' }));
     }
+
   };
 
   useEffect(() => {
@@ -92,6 +106,12 @@ const EditProfile = ({ user, setUser }) => {
 
   return (
     <div className="edit-profile-form">
+=======
+  }
+  
+    return user ? (
+    <div>
+
       <h1>Edit Profile</h1>
       {formData.message && <p className="error">{formData.message}</p>}
       
@@ -158,7 +178,13 @@ const EditProfile = ({ user, setUser }) => {
         </form>
       )}
     </div>
+
   );
 };
+=======
+    ) : (
+      <h1>Loading . . . </h1>
+    )
+}
 
 export default EditProfile;

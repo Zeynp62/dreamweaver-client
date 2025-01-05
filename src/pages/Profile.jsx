@@ -3,8 +3,12 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const Profile = ({ user, setUser }) => {
+
   const navigate = useNavigate();
   const [message, setMessage] = useState(''); // for error msg
+
+
+
 
   const handleDeleteAccount = async () => {
     // first retrieve token
@@ -24,6 +28,7 @@ const Profile = ({ user, setUser }) => {
       setMessage('Error Deleting Account.');
     }
   };
+
 
   return user ? (
     <div className="profile-container">
@@ -57,6 +62,7 @@ const Profile = ({ user, setUser }) => {
 
       {/* User posts if exist */}
       <div className="user-posts-container">
+
         {user.posts?.map((post) => (
           <div key={post._id} className="user-post">
             <h3>{post.title}</h3>
@@ -71,6 +77,28 @@ const Profile = ({ user, setUser }) => {
             </Link>
           </div>
         ))}
+=======
+      {user.posts
+          ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // sorting posts by createdAt in descending order
+          .map((post) => (
+            <div
+              key={post._id}
+              style={{ border: '1px solid black' }}
+              className="user-post"
+            >
+              <h3>{post.title}</h3>
+              <p>{post.description}</p>
+              <img
+                src={`http://localhost:3001/${post.postImg}`}
+                alt={`${post.title} Image`}
+                width={300}
+              />
+              <Link to={`/posts/${post._id}`} className="edit-link">
+                Edit Post
+              </Link>
+            </div>
+          ))}
+
       </div>
     </div>
   ) : (

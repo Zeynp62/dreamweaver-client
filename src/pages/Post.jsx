@@ -16,6 +16,11 @@ const Post = ({ thisposts, thisuser }) => {
       {posts?.length > 0 ? (
         posts.map((post) => (
           <div key={post._id} className="post-card">
+
+            <div className="user-info"></div>
+            <p>{post.user.username}</p>
+            {/* Post Info */}
+
             <h3 className="post-title">{post.title}</h3>
             <p className="post-description">{post.description}</p>
             <p className="post-category">{post.category.categoryName}</p>
