@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 const EditProfile = ({ user, setUser }) => {
+  if (!user) {
+    return <h1>Loading...</h1>;
+  }
+
 
   const navigate = useNavigate()
   const [formData, setFormData] = useState({

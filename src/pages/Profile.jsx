@@ -61,7 +61,9 @@ const Profile = ({ user, setUser }) => {
 
       {/* User posts if exist */}
       <div className="user-posts-container">
-        {user.posts?.map((post) => (
+        {user.posts
+          ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // sorting posts by createdAt in descending order
+          .map((post) => (
           <div key={post._id} className="user-post">
             <h3>{post.title}</h3>
             <p>{post.description}</p>
