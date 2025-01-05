@@ -15,12 +15,7 @@ const Post = ({ thisposts, thisuser }) => {
       {posts?.length > 0 ? (
         posts.map((post) => (
           <div key={post._id} className="post-card">
-<<<<<<< HEAD
-            <div className="user-info"></div>
-            <p>{post.user.username}</p>
-            {/* Post Info */}
-=======
->>>>>>> d64cb9d55e7fc5f72fb52806eb69c60383d4eb7c
+            <p className="username">{post.user.username} says:</p>
             <h3 className="post-title">{post.title}</h3>
             <p className="post-description">{post.description}</p>
             <p className="post-category">{post.category.categoryName}</p>
@@ -37,8 +32,7 @@ const Post = ({ thisposts, thisuser }) => {
         <p>No posts available.</p>
       )}
     </div>
-  );
-};
-
+  )
+}
 
 export default Post

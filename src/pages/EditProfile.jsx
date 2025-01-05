@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const EditProfile = ({ user, setUser }) => {
   if (!user) {
-    return <h1>Loading...</h1>;
+    return <h1>Loading...</h1>
   }
 
   const navigate = useNavigate()
@@ -75,7 +75,9 @@ const EditProfile = ({ user, setUser }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-profile-image/${user._id || user.id}`,
+        `http://localhost:3001/user/update-profile-image/${
+          user._id || user.id
+        }`,
         data,
         config
       )
@@ -87,14 +89,20 @@ const EditProfile = ({ user, setUser }) => {
       setMessage('Error updating profile image.')
     }
   }
-<<<<<<< HEAD
-  
-    return user ? (
-    <div>
-      <h1>Edit Profile</h1>
-      <p style={{ color: 'red' }}>{message}</p>
 
-      <div>
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      email: user?.email || ''
+    }))
+  }, [user])
+
+  return user ? (
+    <div className="edit-profile-form">
+      <h1>Edit Profile</h1>
+      {formData.message && <p className="error">{formData.message}</p>}
+
+      <div className="section-buttons">
         <button onClick={() => setSelectedSection('email')}>Edit Email</button>
         <button onClick={() => setSelectedSection('password')}>
           Change Password
@@ -161,90 +169,9 @@ const EditProfile = ({ user, setUser }) => {
         </form>
       )}
     </div>
-    ) : (
-      <h1>Loading . . . </h1>
-    )
-=======
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      email: user?.email || ''
-    }))
-  }, [user])
-
-  return user ? (
-      <div className="edit-profile-form">
-        <h1>Edit Profile</h1>
-        {formData.message && <p className="error">{formData.message}</p>}
-        
-        <div className="section-buttons">
-          <button onClick={() => setSelectedSection('email')}>Edit Email</button>
-          <button onClick={() => setSelectedSection('password')}>Change Password</button>
-          <button onClick={() => setSelectedSection('profileImg')}>Update Profile Image</button>
-        </div>
-  
-        {selectedSection === 'email' && (
-          <form onSubmit={handleEmailSubmit}>
-            <div>
-              <label>New Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <button type="submit">Update Email</button>
-          </form>
-        )}
-  
-        {selectedSection === 'password' && (
-          <form onSubmit={handlePasswordSubmit}>
-            <div>
-              <label>Old Password:</label>
-              <input
-                type="password"
-                name="oldPassword"
-                value={formData.oldPassword}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
-              <label>New Password:</label>
-              <input
-                type="password"
-                name="newPassword"
-                value={formData.newPassword}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <button type="submit">Change Password</button>
-          </form>
-        )}
-  
-        {selectedSection === 'profileImg' && (
-          <form onSubmit={handleProfileImgSubmit} encType="multipart/form-data">
-            <div>
-              <label>Profile Image:</label>
-              <input
-                type="file"
-                name="profileImg"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <button type="submit">Update Profile Image</button>
-          </form>
-        )}
-      </div>
   ) : (
     <h3>Error: You Should Sign In to Access This Page</h3>
   )
->>>>>>> d64cb9d55e7fc5f72fb52806eb69c60383d4eb7c
 }
 
 export default EditProfile
