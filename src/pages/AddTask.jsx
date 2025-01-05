@@ -10,12 +10,14 @@ const AddTask = ({
 }) => {
   const [taskName, setTaskName] = useState('')
   const [taskDate, setTaskDate] = useState(
-    new Date().toISOString().slice(0, 16)
+    new Date().toISOString().slice(0, 16) 
   )
   const [taskState, setTaskState] = useState(false)
   const [category, setCategory] = useState('')
 
-  useEffect(() => {}, [categories])
+  useEffect(() => {
+    console.log('Categories in AddTask:', categories)
+  }, [categories])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,12 +27,14 @@ const AddTask = ({
         taskDate,
         taskState,
         category_id: category,
-        user: user.id
+        user: user.id || user._id
       }
 
       const response = editingTask
         ? await Client.put(`/tasks/${editingTask._id}`, taskData)
         : await Client.post('/tasks', taskData)
+
+      console.log(editingTask ? 'Task updated:' : 'Task added:', response.data)
 
       // Update user's tasks
       setUser((prevUser) => ({
@@ -75,11 +79,7 @@ const AddTask = ({
           onChange={(e) => setTaskState(e.target.checked)}
         />
       </label>
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        required
-      >
+      <select value={category} onChange={(e) => setCategory(e.target.value)} required> 
         <option value="">Select Category</option>
         {categories?.map((cat) => (
           <option key={cat._id} value={cat._id}>

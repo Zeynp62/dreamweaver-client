@@ -11,7 +11,6 @@ const EditPost = ({ user }) => {
     postImg: ''
   })
   const [categories, setCategories] = useState([])
-
   const handleDeletePost = async () => {
     try {
       await Client.delete(`http://localhost:3001/posts/${id}`)
@@ -22,7 +21,6 @@ const EditPost = ({ user }) => {
       setMessage('Error Deleting Account.')
     }
   }
-
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -43,21 +41,17 @@ const EditPost = ({ user }) => {
         console.error('Error fetching post:', error)
       }
     }
-
     fetchPost()
   }, [id])
   const handleChange = (event) => {
     const { name, type, files, value } = event.target
-
     if (name === 'category') {
       const selectedCategory = categories.find((cat) => cat._id === value)
       setPostState({ ...postState, category: selectedCategory })
       return
     }
-
     setPostState({ ...postState, [name]: type === 'file' ? files[0] : value })
   }
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
@@ -73,13 +67,11 @@ const EditPost = ({ user }) => {
       await Client.put(`http://localhost:3001/posts/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
-
       navigate('/home')
     } catch (error) {
       console.error('Error updating post:', error)
     }
   }
-
   return postState ? (
     <div>
       <form onSubmit={handleSubmit}>
@@ -92,7 +84,6 @@ const EditPost = ({ user }) => {
           value={postState.title}
           required
         />
-
         <label htmlFor="description">Post Description:</label>
         <textarea
           id="description"
@@ -101,7 +92,6 @@ const EditPost = ({ user }) => {
           value={postState.description}
           required
         ></textarea>
-
         <label htmlFor="category">Select Category:</label>
         <select
           id="category"
@@ -116,7 +106,6 @@ const EditPost = ({ user }) => {
             </option>
           ))}
         </select>
-
         <label htmlFor="postImg">Upload New Image (optional):</label>
         <input
           type="file"
@@ -125,7 +114,6 @@ const EditPost = ({ user }) => {
           accept="image/*"
           onChange={handleChange}
         />
-
         <button type="submit">Update Post</button>
       </form>
       <form>
@@ -138,5 +126,13 @@ const EditPost = ({ user }) => {
     <p>Loading post...</p>
   )
 }
-
 export default EditPost
+
+
+
+
+
+
+
+
+

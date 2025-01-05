@@ -37,6 +37,7 @@ function App() {
       checkToken()
     }
   }, [])
+  
   const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
