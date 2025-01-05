@@ -1,0 +1,100 @@
+/* Profile Page Container */
+.profile-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Profile Heading */
+  .profile-heading {
+    color: black; /* Set the "username Profile" text to black */
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Profile Image */
+  .profile-container img {
+    border-radius: 40%;
+    margin-bottom: 30px;
+  }
+  
+  /* Profile Info Section */
+  .profile-info {
+    margin-top: 30px;
+  }
+  
+  /* Profile Actions (Edit Profile, Delete Account) */
+  .profile-actions {
+    margin-top: 20px;
+  }
+  
+  /* Edit Profile Link */
+  .edit-profile-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #8c1f5d;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-profile-link:hover {
+    background-color: #bd45bd;
+  }
+  
+  /* Delete Account Button */
+  .delete-button {
+    padding: 15px;
+    background-color: #e53946;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* User Post Section */
+  .user-posts-container {
+    margin-top: 40px;
+  }
+  
+  .user-post {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .user-post img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Edit Post Link */
+  .edit-post-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #8c1f5d;
+  }
+  
+  .edit-post-link:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,0 +1,73 @@
+/* Global Navbar Styles */
+header {
+    display: flex;
+    justify-content: space-between; /* Space between the left and right items */
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background for the navbar */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow around the navbar */
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%; /* Ensure the navbar takes up full width */
+    position: fixed; /* Fix the navbar at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Keep navbar on top */
+  }
+  
+  header a {
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin: 0 10px;
+  }
+  
+  header a:hover {
+    color: #ff6347; /* Hover color */
+    transform: scale(1.1); /* Slightly enlarge the link on hover */
+  }
+  
+  header h3 {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav img {
+    border-radius: 50%; /* Circular profile image */
+    border: 2px solid #fff; /* White border around the profile picture */
+    margin-right: 15px; /* Space between the profile image and links */
+  }
+  
+  nav a {
+    margin-left: 15px; /* Space between each link */
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      align-items: center;
+    }
+  
+    nav {
+      flex-direction: column; /* Stack links vertically */
+      margin-top: 20px;
+    }
+  
+    nav a {
+      margin-left: 0;
+      margin-bottom: 10px;
+    }
+  }
+  
