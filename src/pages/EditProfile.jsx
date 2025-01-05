@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const EditProfile = ({ user, setUser }) => {
   if (!user) {
@@ -9,48 +11,47 @@ const EditProfile = ({ user, setUser }) => {
 
   const navigate = useNavigate()
 
+
   const [formData, setFormData] = useState({
     email: user.email,
     oldPassword: '',
     newPassword: '',
     profileImg: null,
     message: ''
-  })
-  const [message, setMessage] = useState('')
-
-  const [selectedSection, setSelectedSection] = useState('')
-
-  const token = localStorage.getItem('token')
-  const config = { headers: { Authorization: `Bearer ${token}` } }
+  });
+  
+  const [selectedSection, setSelectedSection] = useState('email');
+  
+  const token = localStorage.getItem('token');
+  const config = { headers: { Authorization: `Bearer ${token}` } };
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target
+    const { name, value, files } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: files ? files[0] : value
-    }))
-  } //work with img too
+    }));
+  };
 
   const handleEmailSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      //update email
       const response = await axios.put(
         `http://localhost:3001/user/update-email/${user._id || user.id}`,
         { email: formData.email },
         config
-      )
-      setUser(response.data.user) // Updating the user state data
-      alert('Email updated successfully!')
-      navigate('/profile')
+      );
+      setUser(response.data.user); // Updating the user state data
+      alert('Email updated successfully!');
+      navigate('/profile');
     } catch (error) {
-      console.error('Error updating email:', error)
-      setMessage('Error updating email.')
+      console.error('Error updating email:', error);
+      setFormData((prevState) => ({ ...prevState, message: 'Error updating email.' }));
     }
-  }
+  };
 
   const handlePasswordSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const response = await axios.put(
         `http://localhost:3001/user/update-password/${user._id || user.id}`,
@@ -59,48 +60,65 @@ const EditProfile = ({ user, setUser }) => {
           newPassword: formData.newPassword
         },
         config
+
+      );
+      setUser(response.data.user);
+      alert('Password updated successfully!');
+      navigate('/profile');
+=======
       )
       alert('Password updated successfully!')
       navigate('/profile')
+
     } catch (error) {
-      console.error('Error updating password:', error)
-      setMessage('Error updating password.')
+      console.error('Error updating password:', error);
+      setFormData((prevState) => ({ ...prevState, message: 'Error updating password.' }));
     }
-  }
+  };
 
   const handleProfileImgSubmit = async (e) => {
-    e.preventDefault()
-    const data = new FormData()
-    data.append('profileImg', formData.profileImg)
+    e.preventDefault();
+    const data = new FormData();
+    data.append('profileImg', formData.profileImg);
 
     try {
       const response = await axios.put(
         `http://localhost:3001/user/update-profile-image/${user._id || user.id}`,
         data,
         config
-      )
-      setUser(response.data.user) //update state
-      alert('Profile image updated successfully!')
-      navigate('/profile')
+      );
+      setUser(response.data.user); // Update state
+      alert('Profile image updated successfully!');
+      navigate('/profile');
     } catch (error) {
-      console.error('Error updating profile image:', error)
-      setMessage('Error updating profile image.')
+      console.error('Error updating profile image:', error);
+      setFormData((prevState) => ({ ...prevState, message: 'Error updating profile image.' }));
     }
+
+  };
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      email: user?.email || ''
+    }));
+  }, [user]);
+
+  return (
+    <div className="edit-profile-form">
+=======
   }
   
     return user ? (
     <div>
-      <h1>Edit Profile</h1>
-      <p style={{ color: 'red' }}>{message}</p>
 
-      <div>
+      <h1>Edit Profile</h1>
+      {formData.message && <p className="error">{formData.message}</p>}
+      
+      <div className="section-buttons">
         <button onClick={() => setSelectedSection('email')}>Edit Email</button>
-        <button onClick={() => setSelectedSection('password')}>
-          Change Password
-        </button>
-        <button onClick={() => setSelectedSection('profileImg')}>
-          Update Profile Image
-        </button>
+        <button onClick={() => setSelectedSection('password')}>Change Password</button>
+        <button onClick={() => setSelectedSection('profileImg')}>Update Profile Image</button>
       </div>
 
       {selectedSection === 'email' && (
@@ -160,9 +178,13 @@ const EditProfile = ({ user, setUser }) => {
         </form>
       )}
     </div>
+
+  );
+};
+=======
     ) : (
       <h1>Loading . . . </h1>
     )
 }
 
-export default EditProfile
+export default EditProfile;

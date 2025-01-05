@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Client from '../services/api'
+
 const EditPost = ({ user }) => {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -43,6 +44,7 @@ const EditPost = ({ user }) => {
     }
     fetchPost()
   }, [id])
+
   const handleChange = (event) => {
     const { name, type, files, value } = event.target
     if (name === 'category') {
@@ -73,8 +75,8 @@ const EditPost = ({ user }) => {
     }
   }
   return postState ? (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="edit-post-container">
+      <form onSubmit={handleSubmit} className="edit-post-form">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
