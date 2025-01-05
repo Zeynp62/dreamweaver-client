@@ -4,7 +4,7 @@
     max-width: 800px;
     margin: 80px auto; /* Centering the form */
     padding: 30px;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     text-align: center;

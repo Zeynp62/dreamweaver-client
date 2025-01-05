@@ -1,33 +1,33 @@
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
 
 const Profile = ({ user, setUser }) => {
-  const navigate = useNavigate()
-  const [message, setMessage] = useState('') //for error msg
+  const navigate = useNavigate();
+  const [message, setMessage] = useState(''); // for error msg
 
   const handleDeleteAccount = async () => {
-    //first retreive token
-    const token = localStorage.getItem('token')
+    // first retrieve token
+    const token = localStorage.getItem('token');
 
-    const config = { headers: { Authorization: `Bearer ${token}` } }
+    const config = { headers: { Authorization: `Bearer ${token}` } };
 
     try {
-      //the delete "user/:id"
-      await axios.delete(`http://localhost:3001/user/${user._id}`, config)
-      localStorage.removeItem('token') //remove token
-      setUser(null)
+      // the delete "user/:id"
+      await axios.delete(`http://localhost:3001/user/${user._id}`, config);
+      localStorage.removeItem('token'); // remove token
+      setUser(null);
 
-      navigate('/') // back to StartPage
+      navigate('/'); // back to StartPage
     } catch (error) {
-      console.error('Error deleting account:', error)
-      setMessage('Error Deleting Account.')
+      console.error('Error deleting account:', error);
+      setMessage('Error Deleting Account.');
     }
-  }
+  };
 
   return user ? (
     <div className="profile-container">
-      <h1>{user.username} Profile</h1>
+      <h1 className="profile-heading">{user.username} Profile</h1>
       <img
         src={`http://localhost:3001/${user.profileImg}`}
         alt={`${user.username} Profile Picture`}
@@ -39,26 +39,26 @@ const Profile = ({ user, setUser }) => {
         <h3>Posts: {user.posts.length}</h3>
       </div>
 
-      {/* error msg*/}
+      {/* Error message */}
       {message && <p>{message}</p>}
 
-      <Link to="/edit-profile">Edit Profile</Link>
+      <div className="profile-actions">
+        <Link to="/edit-profile" className="edit-profile-link">
+          Edit Profile
+        </Link>
 
-      {/*delete profile */}
-      <form>
-        <button type="button" onClick={handleDeleteAccount}>
-          Delete Account
-        </button>
-      </form>
+        {/* Delete profile */}
+        <form>
+          <button type="button" className="delete-button" onClick={handleDeleteAccount}>
+            Delete Account
+          </button>
+        </form>
+      </div>
 
-      {/*user post if exist */}
+      {/* User posts if exist */}
       <div className="user-posts-container">
         {user.posts?.map((post) => (
-          <div
-            key={post._id}
-            style={{ border: '1px solid black' }}
-            className="user-post"
-          >
+          <div key={post._id} className="user-post">
             <h3>{post.title}</h3>
             <p>{post.description}</p>
             <img
@@ -66,7 +66,7 @@ const Profile = ({ user, setUser }) => {
               alt={`${post.title} Image`}
               width={300}
             />
-            <Link to={`/posts/${post._id}`} className="edit-link">
+            <Link to={`/posts/${post._id}`} className="edit-post-link">
               Edit Post
             </Link>
           </div>
@@ -75,7 +75,7 @@ const Profile = ({ user, setUser }) => {
     </div>
   ) : (
     <h1>Loading . . . </h1>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
