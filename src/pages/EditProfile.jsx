@@ -36,7 +36,7 @@ const EditProfile = ({ user, setUser }) => {
     try {
       //update email
       const response = await axios.put(
-        `http://localhost:3001/user/update-email/${user._id}`,
+        `http://localhost:3001/user/update-email/${user._id || user.id}`,
         { email: formData.email },
         config
       )
@@ -53,7 +53,7 @@ const EditProfile = ({ user, setUser }) => {
     e.preventDefault()
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-password/${user._id}`,
+        `http://localhost:3001/user/update-password/${user._id || user.id}`,
         {
           oldPassword: formData.oldPassword,
           newPassword: formData.newPassword
@@ -75,7 +75,7 @@ const EditProfile = ({ user, setUser }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-profile-image/${user._id}`,
+        `http://localhost:3001/user/update-profile-image/${user._id || user.id}`,
         data,
         config
       )
