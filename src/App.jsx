@@ -1,4 +1,16 @@
 import './App.css'
+import './css/home.css'
+import './css/nav.css'
+import './css/Dreams.css'
+import './css/profile.css'
+import './css/editprofile.css'
+import './css/addpost.css'
+import './css/startingpage.css'
+import './css/signin.css'
+import './css/register.css'
+import './css/editpost.css'
+
+
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Nav from './components/Nav'

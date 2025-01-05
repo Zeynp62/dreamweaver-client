@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useState } from 'react'
 
 const Profile = ({ user, setUser }) => {
-
   const navigate = useNavigate()
   const [message, setMessage] = useState('') //for error msg
 
@@ -26,10 +25,9 @@ const Profile = ({ user, setUser }) => {
     }
   }
 
-
   return user ? (
     <div className="profile-container">
-      <h1>{user.username} Profile</h1>
+      <h1 className="profile-heading">{user.username} Profile</h1>
       <img
         src={`http://localhost:3001/${user.profileImg}`}
         alt={`${user.username} Profile Picture`}
@@ -41,40 +39,44 @@ const Profile = ({ user, setUser }) => {
         <h3>Posts: {user.posts.length}</h3>
       </div>
 
-      {/* error msg*/}
+      {/* Error message */}
       {message && <p>{message}</p>}
 
-      <Link to="/edit-profile">Edit Profile</Link>
+      <div className="profile-actions">
+        <Link to="/edit-profile" className="edit-profile-link">
+          Edit Profile
+        </Link>
 
-      {/*delete profile */}
-      <form>
-        <button type="button" onClick={handleDeleteAccount}>
-          Delete Account
-        </button>
-      </form>
+        {/* Delete profile */}
+        <form>
+          <button
+            type="button"
+            className="delete-button"
+            onClick={handleDeleteAccount}
+          >
+            Delete Account
+          </button>
+        </form>
+      </div>
 
-      {/*user post if exist */}
+      {/* User posts if exist */}
       <div className="user-posts-container">
-      {user.posts
+        {user.posts
           ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // sorting posts by createdAt in descending order
           .map((post) => (
-            <div
-              key={post._id}
-              style={{ border: '1px solid black' }}
-              className="user-post"
-            >
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <img
-                src={`http://localhost:3001/${post.postImg}`}
-                alt={`${post.title} Image`}
-                width={300}
-              />
-              <Link to={`/posts/${post._id}`} className="edit-link">
-                Edit Post
-              </Link>
-            </div>
-          ))}
+          <div key={post._id} className="user-post">
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
+            <img
+              src={`http://localhost:3001/${post.postImg}`}
+              alt={`${post.title} Image`}
+              width={300}
+            />
+            <Link to={`/posts/${post._id}`} className="edit-post-link">
+              Edit Post
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   ) : (

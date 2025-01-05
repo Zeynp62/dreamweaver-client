@@ -28,8 +28,8 @@ const Quotes = ({user}) =>{
     return(
 
     <div className="motivation">
-      <blockquote className="quote"><i><b>"{quote}"</b></i>
-
+      <blockquote className="quote" style={{fontSize:"2em", textAlign:"center"}}><i><b>"{quote}"</b></i>
+        <br /><br />
         <footer className="author"><b>{author}</b></footer>
       </blockquote>
     </div>

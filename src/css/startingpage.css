@@ -1,0 +1,56 @@
+
+  .welcome-text {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #f2ecec;
+    margin-bottom: 40px;
+  }
+  
+  /* Button container to align buttons */
+  .button-container {
+    display: flex;
+    gap: 20px; /* Add space between buttons */
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Style for buttons */
+  .button {
+    background-color: #c54630;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #c46554;
+    transform: translateY(-3px); /* Slight lift effect */
+  }
+  
+  .button:active {
+    transform: translateY(2px); /* Button 'press' effect */
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    .welcome-text {
+      font-size: 2rem;
+    }
+  
+    .button-container {
+      gap: 10px;
+    }
+  
+    .button {
+      width: 100%; /* Make buttons full width on smaller screens */
+      padding: 12px 20px;
+    }
+  }
+  
