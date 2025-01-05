@@ -81,8 +81,8 @@ const EditPost = ({ user }) => {
   }
 
   return postState ? (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="edit-post-container">
+      <form onSubmit={handleSubmit} className="edit-post-form">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
@@ -130,7 +130,7 @@ const EditPost = ({ user }) => {
       </form>
       <form>
         <button type="button" onClick={handleDeletePost}>
-          Delete Account
+          Delete Post
         </button>
       </form>
     </div>

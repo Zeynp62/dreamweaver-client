@@ -93,77 +93,73 @@ const EditProfile = ({ user, setUser }) => {
   }, [user])
 
   return user ? (
-    <div>
-      <h1>Edit Profile</h1>
-      <p style={{ color: 'red' }}>{message}</p>
-
-      <div>
-        <button onClick={() => setSelectedSection('email')}>Edit Email</button>
-        <button onClick={() => setSelectedSection('password')}>
-          Change Password
-        </button>
-        <button onClick={() => setSelectedSection('profileImg')}>
-          Update Profile Image
-        </button>
+      <div className="edit-profile-form">
+        <h1>Edit Profile</h1>
+        {formData.message && <p className="error">{formData.message}</p>}
+        
+        <div className="section-buttons">
+          <button onClick={() => setSelectedSection('email')}>Edit Email</button>
+          <button onClick={() => setSelectedSection('password')}>Change Password</button>
+          <button onClick={() => setSelectedSection('profileImg')}>Update Profile Image</button>
+        </div>
+  
+        {selectedSection === 'email' && (
+          <form onSubmit={handleEmailSubmit}>
+            <div>
+              <label>New Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit">Update Email</button>
+          </form>
+        )}
+  
+        {selectedSection === 'password' && (
+          <form onSubmit={handlePasswordSubmit}>
+            <div>
+              <label>Old Password:</label>
+              <input
+                type="password"
+                name="oldPassword"
+                value={formData.oldPassword}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>New Password:</label>
+              <input
+                type="password"
+                name="newPassword"
+                value={formData.newPassword}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit">Change Password</button>
+          </form>
+        )}
+  
+        {selectedSection === 'profileImg' && (
+          <form onSubmit={handleProfileImgSubmit} encType="multipart/form-data">
+            <div>
+              <label>Profile Image:</label>
+              <input
+                type="file"
+                name="profileImg"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit">Update Profile Image</button>
+          </form>
+        )}
       </div>
-
-      {selectedSection === 'email' && (
-        <form onSubmit={handleEmailSubmit}>
-          <div>
-            <label>New Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">Update Email</button>
-        </form>
-      )}
-
-      {selectedSection === 'password' && (
-        <form onSubmit={handlePasswordSubmit}>
-          <div>
-            <label>Old Password:</label>
-            <input
-              type="password"
-              name="oldPassword"
-              value={formData.oldPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>New Password:</label>
-            <input
-              type="password"
-              name="newPassword"
-              value={formData.newPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">Change Password</button>
-        </form>
-      )}
-
-      {selectedSection === 'profileImg' && (
-        <form onSubmit={handleProfileImgSubmit} encType="multipart/form-data">
-          <div>
-            <label>Profile Image:</label>
-            <input
-              type="file"
-              name="profileImg"
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">Update Profile Image</button>
-        </form>
-      )}
-    </div>
   ) : (
     <h3>Error: You Should Sign In to Access This Page</h3>
   )

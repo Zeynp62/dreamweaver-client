@@ -1,0 +1,61 @@
+
+  
+  .post-form {
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 600px;
+    
+    margin-top: 80px;
+  }
+  
+ 
+  
+  .post-form label {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: block;
+    color: #faf7f7;
+  }
+  
+  .post-form input,
+  .post-form textarea,
+  .post-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+  }
+  
+  .post-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .post-form button {
+    background-color: #d28f2b;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .post-form button:hover {
+    background-color: #644306;
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 768px) {
+    .post-form {
+      padding: 20px;
+      max-width: 100%;
+    }
+  }
+  
