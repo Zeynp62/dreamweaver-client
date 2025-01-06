@@ -25,7 +25,7 @@ const AddTask = ({
         taskDate,
         taskState,
         category_id: category,
-        user: user.id
+        user: user.id || user._id
       }
 
       const response = editingTask
