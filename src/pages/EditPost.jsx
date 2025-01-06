@@ -13,7 +13,7 @@ const EditPost = ({ user }) => {
   const [categories, setCategories] = useState([])
   const handleDeletePost = async () => {
     try {
-      await Client.delete(`http://localhost:3001/posts/${id}`)
+      await Client.delete(`${process.env.Base_URL}posts/${id}`)
       setPostState(null)
       navigate('/home')
     } catch (error) {
@@ -24,8 +24,10 @@ const EditPost = ({ user }) => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const postRes = await Client.get(`http://localhost:3001/posts/${id}`)
-        const categoriesRes = await Client.get('http://localhost:3001/category')
+        const postRes = await Client.get(`${process.env.Base_URL}posts/${id}`)
+        const categoriesRes = await Client.get(
+          `${process.env.Base_URL}category`
+        )
         const postData = postRes.data
         setPostState((prevState) => ({
           ...prevState,
@@ -64,7 +66,7 @@ const EditPost = ({ user }) => {
         formData.append('postImg', postState.postImg)
       }
       console.log(formData)
-      await Client.put(`http://localhost:3001/posts/${id}`, formData, {
+      await Client.put(`${process.env.Base_URL}posts/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       navigate('/home')
@@ -100,6 +102,8 @@ const EditPost = ({ user }) => {
           value={postState.category}
           required
         >
+          <option value="">select one</option>
+
           {categories.map((category) => (
             <option key={category._id} value={category._id}>
               {category.categoryName}
@@ -127,12 +131,3 @@ const EditPost = ({ user }) => {
   )
 }
 export default EditPost
-
-
-
-
-
-
-
-
-

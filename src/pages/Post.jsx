@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 const Post = ({ thisposts, thisuser }) => {
   const [posts, setPosts] = useState(thisposts)
 
+  const Base_URL = `http://localhost:3001/`
   useEffect(() => {
     const sortedPosts = [...thisposts].sort(
       (b, a) => new Date(a.createdAt) - new Date(b.createdAt) // Adjust the key for sorting

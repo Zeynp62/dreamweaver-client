@@ -42,7 +42,7 @@ const Home = ({ user, categories }) => {
     </div>
   ) : (
     <h3>Error: You Should Sign In to Access This Page</h3>
-  );
-};
+  )
+}
 
 export default Home
