@@ -11,7 +11,6 @@ const Profile = ({ user, setUser }) => {
     const token = localStorage.getItem('token')
 
     const config = { headers: { Authorization: `Bearer ${token}` } }
-
     try {
       //the delete "user/:id"
       await axios.delete(`http://localhost:3001/user/${user._id}`, config)

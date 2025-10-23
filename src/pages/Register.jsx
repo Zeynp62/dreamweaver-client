@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BASE_URL } from '../services/api'
 import { useNavigate } from 'react-router-dom'
 import { RegisterUser } from '../services/Auth'
 
@@ -9,11 +8,10 @@ const Register = () => {
     username: '',
     email: '',
     password: '',
-    confirmPassword: ""
+    confirmPassword: ''
   }
 
   const [formData, setFormData] = useState(initialState)
-
 
   const [message, setMessage] = useState('')
 
@@ -22,27 +20,25 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-
   // Handle form submission "onSubmit"
   const handleSubmit = async (e) => {
     e.preventDefault()
     setMessage('')
 
     try {
-      if(formData.password !== formData.confirmPassword){
+      if (formData.password !== formData.confirmPassword) {
         setMessage('Passwords do not match.')
         return
       }
-  
-      await RegisterUser ({
+
+      await RegisterUser({
         username: formData.username,
-        email:formData.email,
-        password:formData.password
+        email: formData.email,
+        password: formData.password
       })
       setFormData(initialState)
       navigate('/sign-in')
-      alert('User Registered Successfully!');
-      
+      alert('User Registered Successfully!')
     } catch (error) {
       setMessage('This User Already exist')
     }
@@ -93,7 +89,9 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="submit-btn">Register</button>
+          <button type="submit" className="submit-btn">
+            Register
+          </button>
         </form>
       </div>
     </div>
