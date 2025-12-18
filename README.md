@@ -5,7 +5,7 @@ Dreamweave is an intuitive app designed to help users manage their tasks, share 
 
 **Technologies used :**
 ---------------------------------------------------
--MERN stack
+- MERN stack
 
 **Getting started :**
 ----------------------------------------------------
