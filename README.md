@@ -5,9 +5,7 @@ Dreamweave is an intuitive app designed to help users manage their tasks, share 
 
 **Technologies used :**
 ---------------------------------------------------
-- React
-- JSX
-- State
+-MERN stack
 
 **Getting started :**
 ----------------------------------------------------
@@ -22,7 +20,7 @@ Dreamweave is an intuitive app designed to help users manage their tasks, share 
 **Component Hierarchy Diagram:**
 ----------------------------------------------------
 ![Component](img/6.png)
-**Wireframe :**
+**Wireframes :**
 ----------------------------------------------------
 Sign up / login page :
 ![login](img/1.png)
@@ -33,10 +31,4 @@ Profile page :
 Dreams page :
 ![dreams](img/4.png)
 
-**Final product :**
-----------------------------------------------------
-
-
-**Future enhancement :**
-----------------------------------------------------
 
