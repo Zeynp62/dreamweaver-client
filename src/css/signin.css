@@ -1,85 +1,83 @@
+/* Page background */
+.sign-in-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #faeee7;
+}
 
-  /* Heading styling */
-  h2 {
-    font-size: 2.5rem;
-    color: #f6f0f0;
-    margin-bottom: 30px;
+/* Heading */
+.sign-in-container h2 {
+  font-size: 2.5rem;
+  color: #33272a;
+  margin-bottom: 30px;
+}
+
+/* Error text */
+.error-message {
+  color: #594a4e;
+  margin-bottom: 20px;
+}
+
+/* Form box — NO dark overlay, NO shadow */
+.form-container {
+  background-color: #faeee7;
+  padding: 40px;
+  border-radius: 15px;
+  border: 2px solid #594a4e;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Labels */
+.form-group label {
+  color: #594a4e;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+/* Inputs */
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  background-color: #faeee7;
+  color: #33272a;
+  border: 1px solid #594a4e;
+  border-radius: 8px;
+}
+
+/* Button — EXACT palette */
+.submit-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 15px;
+  background-color: #ff8ba7;
+  color: #33272a;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Simple interaction without color change */
+.submit-btn:hover {
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sign-in-container h2 {
+    font-size: 2rem;
   }
-  
-  /* Error message styling */
-  .error-message {
-    color: red;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Form container styling with transparent background */
+
   .form-container {
-    background: rgba(33, 29, 29, 0.8); /* Transparent white background */
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;  /* Limiting the width of the form */
+    padding: 30px;
   }
-  
-  /* Input field and label styling */
-  .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 1.1rem;
-    color: #f9f6f6;
-    margin-bottom: 8px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  /* Button styling */
-  .submit-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: #ea9629;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .submit-btn:hover {
-    background-color: #645710;
-    transform: translateY(-3px);
-  }
-  
-  .submit-btn:active {
-    transform: translateY(2px);
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 2rem;
-    }
-  
-    .form-container {
-      padding: 30px;
-    }
-  
-    .submit-btn {
-      padding: 12px;
-      font-size: 1.1rem;
-    }
-  }
-  
+}

@@ -1,0 +1,100 @@
+/* AddTask Form Container */
+.add-task-form,
+form {
+  background-color: #faeee7; /* palette background */
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid #594a4e;
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input fields styling */
+.add-task-form input,
+.add-task-form select,
+form input,
+form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #594a4e;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #33272a;
+  background-color: #faeee7;
+  box-sizing: border-box;
+}
+
+/* Checkbox label */
+.add-task-form label,
+form label {
+  color: #594a4e;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Submit button styling */
+.add-task-form button,
+form button {
+  background-color: #ff8ba7; /* palette button */
+  color: #33272a; /* button text */
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.add-task-form button:hover,
+form button:hover {
+  background-color: #ff7291; /* slightly darker pink */
+  transform: translateY(-2px);
+}
+
+.add-task-form button:active,
+form button:active {
+  transform: translateY(1px);
+}
+
+/* Select dropdown styling */
+.add-task-form select,
+form select {
+  appearance: none; /* remove default arrow styling */
+  padding-right: 10px;
+}
+/* Delete Button Styling */
+.delete-btn {
+  background-color: #ff8ba7; /* main palette color */
+  color: #33272a; /* text color */
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%; /* full width for consistency with form buttons */
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #ff7291; /* slightly darker pink on hover */
+  transform: translateY(-2px);
+}
+
+.delete-btn:active {
+  transform: translateY(1px);
+}
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .add-task-form,
+  form {
+    padding: 20px;
+  }
+}

@@ -117,7 +117,7 @@ const EditPost = ({ user }) => {
         <button type="submit">Update Post</button>
       </form>
       <form>
-        <button type="button" onClick={handleDeletePost}>
+        <button className="delete-btn" type="button" onClick={handleDeletePost}>
           Delete Post
         </button>
       </form>
@@ -127,12 +127,3 @@ const EditPost = ({ user }) => {
   )
 }
 export default EditPost
-
-
-
-
-
-
-
-
-

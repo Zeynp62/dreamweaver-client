@@ -16,7 +16,7 @@ const Nav = ({ user, handleLogOut }) => {
         <Link to="/dreams">Dreams</Link>
         <Link to="/profile">Profile</Link>
         <Link to="/posts">Add posts</Link>
-        <Link to="/motivation">Motivate Me!</Link>
+        {/* <Link to="/motivation">Motivate Me!</Link> */}
         <Link onClick={handleLogOut} to="/">
           Sign Out
         </Link>

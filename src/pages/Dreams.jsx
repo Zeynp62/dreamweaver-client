@@ -5,7 +5,6 @@ import Client from '../services/api'
 const Dreams = ({ user, setUser, categories }) => {
   const [tasks, setTasks] = useState([]) // Local state for tasks
 
-
   // Sort tasks in ascending order by taskDate
   const sortedTasks = tasks.sort((a, b) => {
     const dateA = a.taskDate ? new Date(a.taskDate) : new Date()
@@ -44,7 +43,7 @@ const Dreams = ({ user, setUser, categories }) => {
       console.error('Error updating task completion:', error)
     }
   }
-  
+
   // show when loaded
   useEffect(() => {
     if (user && Array.isArray(user.tasks)) {
@@ -77,13 +76,15 @@ const Dreams = ({ user, setUser, categories }) => {
               />
               Completed
             </label>
-            <button onClick={() => deleteTask(task._id)}>Delete</button>
+            <button className="delete-btn" onClick={() => deleteTask(task._id)}>
+              Delete
+            </button>
           </div>
         ))}
       </div>
     </div>
   ) : (
     <h3>Error: You Should Sign In to Access This Page</h3>
-  );
-};
+  )
+}
 export default Dreams

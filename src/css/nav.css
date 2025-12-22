@@ -1,72 +1,88 @@
-/* Global Navbar Styles */
+/* Navbar Header */
 header {
-    display: flex;
-    justify-content: space-between; /* Space between the left and right items */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #faeee7;
+  border-bottom: 2px solid #594a4e;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed; /* stays at top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* above other content */
+}
+
+/* Navbar links */
+header a {
+  color: #33272a;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+header a:hover {
+  color: #ff8ba7;
+  transform: translateY(-2px);
+}
+
+/* User welcome */
+header h3 {
+  color: #33272a;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Nav container */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Profile image */
+nav img {
+  border-radius: 50%;
+  border: 2px solid #594a4e;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+/* Space between links */
+nav a {
+  margin-left: 10px;
+}
+
+/* Push page content below navbar */
+body,
+.page-content {
+  padding-top: 80px; /* adjust to match navbar height */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background for the navbar */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow around the navbar */
-    max-width: 100%;
-    margin: 0 auto;
-    width: 100%; /* Ensure the navbar takes up full width */
-    position: fixed; /* Fix the navbar at the top */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Keep navbar on top */
   }
-  
-  header a {
-    color: #fff;
-    font-size: 1.2rem;
-    text-decoration: none;
-    padding: 10px;
-    transition: color 0.3s ease, transform 0.3s ease;
-    margin: 0 10px;
-  }
-  
-  header a:hover {
-    color: #ff6347; /* Hover color */
-    transform: scale(1.1); /* Slightly enlarge the link on hover */
-  }
-  
-  header h3 {
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
+
   nav {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
   }
-  
-  nav img {
-    border-radius: 50%; /* Circular profile image */
-    border: 2px solid #fff; /* White border around the profile picture */
-    margin-right: 15px; /* Space between the profile image and links */
-  }
-  
+
   nav a {
-    margin-left: 15px; /* Space between each link */
+    margin-left: 0;
+    margin-bottom: 8px;
   }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    header {
-      flex-direction: column; /* Stack items vertically on smaller screens */
-      align-items: center;
-    }
-  
-    nav {
-      flex-direction: column; /* Stack links vertically */
-      margin-top: 20px;
-    }
-  
-    nav a {
-      margin-left: 0;
-      margin-bottom: 10px;
-    }
+
+  body,
+  .page-content {
+    padding-top: 120px; /* adjust for taller stacked navbar */
   }
-  
+}

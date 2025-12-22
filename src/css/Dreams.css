@@ -1,94 +1,141 @@
 /* General container for the Dreams page */
 .dreams-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 80px auto 0; /* Add top margin to separate from the fixed navbar */
-    padding: 50px;
-    text-align: center;
-    background-color: rgba(30, 23, 23, 0.6); /* Semi-transparent background */
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* AddTask form styling */
-  .add-task-form {
-    background: rgba(255, 255, 255, 0.8); /* Transparent white background */
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 40px; /* Space between form and tasks */
-  }
-  
-  /* Input fields styling */
-  .add-task-form input,
-  .add-task-form select,
-  .add-task-form button {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-  }
-  
-  /* Button styling */
-  .add-task-form button {
-    background-color: #8c1f5d; /* Transparent button background */
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-task-form button:hover {
-    background-color: #bd45bd;
-  }
-  
-  /* Task items container styling */
-  .tasks-container {
-    display: flex;
-    flex-wrap: wrap;  /* Allow items to wrap to the next line */
-    gap: 20px;        /* Add spacing between task cards */
-    justify-content: center;
-  }
-  
-  /* Individual task frame */
+  width: 100%;
+  max-width: 1200px;
+  margin: 130px auto 50px; /* top margin accounts for navbar */
+  padding: 40px;
+  text-align: center;
+  background-color: #faeee7; /* palette background */
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+/* AddTask form styling */
+.add-task-form {
+  background-color: #faeee7;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid #594a4e;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+}
+
+/* Input fields styling */
+.add-task-form input,
+.add-task-form select,
+.add-task-form button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #594a4e;
+  font-size: 1rem;
+  color: #33272a;
+  background-color: #faeee7;
+  box-sizing: border-box;
+}
+
+/* AddTask submit button */
+.add-task-form button {
+  background-color: #ff8ba7; /* palette button */
+  color: #33272a;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.add-task-form button:hover {
+  transform: translateY(-2px);
+}
+
+.add-task-form button:active {
+  transform: translateY(1px);
+}
+
+/* Task items container styling */
+.tasks-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual task frame */
+.task-card {
+  background-color: #faeee7;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 15px;
+  border: 2px solid #594a4e;
+  text-align: left;
+  flex: 1 1 calc(50% - 20px);
+  box-sizing: border-box;
+  min-width: 300px;
+}
+
+/* Task headings and paragraphs */
+.task-card h3 {
+  color: #33272a;
+}
+
+.task-card p {
+  color: #594a4e;
+}
+
+/* Task checkbox label */
+.task-card label {
+  color: #594a4e;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Delete Button for tasks */
+.task-card .delete-btn {
+  background-color: #ff8ba7;
+  color: #33272a;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.task-card .delete-btn:hover {
+  background-color: #ff7291; /* slightly darker pink */
+  transform: translateY(-2px);
+}
+
+.task-card .delete-btn:active {
+  transform: translateY(1px);
+}
+.delete-btn {
+  background-color: #ff8ba7; /* main palette color */
+  color: #33272a; /* text color */
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%; /* full width for consistency with form buttons */
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #ff7291; /* slightly darker pink on hover */
+  transform: translateY(-2px);
+}
+
+.delete-btn:active {
+  transform: translateY(1px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
   .task-card {
-    background: rgba(31, 27, 27, 0.8); /* Transparent white background */
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    flex: 1 1 calc(50% - 20px);  /* Allow 2 tasks per row */
-    box-sizing: border-box;  /* Include padding and margin in the element's total width */
-    min-width: 300px;  /* Minimum width to ensure readability */
+    flex: 1 1 100%; /* Stack tasks on smaller screens */
   }
-  
-  .task-card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .task-card span {
-    margin-right: 10px;
-  }
-  
-  .task-card button {
-    background-color: #e53946;
-    border: none;
-    padding: 8px 15px;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .task-card button:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    .task-card {
-      flex: 1 1 100%;  /* Stack tasks on smaller screens */
-    }
-  }
-  
+}

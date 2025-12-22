@@ -1,70 +1,121 @@
+/* Edit Post Form Container */
+.edit-post-container {
+  max-width: 700px;
+  margin: 130px auto 50px; /* respect navbar height */
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
-  /* Edit Post Form Styling */
+/* Edit Post Form Styling */
+.edit-post-form {
+  background-color: #faeee7;
+  padding: 30px;
+  border-radius: 15px;
+  border: 2px solid #594a4e;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+}
+
+/* Labels */
+.edit-post-form label {
+  display: block;
+  font-size: 1.1rem;
+  color: #594a4e;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+/* Input Fields */
+.edit-post-form input,
+.edit-post-form select,
+.edit-post-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px;
+  border-radius: 10px;
+  border: 1px solid #594a4e;
+  font-size: 1rem;
+  color: #33272a;
+  background-color: #faeee7;
+  box-sizing: border-box;
+}
+
+/* Textarea Styling */
+.edit-post-form textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* Submit Buttons */
+.edit-post-form button[type='submit'] {
+  background-color: #ff8ba7;
+  color: #33272a;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.edit-post-form button[type='submit']:hover {
+  transform: translateY(-2px);
+}
+
+.edit-post-form button[type='submit']:active {
+  transform: translateY(1px);
+}
+
+/* Delete Button */
+.edit-post-form button[type='button'] {
+  background-color: #ff8ba7;
+  color: #33272a;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.edit-post-form button[type='button']:hover {
+  transform: translateY(-2px);
+}
+
+.edit-post-form button[type='button']:active {
+  transform: translateY(1px);
+}
+/* Delete Button Styling */
+.delete-btn {
+  background-color: #ff8ba7; /* main palette color */
+  color: #33272a; /* text color */
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%; /* full width for consistency with form buttons */
+  margin-top: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #ff7291; /* slightly darker pink on hover */
+  transform: translateY(-2px);
+}
+
+.delete-btn:active {
+  transform: translateY(1px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .edit-post-container {
+    margin: 150px auto 50px;
+    padding: 10px;
+  }
+
   .edit-post-form {
-    background: rgba(34, 30, 30, 0.9); /* Slightly more opaque than container */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 40px;
-    margin-top: 110px; 
-    
+    padding: 20px;
   }
-  
-  /* Input Fields Styling */
-  .edit-post-form input,
-  .edit-post-form select,
-  .edit-post-form textarea,
-  .edit-post-form button {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-  }
-  
-  /* Button Styling */
-  .edit-post-form button {
-    background-color: #8c1f5d; /* Button color */
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .edit-post-form button:hover {
-    background-color: #bd45bd;
-  }
-  
-  /* Styling for the Delete Button */
-  .edit-post-form button[type="button"] {
-    background-color: #e53946; /* Red button */
-  }
-  
-  .edit-post-form button[type="button"]:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-  }
-  
-  /* Label Styling */
-  .edit-post-form label {
-    text-align: left;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-  }
-  
-  /* Textarea Styling */
-  .edit-post-form textarea {
-    resize: vertical;
-    min-height: 150px;
-  }
-  
-  /* Mobile Responsiveness */
-  @media (max-width: 768px) {
-    .edit-post-container {
-      padding: 20px;
-    }
-  
-    .edit-post-form {
-      padding: 20px;
-    }
-  }
-  
+}

@@ -1,56 +1,66 @@
+/* Page container */
+.starting-page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #faeee7;
+}
 
+/* Headline */
+.welcome-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #33272a;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Button container */
+.button-container {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Buttons */
+.button {
+  background-color: #ff8ba7;
+  color: #33272a;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 30px;
+  box-shadow: 0px 6px 16px rgba(51, 39, 42, 0.15);
+  width: 200px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: #f67c9c;
+  transform: translateY(-3px);
+}
+
+.button:active {
+  transform: translateY(2px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
   .welcome-text {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #f2ecec;
-    margin-bottom: 40px;
+    font-size: 2rem;
   }
-  
-  /* Button container to align buttons */
+
   .button-container {
-    display: flex;
-    gap: 20px; /* Add space between buttons */
-    flex-direction: column;
-    align-items: center;
+    gap: 10px;
   }
-  
-  /* Style for buttons */
+
   .button {
-    background-color: #c54630;
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border-radius: 30px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-    transition: background-color 0.3s, transform 0.3s;
+    width: 100%;
+    padding: 12px 20px;
   }
-  
-  .button:hover {
-    background-color: #c46554;
-    transform: translateY(-3px); /* Slight lift effect */
-  }
-  
-  .button:active {
-    transform: translateY(2px); /* Button 'press' effect */
-  }
-  
-  /* For mobile responsiveness */
-  @media (max-width: 768px) {
-    .welcome-text {
-      font-size: 2rem;
-    }
-  
-    .button-container {
-      gap: 10px;
-    }
-  
-    .button {
-      width: 100%; /* Make buttons full width on smaller screens */
-      padding: 12px 20px;
-    }
-  }
-  
+}

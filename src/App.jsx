@@ -9,8 +9,7 @@ import './css/startingpage.css'
 import './css/signin.css'
 import './css/register.css'
 import './css/editpost.css'
-
-
+import './css/addtask.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Nav from './components/Nav'
@@ -38,7 +37,6 @@ import Quotes from './components/Quote'
 
 import axios from 'axios'
 
-
 function App() {
   const [user, setUser] = useState(null)
   const [categories, setCategories] = useState(null)
@@ -49,7 +47,7 @@ function App() {
       checkToken()
     }
   }, [])
-  
+
   const handleLogOut = () => {
     setUser(null)
     localStorage.clear()
@@ -62,7 +60,7 @@ function App() {
     const categoriesData = await GetCategories()
     // console.log('Fetched Categories:', categoriesData); // to check if categories is passed correctly
 
-    setCategories(categoriesData) 
+    setCategories(categoriesData)
   }
 
   return (
@@ -97,11 +95,18 @@ function App() {
         />
 
         {/* Task Routes */}
-        <Route path="/dreams" element={<Dreams user={user} setUser={setUser} categories={categories}/>} />
-        <Route path="/add-task" element={<AddTask user={user} categories={categories}/>} />
+        <Route
+          path="/dreams"
+          element={
+            <Dreams user={user} setUser={setUser} categories={categories} />
+          }
+        />
+        <Route
+          path="/add-task"
+          element={<AddTask user={user} categories={categories} />}
+        />
 
-
-        <Route path='/motivation' element={<Quotes user={user}/>}/>
+        <Route path="/motivation" element={<Quotes user={user} />} />
       </Routes>
     </div>
   )

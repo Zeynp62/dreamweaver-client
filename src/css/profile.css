@@ -2,121 +2,152 @@
 .profile-container {
   width: 100%;
   max-width: 1200px;
-  margin: 50px auto;
+  margin: 130px auto 50px;
   padding: 40px;
-  background: rgba(0, 0, 0, 0.6); 
-  margin-top: 130px;
+  background-color: #faeee7;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #594a4e;
   text-align: center;
+}
+
+/* Headings */
+.profile-heading {
+  color: #33272a;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.profile-container h3 {
+  color: #594a4e;
+  margin-bottom: 10px;
 }
 
 /* Profile Image */
 .profile-container img {
   border-radius: 50%;
   margin-bottom: 20px;
+  border: 2px solid #594a4e;
 }
 
-/* Profile Info Section */
-.profile-info {
-  margin-top: 30px;
+/* Dashboard */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px 0;
 }
 
-/* Profile Form */
-.profile-form {
-  background: rgba(255, 255, 255, 0.9); /* Slightly opaque for contrast */
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+.dashboard h3 {
+  color: #594a4e;
 }
-/* Edit Profile Link */
+
+/* Error message */
+.profile-container p {
+  color: #594a4e;
+}
+
+/* Actions */
+.profile-actions {
+  margin: 30px 0;
+}
+
+/* Edit Profile Link (button-style) */
 .edit-profile-link {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #cc4128;
-    color: white;
-    font-size: 1.2rem;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .edit-profile-link:hover {
-    background-color: #c46554;
-
-  }
-/* Buttons */
-.profile-form button, .delete-button {
-  width: 100%;
-  padding: 15px;
-  background-color: #cc4128;
-  color: white;
-  border-radius: 10px;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.profile-form button:hover, .delete-button:hover {
-    background-color: #c46554;
-
-}
-
-/* Links */
-.profile-form a {
-  color: #8c1f5d;
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 10px;
+  background-color: #ff8ba7;
+  color: #33272a;
   font-size: 1.1rem;
   text-decoration: none;
+  border-radius: 25px;
 }
 
-.profile-form a:hover {
-  text-decoration: underline;
+/* Delete Button */
+.delete-button {
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #ff8ba7;
+  color: #33272a;
+  border-radius: 25px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-/* User Post Section */
+/* Interaction — no color change */
+.edit-profile-link:hover,
+.delete-button:hover {
+  transform: translateY(-2px);
+}
+
+.edit-profile-link:active,
+.delete-button:active {
+  transform: translateY(1px);
+}
+
+/* User Posts */
 .user-posts-container {
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
+/* Individual Post */
 .user-post {
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background: rgba(36, 28, 28, 0.6); 
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  border: 2px solid #594a4e;
+  background-color: #faeee7;
+  text-align: center;
 }
 
+.user-post h3 {
+  color: #33272a;
+}
+
+.user-post p {
+  color: #594a4e;
+}
+
+/* Post Image */
 .user-post img {
   max-width: 100%;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
+  border: 2px solid #594a4e;
 }
 
-.edit-link {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 1.1rem;
-  background-color: #cc4128;
-
-}
-
-.edit-link:hover {
-  text-decoration: underline;
-}
-
+/* Edit Post Link */
 .edit-post-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 1.1rem;
-    background-color: #cc4128;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ff8ba7;
+  color: #33272a;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 20px;
+}
 
+.edit-post-link:hover {
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 25px;
   }
-  
-  .edit-post-link:hover {
-    text-decoration: underline;
+
+  .dashboard {
+    flex-direction: column;
+    gap: 15px;
   }
+
+  .profile-heading {
+    font-size: 2rem;
+  }
+}
