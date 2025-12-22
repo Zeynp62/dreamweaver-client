@@ -1,61 +1,72 @@
+/* Add Post Form Container */
+.post-form {
+  background: #faeee7; /* light background from palette */
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 600px;
+  margin: 80px auto 0; /* center and top margin for spacing */
+  box-shadow: 0 4px 15px rgba(51, 39, 42, 0.1); /* soft shadow */
+  color: #594a4e; /* paragraph/text color */
+  font-family: 'Inter', sans-serif;
+}
 
-  
+/* Labels */
+.post-form label {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  display: block;
+  color: #33272a; /* darker text for labels */
+  font-weight: 600;
+}
+
+/* Input fields, textarea, select */
+.post-form input,
+.post-form textarea,
+.post-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #33272a; /* dark border */
+  border-radius: 10px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #33272a;
+  box-sizing: border-box;
+}
+
+/* Textarea styling */
+.post-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Button styling */
+.post-form button {
+  background-color: #ff8ba7; /* button color */
+  color: #33272a; /* button text */
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.post-form button:hover {
+  background-color: #ff7291; /* slightly darker pink */
+  transform: translateY(-2px);
+}
+
+.post-form button:active {
+  transform: translateY(1px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
   .post-form {
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-    padding: 30px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 600px;
-    
-    margin-top: 80px;
+    padding: 20px;
+    max-width: 100%;
   }
-  
- 
-  
-  .post-form label {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    display: block;
-    color: #faf7f7;
-  }
-  
-  .post-form input,
-  .post-form textarea,
-  .post-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-  }
-  
-  .post-form textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-  
-  .post-form button {
-    background-color: #d28f2b;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .post-form button:hover {
-    background-color: #644306;
-  }
-  
-  /* For mobile responsiveness */
-  @media (max-width: 768px) {
-    .post-form {
-      padding: 20px;
-      max-width: 100%;
-    }
-  }
-  
+}

@@ -1,14 +1,12 @@
-body{
+body {
   box-sizing: border-box;
   margin: 0;
-  background-color: aliceblue;
-  display: flex;
-  /* text-align: center;
-  align-items: center;
-  justify-content: center; */
+  background-color: #faeee7; /* your background palette */
+  display: block; /* change from flex to block */
+  font-family: 'Inter', sans-serif;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
 }

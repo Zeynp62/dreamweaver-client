@@ -53,7 +53,7 @@ const Dreams = ({ user, setUser, categories }) => {
 
   return user ? (
     <div className="dreams-container">
-      <h1>My Dreams</h1>
+      <h1 className='dreamH'>My Dreams</h1>
       <AddTask user={user} setUser={setUser} categories={categories} />
 
       {/* Display tasks in frames */}

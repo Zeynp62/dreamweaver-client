@@ -33,11 +33,8 @@ const Home = ({ user, categories }) => {
   return user ? (
     <div className="main-content">
       <div className="navbar">
-        <a href="/profile">{user.name}</a>
       </div>
-      <h1>Welcome To the Home Page</h1>
       <CategoryFilter categories={categories} onChange={handleChange} />
-      <h3>Posts</h3>
       <Post thisposts={posts} thisuser={user} />
     </div>
   ) : (

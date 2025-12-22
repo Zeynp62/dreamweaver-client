@@ -1,3 +1,4 @@
+import '../css/category.css'
 const Category = ({ categories, onChange }) => {
   return (
     <div className="category-filter">
@@ -11,9 +12,7 @@ const Category = ({ categories, onChange }) => {
         </button>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default Category;
-
-
+export default Category
