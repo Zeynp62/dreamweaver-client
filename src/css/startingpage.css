@@ -48,6 +48,70 @@
 .button:active {
   transform: translateY(2px);
 }
+.starting-page-container {
+  width: 100%;
+  min-height: 100vh; /* full viewport height */
+  background-color: #faeee7; /* your palette background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* center vertically */
+  padding: 0; /* remove extra padding */
+  margin: 0; /* remove default margin */
+  box-sizing: border-box;
+}
+
+.welcome-text {
+  font-size: 3rem;
+  color: #33272a; /* headline color */
+  margin: 0; /* remove default h1 margin */
+  padding: 0;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* space between buttons and Lottie */
+  margin-top: 20px; /* optional spacing under heading */
+}
+
+.button {
+  background-color: #ff8ba7; /* button color */
+  color: #33272a; /* button text color */
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #e2768f; /* darker shade on hover */
+}
+
+/* Lottie player adjustments */
+.button-container > .lottie-player {
+  width: 700px; /* match your inline style */
+  height: 700px;
+  margin: 0; /* remove default margin */
+  padding: 0;
+  display: block; /* prevent inline spacing */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .welcome-text {
+    font-size: 2rem;
+  }
+
+  .button-container > .lottie-player {
+    width: 90%;
+    height: auto;
+  }
+}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {

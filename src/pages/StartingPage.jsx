@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom'
+import Lottie from 'react-lottie-player'
+import DreamyCloud from '../assets/animations/dream.json'
 
 const StartingPage = () => {
   return (
@@ -12,9 +13,20 @@ const StartingPage = () => {
         <Link to="/sign-in" className="button">
           Sign In
         </Link>
+        <div className="lottie-player">
+          <Lottie
+            loop
+            animationData={DreamyCloud}
+            play
+            style={{
+              width: 700,
+              height: 700
+            }}
+          />
+        </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StartingPage;
+export default StartingPage
