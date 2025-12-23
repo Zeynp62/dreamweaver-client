@@ -1,32 +1,38 @@
-/* Main container full-width, no background */
+/* ===================== */
+/* Main container */
+/* ===================== */
 .main-content {
   width: 100%;
-  padding: 30px 20px;
-  margin-top: px; /* space for fixed navbar */
+  padding: 20px 16px;
+  margin-top: 80px; /* space for fixed navbar */
   text-align: center;
   font-family: 'Inter', sans-serif;
-  background-color: #faeee7; /* page background */
+  background-color: #faeee7;
+  box-sizing: border-box;
 }
 
 /* Navbar inside main content */
 .main-content .navbar {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
 .main-content .navbar a {
-  color: #33272a; /* button text color */
+  color: #33272a;
   text-decoration: none;
   font-weight: bold;
-  padding: 10px 15px;
-  background-color: #ff8ba7; /* button background */
+  padding: 8px 12px;
+  margin: 4px;
+  background-color: #ff8ba7;
   border-radius: 8px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .main-content .navbar a:hover {
-  background-color: #ff7090; /* slightly darker hover */
+  background-color: #ff7090;
+  transform: translateY(-2px);
 }
 
 /* Category Filter Buttons */
@@ -34,14 +40,14 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .category-filter button {
-  padding: 10px 20px;
-  background-color: #ff8ba7; /* use your button color */
-  color: #33272a; /* button text color */
+  padding: 8px 16px;
+  background-color: #ff8ba7;
+  color: #33272a;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -50,7 +56,7 @@
 }
 
 .category-filter button:hover {
-  background-color: #ff7090; /* hover effect */
+  background-color: #ff7090;
   transform: scale(1.05);
 }
 
@@ -58,18 +64,18 @@
 .posts-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
 }
 
 /* Individual Post Card */
 .post-card {
-  background-color: #faeee7; /* same as page background */
-  border: 1px solid #ff8ba7; /* subtle border for separation */
-  border-radius: 15px;
-  padding: 20px;
+  background-color: #faeee7;
+  border: 1px solid #ff8ba7;
+  border-radius: 12px;
+  padding: 16px;
   width: 100%;
-  max-width: 350px;
+  max-width: 320px;
   text-align: left;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -81,28 +87,28 @@
 
 .post-card .username {
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   color: #33272a;
 }
 
 .post-card .post-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #33272a;
 }
 
 .post-card .post-description {
-  font-size: 1rem;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
   color: #594a4e;
 }
 
 .post-card .post-category {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #ff8ba7;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 /* Post Image */
@@ -111,22 +117,57 @@
   max-height: 200px;
   object-fit: cover;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .posts-container {
-    flex-direction: column;
-    align-items: center;
+/* ===================== */
+/* Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
+  .main-content {
+    padding: 30px 40px;
+    margin-top: 90px;
+  }
+
+  .category-filter {
+    gap: 10px;
   }
 
   .post-card {
-    max-width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .post-card .post-title {
+    font-size: 1.2rem;
+  }
+
+  .post-card .post-description {
+    font-size: 1rem;
+  }
+
+  .post-card .post-category {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===================== */
+/* Small Mobile Adjustments */
+/* ===================== */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 16px 12px;
+    margin-top: 100px; /* taller navbar on very small screens */
   }
 
   .category-filter {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .post-card {
+    max-width: 95%;
+    padding: 14px;
   }
 }

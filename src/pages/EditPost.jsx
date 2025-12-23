@@ -13,7 +13,7 @@ const EditPost = ({ user }) => {
   const [categories, setCategories] = useState([])
   const handleDeletePost = async () => {
     try {
-      await Client.delete(`http://localhost:3001/posts/${id}`)
+      await Client.delete(`https://dreamweaver-server.onrender.com/posts/${id}`)
       setPostState(null)
       navigate('/home')
     } catch (error) {
@@ -24,8 +24,12 @@ const EditPost = ({ user }) => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const postRes = await Client.get(`http://localhost:3001/posts/${id}`)
-        const categoriesRes = await Client.get('http://localhost:3001/category')
+        const postRes = await Client.get(
+          `https://dreamweaver-server.onrender.com/posts/${id}`
+        )
+        const categoriesRes = await Client.get(
+          'https://dreamweaver-server.onrender.com/category'
+        )
         const postData = postRes.data
         setPostState((prevState) => ({
           ...prevState,
@@ -64,9 +68,13 @@ const EditPost = ({ user }) => {
         formData.append('postImg', postState.postImg)
       }
       console.log(formData)
-      await Client.put(`http://localhost:3001/posts/${id}`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      })
+      await Client.put(
+        `https://dreamweaver-server.onrender.com/posts/${id}`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
+      )
       navigate('/home')
     } catch (error) {
       console.error('Error updating post:', error)

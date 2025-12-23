@@ -20,7 +20,9 @@ const Home = ({ user, categories }) => {
     const getPosts = async () => {
       try {
         console.log('Fetching posts...')
-        let res = await Client.get('http://localhost:3001/posts/')
+        let res = await Client.get(
+          'https://dreamweaver-server.onrender.com/posts/'
+        )
         console.log(res)
         setPosts(res.data) // Ensure you're using the correct property from the response
       } catch (err) {

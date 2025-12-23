@@ -1,26 +1,28 @@
+/* ===================== */
 /* Navbar Header */
+/* ===================== */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 12px 20px; /* mobile-first */
   background-color: #faeee7;
   border-bottom: 2px solid #594a4e;
   width: 100%;
   box-sizing: border-box;
-  position: fixed; /* stays at top */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* above other content */
+  z-index: 1000;
 }
 
 /* Navbar links */
 header a {
   color: #33272a;
-  font-size: 1.1rem;
+  font-size: 1rem; /* mobile-first */
   text-decoration: none;
-  padding: 8px 12px;
-  margin: 0 5px;
+  padding: 6px 10px;
+  margin: 0 4px;
   transition: color 0.3s ease, transform 0.2s ease;
 }
 
@@ -32,57 +34,101 @@ header a:hover {
 /* User welcome */
 header h3 {
   color: #33272a;
-  font-size: 1.2rem;
+  font-size: 1rem; /* mobile-first */
   font-weight: 600;
   margin: 0;
+  text-align: center;
 }
 
 /* Nav container */
 nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Profile image */
 nav img {
   border-radius: 50%;
   border: 2px solid #594a4e;
-  margin-right: 10px;
-  width: 40px;
-  height: 40px;
+  margin-right: 8px;
+  width: 35px;
+  height: 35px;
   object-fit: cover;
 }
 
 /* Space between links */
 nav a {
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 /* Push page content below navbar */
 body,
 .page-content {
-  padding-top: 80px; /* adjust to match navbar height */
+  padding-top: 70px; /* mobile-first navbar height */
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
+/* ===================== */
+/* Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
   header {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    padding: 15px 30px;
   }
 
-  nav {
-    flex-direction: column;
-    margin-top: 10px;
+  header a {
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    margin: 0 5px;
   }
 
-  nav a {
-    margin-left: 0;
-    margin-bottom: 8px;
+  header h3 {
+    font-size: 1.2rem;
+  }
+
+  nav img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
   }
 
   body,
   .page-content {
-    padding-top: 120px; /* adjust for taller stacked navbar */
+    padding-top: 80px; /* desktop navbar height */
+  }
+
+  nav {
+    flex-direction: row;
+    margin-top: 0;
+  }
+
+  nav a {
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+}
+
+/* ===================== */
+/* Small Mobile Adjustments */
+/* ===================== */
+@media (max-width: 480px) {
+  header h3 {
+    font-size: 0.95rem;
+  }
+
+  header a {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+
+  nav img {
+    width: 30px;
+    height: 30px;
+  }
+
+  body,
+  .page-content {
+    padding-top: 110px; /* stacked navbar height */
   }
 }

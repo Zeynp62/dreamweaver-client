@@ -1,27 +1,30 @@
+/* ===================== */
 /* Edit Post Form Container */
+/* ===================== */
 .edit-post-container {
-  max-width: 700px;
-  margin: 130px auto 50px; /* respect navbar height */
-  padding: 0 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 100px auto 40px; /* mobile-first, adjusted for navbar */
+  padding: 0 16px;
   box-sizing: border-box;
 }
 
 /* Edit Post Form Styling */
 .edit-post-form {
   background-color: #faeee7;
-  padding: 30px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 12px;
   border: 2px solid #594a4e;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   box-sizing: border-box;
 }
 
 /* Labels */
 .edit-post-form label {
   display: block;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #594a4e;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   text-align: left;
 }
 
@@ -31,8 +34,8 @@
 .edit-post-form textarea {
   width: 100%;
   padding: 12px;
-  margin: 10px 0 20px;
-  border-radius: 10px;
+  margin: 8px 0 16px;
+  border-radius: 8px;
   border: 1px solid #594a4e;
   font-size: 1rem;
   color: #33272a;
@@ -43,19 +46,21 @@
 /* Textarea Styling */
 .edit-post-form textarea {
   resize: vertical;
-  min-height: 150px;
+  min-height: 120px;
 }
 
-/* Submit Buttons */
+/* Submit Button */
 .edit-post-form button[type='submit'] {
   background-color: #ff8ba7;
   color: #33272a;
   padding: 12px 20px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .edit-post-form button[type='submit']:hover {
@@ -67,55 +72,82 @@
 }
 
 /* Delete Button */
-.edit-post-form button[type='button'] {
+.edit-post-form button[type='button'],
+.delete-btn {
   background-color: #ff8ba7;
   color: #33272a;
   padding: 12px 20px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.edit-post-form button[type='button']:hover {
-  transform: translateY(-2px);
-}
-
-.edit-post-form button[type='button']:active {
-  transform: translateY(1px);
-}
-/* Delete Button Styling */
-.delete-btn {
-  background-color: #ff8ba7; /* main palette color */
-  color: #33272a; /* text color */
-  padding: 12px 20px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%; /* full width for consistency with form buttons */
+  width: 100%;
   margin-top: 10px;
 }
 
+.edit-post-form button[type='button']:hover,
 .delete-btn:hover {
-  background-color: #ff7291; /* slightly darker pink on hover */
+  background-color: #ff7291;
   transform: translateY(-2px);
 }
 
+.edit-post-form button[type='button']:active,
 .delete-btn:active {
   transform: translateY(1px);
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
+/* ===================== */
+/* Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
   .edit-post-container {
-    margin: 150px auto 50px;
-    padding: 10px;
+    max-width: 700px;
+    margin: 130px auto 50px;
+    padding: 0 20px;
   }
 
   .edit-post-form {
-    padding: 20px;
+    padding: 30px;
+    border-radius: 15px;
+  }
+
+  .edit-post-form label {
+    font-size: 1.1rem;
+  }
+
+  .edit-post-form input,
+  .edit-post-form select,
+  .edit-post-form textarea {
+    font-size: 1.05rem;
+    padding: 15px;
+  }
+
+  .edit-post-form button[type='submit'],
+  .edit-post-form button[type='button'],
+  .delete-btn {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+}
+
+/* ===================== */
+/* Small Mobile Adjustments */
+/* ===================== */
+@media (max-width: 480px) {
+  .edit-post-container {
+    margin: 150px 10px 40px;
+    padding: 0 10px;
+  }
+
+  .edit-post-form {
+    padding: 16px;
+  }
+
+  .edit-post-form button[type='submit'],
+  .edit-post-form button[type='button'],
+  .delete-btn {
+    font-size: 0.95rem;
+    padding: 10px 16px;
   }
 }

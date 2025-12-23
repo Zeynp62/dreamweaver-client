@@ -6,45 +6,48 @@
   justify-content: center;
   align-items: center;
   background-color: #faeee7;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 /* Heading */
 .register-container h2 {
-  font-size: 2.5rem;
+  font-size: 1.8rem; /* mobile-first */
   color: #33272a;
-  margin-bottom: 30px;
-}
-
-/* Message text (errors included, per palette rule) */
-.error-message {
-  color: #594a4e;
-  font-size: 1.1rem;
   margin-bottom: 20px;
   text-align: center;
 }
 
-/* Form container — CLEAR visual change */
+/* Message text (errors included) */
+.error-message {
+  color: #594a4e;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Form container */
 .form-container {
   background-color: #faeee7;
-  padding: 40px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 12px;
   border: 2px solid #594a4e;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
 }
 
 /* Form group */
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   text-align: left;
 }
 
 /* Labels */
 .form-group label {
   display: block;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #594a4e;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 /* Inputs */
@@ -59,20 +62,22 @@
   box-sizing: border-box;
 }
 
-/* Button — EXACT palette */
+/* Submit button */
 .submit-btn {
   width: 100%;
-  padding: 15px;
+  margin-top: 10px;
+  padding: 14px;
   background-color: #ff8ba7;
   color: #33272a;
   border: none;
   border-radius: 30px;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-/* Interaction without color changes */
+/* Interaction */
 .submit-btn:hover {
   transform: translateY(-2px);
 }
@@ -81,18 +86,38 @@
   transform: translateY(1px);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* ===================== */
+/* 💻 Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
+  .register-container {
+    padding: 40px;
+  }
+
   .register-container h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+
+  .error-message {
+    font-size: 1.1rem;
   }
 
   .form-container {
-    padding: 30px;
+    padding: 40px;
+    max-width: 420px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 1.1rem;
   }
 
   .submit-btn {
-    padding: 12px;
-    font-size: 1.1rem;
+    padding: 16px;
+    font-size: 1.2rem;
   }
 }

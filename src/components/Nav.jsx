@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const Nav = ({ user, handleLogOut }) => {
-  let userOptions;
+  let userOptions
   if (user) {
     userOptions = (
       <nav>
         <Link to="/profile">
           <img
-            src={`http://localhost:3001/${user.profileImg}`}
+            src={`https://dreamweaver-server.onrender.com/${user.profileImg}`}
             alt={`${user.username} Profile Picture`}
             width={50}
           />
@@ -21,7 +21,7 @@ const Nav = ({ user, handleLogOut }) => {
           Sign Out
         </Link>
       </nav>
-    );
+    )
   }
 
   const publicOptions = (
@@ -30,7 +30,7 @@ const Nav = ({ user, handleLogOut }) => {
       <Link to="/register">Register</Link>
       <Link to="/sign-in">Sign In</Link>
     </nav>
-  );
+  )
 
   return user ? (
     <header>
@@ -39,7 +39,7 @@ const Nav = ({ user, handleLogOut }) => {
     </header>
   ) : (
     <header>{publicOptions}</header>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

@@ -12,7 +12,9 @@ const Task = ({ task, setTasks }) => {
   const handleDeleteClick = async () => {
     try {
       // Send DELETE request to backend
-      await axios.delete(`http://localhost:3001/task/${task._id}`)
+      await axios.delete(
+        `https://dreamweaver-server.onrender.com/task/${task._id}`
+      )
       // After deletion, update the task list state
       setTasks((prevTasks) => prevTasks.filter((t) => t._id !== task._id))
     } catch (error) {

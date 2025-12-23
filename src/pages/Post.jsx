@@ -21,7 +21,7 @@ const Post = ({ thisposts, thisuser }) => {
             <p className="post-category">{post.category.categoryName}</p>
             {post.postImg && post.postImg !== 'null' && (
               <img
-                src={`http://localhost:3001/${post.postImg}`}
+                src={`https://dreamweaver-server.onrender.com/${post.postImg}`}
                 alt="Post"
                 className="post-img"
               />

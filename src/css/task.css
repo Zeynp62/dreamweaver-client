@@ -3,20 +3,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #faeee7; /* Background from palette */
-  color: #594a4e; /* Paragraph color */
+  background-color: #faeee7;
+  color: #594a4e;
   padding: 12px 20px;
   margin-bottom: 10px;
   border-radius: 10px;
-  border: 1px solid #33272a; /* subtle border for definition */
-  box-shadow: 0 3px 6px rgba(51, 39, 42, 0.1); /* light shadow */
+  border: 1px solid #33272a;
+  box-shadow: 0 3px 6px rgba(51, 39, 42, 0.1);
   font-size: 1rem;
-  flex-wrap: wrap; /* allow wrapping on smaller screens */
+  flex-wrap: wrap;
+  gap: 10px; /* NEW: better spacing when wrapping */
 }
 
 /* Task name and category */
 .task-item span {
   margin-left: 8px;
+  word-break: break-word; /* NEW: prevent overflow on long text */
 }
 
 /* Checkbox styling */
@@ -25,10 +27,10 @@
   cursor: pointer;
 }
 
-/* Delete button styling */
+/* Delete button (inside task item) */
 .task-item .delete-btn {
-  background-color: #ff8ba7; /* palette button */
-  color: #33272a; /* button text */
+  background-color: #ff8ba7;
+  color: #33272a;
   border: none;
   border-radius: 8px;
   padding: 6px 12px;
@@ -37,46 +39,61 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.task-item .delete-btn:hover {
-  background-color: #ff7291; /* slightly darker pink */
-  transform: translateY(-2px);
-}
-
-.task-item .delete-btn:active {
-  transform: translateY(1px);
-}
-
-/* Delete Button Styling */
+/* General delete button (full width) */
 .delete-btn {
-  background-color: #ff8ba7; /* main palette color */
-  color: #33272a; /* text color */
+  background-color: #ff8ba7;
+  color: #33272a;
   padding: 12px 20px;
   font-size: 1.1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%; /* full width for consistency with form buttons */
+  width: 100%;
   margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Hover/active */
 .delete-btn:hover {
-  background-color: #ff7291; /* slightly darker pink on hover */
-  transform: translateY(-2px);
+  background-color: #ff7291;
 }
 
 .delete-btn:active {
   transform: translateY(1px);
 }
 
-/* Mobile responsiveness */
+/* 📱 Tablet & Mobile */
 @media (max-width: 768px) {
   .task-item {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch; /* NEW: full-width children */
+    padding: 14px;
+  }
+
+  .task-item span {
+    margin-left: 0;
+    font-size: 0.95rem;
   }
 
   .task-item .delete-btn {
-    margin-top: 8px;
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+  }
+}
+
+/* 📱 Small phones */
+@media (max-width: 480px) {
+  .task-item {
+    font-size: 0.9rem;
+  }
+
+  .task-item input[type='checkbox'] {
+    transform: scale(1.4); /* easier to tap */
+  }
+
+  .delete-btn {
+    font-size: 1rem;
+    padding: 14px;
   }
 }

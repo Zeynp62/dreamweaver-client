@@ -1,13 +1,25 @@
+/* ===================== */
 /* Edit Profile Form */
+/* ===================== */
 .edit-profile-form {
   background-color: #faeee7;
-  padding: 40px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 12px;
   border: 2px solid #594a4e;
-  max-width: 700px;
-  margin: 30px auto;
+  max-width: 100%;
+  width: 100%;
+  margin: 20px auto;
   box-sizing: border-box;
   text-align: center;
+}
+
+/* Labels */
+.edit-profile-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #594a4e;
+  text-align: left;
 }
 
 /* Form Fields */
@@ -15,27 +27,27 @@
 .edit-profile-form select,
 .edit-profile-form textarea {
   width: 100%;
-  padding: 15px;
-  margin: 10px 0 20px;
-  border-radius: 10px;
+  padding: 12px;
+  margin: 8px 0 16px;
+  border-radius: 8px;
   border: 1px solid #594a4e;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #33272a;
   background-color: #faeee7;
   box-sizing: border-box;
 }
 
 .edit-profile-form textarea {
-  min-height: 150px;
+  min-height: 120px;
 }
 
 /* Section Navigation Buttons */
 .edit-profile-form .section-buttons button {
-  padding: 12px 24px;
+  padding: 10px 20px;
   margin: 5px;
   background-color: #ff8ba7;
   color: #33272a;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -50,12 +62,13 @@
   transform: translateY(1px);
 }
 
-/* Submit Buttons */
+/* Submit Button */
 .edit-profile-form button[type='submit'] {
   padding: 12px 24px;
+  margin-top: 10px;
   background-color: #ff8ba7;
   color: #33272a;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -73,31 +86,58 @@
 /* Error Message */
 .edit-profile-form p.error {
   color: #594a4e;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-/* Labels */
-.edit-profile-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 1rem;
-  color: #594a4e;
+  font-size: 0.95rem;
+  margin-top: 16px;
   text-align: left;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* ===================== */
+/* Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
   .edit-profile-form {
-    padding: 30px;
+    padding: 40px;
+    max-width: 700px;
+    margin: 30px auto;
+    border-radius: 15px;
+  }
+
+  .edit-profile-form label {
+    font-size: 1rem;
+  }
+
+  .edit-profile-form input,
+  .edit-profile-form select,
+  .edit-profile-form textarea {
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
   }
 
   .edit-profile-form .section-buttons button {
-    width: 100%;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    padding: 12px 24px;
+    margin: 5px;
   }
 
   .edit-profile-form button[type='submit'] {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+  }
+}
+
+/* ===================== */
+/* Small Mobile Adjustments */
+/* ===================== */
+@media (max-width: 480px) {
+  .edit-profile-form {
+    padding: 16px;
+  }
+
+  .edit-profile-form .section-buttons button,
+  .edit-profile-form button[type='submit'] {
     width: 100%;
+    font-size: 0.95rem;
+    padding: 10px 16px;
   }
 }

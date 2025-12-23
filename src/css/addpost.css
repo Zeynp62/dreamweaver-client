@@ -1,22 +1,24 @@
+/* ===================== */
 /* Add Post Form Container */
+/* ===================== */
 .post-form {
   background: #faeee7; /* light background from palette */
-  padding: 30px;
-  border-radius: 15px;
+  padding: 20px; /* mobile-first padding */
+  border-radius: 12px;
   width: 100%;
-  max-width: 600px;
-  margin: 80px auto 0; /* center and top margin for spacing */
-  box-shadow: 0 4px 15px rgba(51, 39, 42, 0.1); /* soft shadow */
+  max-width: 100%;
+  margin: 80px auto 0; /* top spacing for navbar */
+  box-sizing: border-box;
   color: #594a4e; /* paragraph/text color */
   font-family: 'Inter', sans-serif;
 }
 
 /* Labels */
 .post-form label {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
+  font-size: 1rem;
+  margin-bottom: 6px;
   display: block;
-  color: #33272a; /* darker text for labels */
+  color: #33272a; /* label color */
   font-weight: 600;
 }
 
@@ -26,9 +28,9 @@
 .post-form select {
   width: 100%;
   padding: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   border: 1px solid #33272a; /* dark border */
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 1rem;
   background: rgba(255, 255, 255, 0.9);
   color: #33272a;
@@ -41,21 +43,22 @@
   resize: vertical;
 }
 
-/* Button styling */
+/* Submit Button Styling */
 .post-form button {
   background-color: #ff8ba7; /* button color */
-  color: #33272a; /* button text */
+  color: #33272a; /* text color */
   border: none;
-  padding: 15px 30px;
-  font-size: 1.1rem;
+  padding: 12px 20px; /* mobile-first */
+  font-size: 1rem;
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%; /* full width on mobile */
 }
 
 .post-form button:hover {
-  background-color: #ff7291; /* slightly darker pink */
+  background-color: #ff7291;
   transform: translateY(-2px);
 }
 
@@ -63,10 +66,54 @@
   transform: translateY(1px);
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
+/* ===================== */
+/* Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
   .post-form {
-    padding: 20px;
-    max-width: 100%;
+    padding: 30px;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(51, 39, 42, 0.1); /* soft shadow for desktop */
+  }
+
+  .post-form label {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .post-form input,
+  .post-form textarea,
+  .post-form select {
+    font-size: 1.05rem;
+    padding: 14px;
+  }
+
+  .post-form button {
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    width: auto; /* keep natural width for desktop */
+  }
+}
+
+/* ===================== */
+/* Small Mobile Adjustments */
+/* ===================== */
+@media (max-width: 480px) {
+  .post-form {
+    padding: 16px;
+    margin: 80px 10px 0;
+  }
+
+  .post-form input,
+  .post-form textarea,
+  .post-form select {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .post-form button {
+    font-size: 0.95rem;
+    padding: 10px 16px;
   }
 }

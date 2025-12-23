@@ -1,34 +1,36 @@
-/* General container for the Dreams page */
+/* ===================== */
+/* General container for Dreams page */
+/* ===================== */
 .dreams-container {
   width: 100%;
   max-width: 1200px;
-  margin: 130px auto 50px; /* top margin accounts for navbar */
-  padding: 40px;
+  margin: 100px auto 40px; /* mobile-first, accounts for navbar */
+  padding: 20px;
   text-align: center;
-  background-color: #faeee7; /* palette background */
-  border-radius: 15px;
+  background-color: #faeee7;
+  border-radius: 12px;
   border: 2px solid #594a4e;
   box-sizing: border-box;
 }
 
-/* AddTask form styling */
+/* Add Task Form Styling */
 .add-task-form {
   background-color: #faeee7;
-  padding: 25px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 12px;
   border: 2px solid #594a4e;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   box-sizing: border-box;
 }
 
-/* Input fields styling */
+/* Input fields and buttons */
 .add-task-form input,
 .add-task-form select,
 .add-task-form button {
   width: 100%;
   padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
   border: 1px solid #594a4e;
   font-size: 1rem;
   color: #33272a;
@@ -36,10 +38,9 @@
   box-sizing: border-box;
 }
 
-/* AddTask submit button */
+/* Submit button */
 .add-task-form button {
-  background-color: #ff8ba7; /* palette button */
-  color: #33272a;
+  background-color: #ff8ba7;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -52,28 +53,28 @@
   transform: translateY(1px);
 }
 
-/* Task items container styling */
+/* Tasks Container */
 .tasks-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
 }
 
-/* Individual task frame */
+/* Individual Task Card */
 .task-card {
   background-color: #faeee7;
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 15px;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 12px;
   border: 2px solid #594a4e;
   text-align: left;
-  flex: 1 1 calc(50% - 20px);
+  flex: 1 1 calc(50% - 16px);
   box-sizing: border-box;
-  min-width: 300px;
+  min-width: 280px;
 }
 
-/* Task headings and paragraphs */
+/* Task Headings and Paragraphs */
 .task-card h3 {
   color: #33272a;
 }
@@ -82,7 +83,7 @@
   color: #594a4e;
 }
 
-/* Task checkbox label */
+/* Task Checkbox Label */
 .task-card label {
   color: #594a4e;
   font-size: 1rem;
@@ -91,54 +92,87 @@
   gap: 5px;
 }
 
-/* Delete Button for tasks */
-.task-card .delete-btn {
+/* Delete Button for Task Card */
+.task-card .delete-btn,
+.delete-btn {
   background-color: #ff8ba7;
   color: #33272a;
   border: none;
-  padding: 8px 15px;
+  padding: 12px 20px;
+  font-size: 1rem;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 10px;
   transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
-}
-
-.task-card .delete-btn:hover {
-  background-color: #ff7291; /* slightly darker pink */
-  transform: translateY(-2px);
-}
-
-.task-card .delete-btn:active {
-  transform: translateY(1px);
-}
-.delete-btn {
-  background-color: #ff8ba7; /* main palette color */
-  color: #33272a; /* text color */
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%; /* full width for consistency with form buttons */
   margin-top: 10px;
 }
 
+.task-card .delete-btn:hover,
 .delete-btn:hover {
-  background-color: #ff7291; /* slightly darker pink on hover */
+  background-color: #ff7291;
   transform: translateY(-2px);
 }
 
+.task-card .delete-btn:active,
 .delete-btn:active {
   transform: translateY(1px);
 }
+
+/* Dream headings */
 .dreamH {
   color: #33272a;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
 }
-/* Mobile responsiveness */
-@media (max-width: 768px) {
+
+/* ===================== */
+/* Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
+  .dreams-container {
+    padding: 40px;
+    margin: 130px auto 50px;
+    border-radius: 15px;
+  }
+
+  .add-task-form {
+    padding: 25px;
+    border-radius: 15px;
+  }
+
   .task-card {
-    flex: 1 1 100%; /* Stack tasks on smaller screens */
+    flex: 1 1 calc(50% - 20px);
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .dreamH {
+    font-size: 1.2rem;
+  }
+}
+
+/* ===================== */
+/* Small Mobile Adjustments */
+/* ===================== */
+@media (max-width: 480px) {
+  .dreams-container {
+    padding: 16px;
+    margin: 120px 10px 40px;
+  }
+
+  .task-card {
+    flex: 1 1 100%;
+    padding: 14px;
+  }
+
+  .add-task-form input,
+  .add-task-form select,
+  .add-task-form button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .dreamH {
+    font-size: 1rem;
   }
 }

@@ -16,7 +16,9 @@ const AddPost = ({ userInfo }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await Client.get('http://localhost:3001/category')
+        const response = await Client.get(
+          'https://dreamweaver-server.onrender.com/category'
+        )
         setCategories(response.data)
       } catch (error) {
         console.error('Error fetching categories:', error)

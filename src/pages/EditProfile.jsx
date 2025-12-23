@@ -31,7 +31,9 @@ const EditProfile = ({ user, setUser }) => {
     try {
       //update email
       const response = await axios.put(
-        `http://localhost:3001/user/update-email/${user.id || user._id}`,
+        `https://dreamweaver-server.onrender.com/user/update-email/${
+          user.id || user._id
+        }`,
         { email: formData.email },
         config
       )
@@ -47,7 +49,9 @@ const EditProfile = ({ user, setUser }) => {
     e.preventDefault()
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-password/${user.id || user._id}`,
+        `https://dreamweaver-server.onrender.com/user/update-password/${
+          user.id || user._id
+        }`,
         {
           oldPassword: formData.oldPassword,
           newPassword: formData.newPassword
@@ -68,7 +72,9 @@ const EditProfile = ({ user, setUser }) => {
     data.append('profileImg', formData.profileImg)
     try {
       const response = await axios.put(
-        `http://localhost:3001/user/update-profile-image/${user.id || user._id}`,
+        `https://dreamweaver-server.onrender.com/user/update-profile-image/${
+          user.id || user._id
+        }`,
         data,
         config
       )

@@ -14,7 +14,10 @@ const Profile = ({ user, setUser }) => {
 
     try {
       //the delete "user/:id"
-      await axios.delete(`http://localhost:3001/user/${user._id}`, config)
+      await axios.delete(
+        `https://dreamweaver-server.onrender.com/user/${user._id}`,
+        config
+      )
       localStorage.removeItem('token') //remove token
       setUser(null)
 
@@ -29,7 +32,7 @@ const Profile = ({ user, setUser }) => {
     <div className="profile-container">
       <h1 className="profile-heading">{user.username} Profile</h1>
       <img
-        src={`http://localhost:3001/${user.profileImg}`}
+        src={`https://dreamweaver-server.onrender.com/${user.profileImg}`}
         alt={`${user.username} Profile Picture`}
         width={200}
       />
@@ -64,19 +67,19 @@ const Profile = ({ user, setUser }) => {
         {user.posts
           ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // sorting posts by createdAt in descending order
           .map((post) => (
-          <div key={post._id} className="user-post">
-            <h3>{post.title}</h3>
-            <p>{post.description}</p>
-            <img
-              src={`http://localhost:3001/${post.postImg}`}
-              alt={`${post.title} Image`}
-              width={300}
-            />
-            <Link to={`/posts/${post._id}`} className="edit-post-link">
-              Edit Post
-            </Link>
-          </div>
-        ))}
+            <div key={post._id} className="user-post">
+              <h3>{post.title}</h3>
+              <p>{post.description}</p>
+              <img
+                src={`https://dreamweaver-server.onrender.com/${post.postImg}`}
+                alt={`${post.title} Image`}
+                width={300}
+              />
+              <Link to={`/posts/${post._id}`} className="edit-post-link">
+                Edit Post
+              </Link>
+            </div>
+          ))}
       </div>
     </div>
   ) : (

@@ -1,4 +1,3 @@
-import '../css/category.css'
 const Category = ({ categories, onChange }) => {
   return (
     <div className="category-filter">

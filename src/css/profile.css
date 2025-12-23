@@ -1,84 +1,97 @@
-/* Profile Page Container */
+/* ===================== */
+/* Page container */
+/* ===================== */
 .profile-container {
   width: 100%;
-  max-width: 1200px;
-  margin: 130px auto 50px;
-  padding: 40px;
+  max-width: 100%;
+  margin: 90px auto 30px;
+  padding: 20px;
   background-color: #faeee7;
-  border-radius: 15px;
+  border-radius: 12px;
   border: 2px solid #594a4e;
   text-align: center;
+  box-sizing: border-box;
 }
 
 /* Headings */
 .profile-heading {
   color: #33272a;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: 1.8rem; /* mobile-first */
+  margin-bottom: 16px;
 }
 
 .profile-container h3 {
   color: #594a4e;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 /* Profile Image */
 .profile-container img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   border: 2px solid #594a4e;
 }
 
+/* ===================== */
 /* Dashboard */
+/* ===================== */
 .dashboard {
   display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 30px 0;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
 }
 
 .dashboard h3 {
   color: #594a4e;
 }
 
-/* Error message */
+/* Messages / Errors */
 .profile-container p {
   color: #594a4e;
+  font-size: 0.95rem;
 }
 
+/* ===================== */
 /* Actions */
+/* ===================== */
 .profile-actions {
-  margin: 30px 0;
+  margin: 24px 0;
 }
 
-/* Edit Profile Link (button-style) */
+/* Edit Profile Link */
 .edit-profile-link {
   display: inline-block;
-  padding: 12px 25px;
-  margin: 10px;
+  padding: 12px 22px;
+  margin: 8px;
   background-color: #ff8ba7;
   color: #33272a;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-decoration: none;
   border-radius: 25px;
+  transition: transform 0.2s ease;
 }
 
 /* Delete Button */
 .delete-button {
   width: 100%;
-  max-width: 300px;
-  padding: 15px;
-  margin-top: 15px;
+  max-width: 280px;
+  padding: 14px;
+  margin-top: 12px;
   background-color: #ff8ba7;
   color: #33272a;
   border-radius: 25px;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-/* Interaction — no color change */
+/* Interaction */
 .edit-profile-link:hover,
 .delete-button:hover {
   transform: translateY(-2px);
@@ -89,16 +102,18 @@
   transform: translateY(1px);
 }
 
+/* ===================== */
 /* User Posts */
+/* ===================== */
 .user-posts-container {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 /* Individual Post */
 .user-post {
-  padding: 25px;
-  margin-bottom: 25px;
-  border-radius: 15px;
+  padding: 18px;
+  margin-bottom: 20px;
+  border-radius: 12px;
   border: 2px solid #594a4e;
   background-color: #faeee7;
   text-align: center;
@@ -106,48 +121,72 @@
 
 .user-post h3 {
   color: #33272a;
+  font-size: 1.2rem;
 }
 
 .user-post p {
   color: #594a4e;
+  font-size: 0.95rem;
 }
 
 /* Post Image */
 .user-post img {
   max-width: 100%;
   border-radius: 10px;
-  margin-top: 15px;
+  margin-top: 12px;
   border: 2px solid #594a4e;
 }
 
 /* Edit Post Link */
 .edit-post-link {
   display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
+  margin-top: 12px;
+  padding: 10px 18px;
   background-color: #ff8ba7;
   color: #33272a;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-decoration: none;
   border-radius: 20px;
+  transition: transform 0.2s ease;
 }
 
 .edit-post-link:hover {
   transform: translateY(-2px);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
+/* ===================== */
+/* 💻 Tablet & Desktop */
+/* ===================== */
+@media (min-width: 768px) {
   .profile-container {
-    padding: 25px;
-  }
-
-  .dashboard {
-    flex-direction: column;
-    gap: 15px;
+    max-width: 1200px;
+    margin: 130px auto 50px;
+    padding: 40px;
+    border-radius: 15px;
   }
 
   .profile-heading {
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .dashboard {
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .profile-container img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .edit-profile-link,
+  .delete-button,
+  .edit-post-link {
+    font-size: 1.1rem;
+  }
+
+  .user-post {
+    padding: 25px;
   }
 }

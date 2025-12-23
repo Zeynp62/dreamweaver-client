@@ -1,16 +1,19 @@
-/* AddTask Form Container */
+/* ===================== */
+/* AddTask & General Form Container */
+/* ===================== */
 .add-task-form,
 form {
   background-color: #faeee7; /* palette background */
-  padding: 25px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 12px;
   border: 2px solid #594a4e;
   box-sizing: border-box;
   max-width: 500px;
-  margin: 0 auto 30px;
+  width: 100%;
+  margin: 0 auto 25px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 /* Input fields styling */
@@ -21,28 +24,35 @@ form select {
   width: 100%;
   padding: 12px;
   border: 1px solid #594a4e;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 1rem;
   color: #33272a;
   background-color: #faeee7;
   box-sizing: border-box;
 }
 
-/* Checkbox label */
+/* Checkbox label styling */
 .add-task-form label,
 form label {
   color: #594a4e;
-  font-size: 1rem;
+  font-size: 0.95rem;
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+/* Select dropdown styling */
+.add-task-form select,
+form select {
+  appearance: none; /* remove default arrow styling */
+  padding-right: 10px;
 }
 
 /* Submit button styling */
 .add-task-form button,
 form button {
   background-color: #ff8ba7; /* palette button */
-  color: #33272a; /* button text */
+  color: #33272a; /* text color */
   border: none;
   border-radius: 10px;
   padding: 12px 20px;
@@ -50,6 +60,7 @@ form button {
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
+  width: 100%;
 }
 
 .add-task-form button:hover,
@@ -63,12 +74,6 @@ form button:active {
   transform: translateY(1px);
 }
 
-/* Select dropdown styling */
-.add-task-form select,
-form select {
-  appearance: none; /* remove default arrow styling */
-  padding-right: 10px;
-}
 /* Delete Button Styling */
 .delete-btn {
   background-color: #ff8ba7; /* main palette color */
@@ -79,7 +84,7 @@ form select {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%; /* full width for consistency with form buttons */
+  width: 100%; /* full width for consistency */
   margin-top: 10px;
 }
 
@@ -91,10 +96,56 @@ form select {
 .delete-btn:active {
   transform: translateY(1px);
 }
-/* Mobile responsiveness */
-@media (max-width: 768px) {
+
+/* ===================== */
+/* Tablet & Desktop Styling */
+/* ===================== */
+@media (min-width: 768px) {
   .add-task-form,
   form {
-    padding: 20px;
+    padding: 25px;
+    border-radius: 15px;
+    gap: 15px;
+  }
+
+  .add-task-form input,
+  .add-task-form select,
+  form input,
+  form select {
+    font-size: 1.05rem;
+    padding: 14px;
+  }
+
+  .add-task-form button,
+  form button,
+  .delete-btn {
+    font-size: 1.1rem;
+    padding: 14px 20px;
+  }
+}
+
+/* ===================== */
+/* Small Mobile Adjustments */
+/* ===================== */
+@media (max-width: 480px) {
+  .add-task-form,
+  form {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .add-task-form input,
+  .add-task-form select,
+  form input,
+  form select {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .add-task-form button,
+  form button,
+  .delete-btn {
+    font-size: 0.95rem;
+    padding: 10px 16px;
   }
 }
